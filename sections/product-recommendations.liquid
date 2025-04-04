@@ -1,0 +1,105 @@
+{%- if section.settings.show_product_recommendations -%}
+{% assign same_vendor = false %}
+{% assign same_type = false %}
+{% assign exclusions = 'frontpage,all' | split: ',' %}
+{% if product.metafields.c_f['Related Products'] %}
+  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+{% endif %}
+{% assign found_a_collection = false %}
+{% if collection and collection.all_products_count > 1 %}
+  {% unless exclusions contains collection.handle %}
+    {% assign found_a_collection = true %}
+  {% endunless %}
+{% endif %}
+{% unless found_a_collection %}
+  {% for c in product.collections %}
+    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+      {% assign found_a_collection = true %}
+      {% assign collection = c %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+{% endunless %}
+  {% if found_a_collection %}
+  {% assign counter = 0 %}
+  {% assign current_product = product %}
+  {% assign grid_item_width = 'related--item swiper-slide' %}
+  {% capture related_items %}
+    {% for product in collection.products %}
+      {% unless product.handle == current_product.handle %}
+         {% unless same_vendor and current_product.vendor != product.vendor %}
+           {% unless same_type and current_product.type != product.type %}
+             {%- render 'product-grid-item', product: product, grid_item_width: grid_item_width -%}
+             {% assign counter = counter | plus: 1 %}
+             {% if counter == break_at %}
+               {% break %}
+             {% endif %}
+           {% endunless %}
+        {% endunless %}
+      {% endunless %}
+    {% endfor %}
+  {% endcapture %}
+  {% assign related_items = related_items | trim %}
+    {% unless related_items == blank %}
+    {{ 'product-related.css' | asset_url | stylesheet_tag }}
+    <div class="related--product-section">
+      <div class="page-width">
+        <header class="section-header">
+          <h3 class="section-header__title">
+            {{ section.settings.product_recommendations_heading }}
+          </h3>
+        </header>
+        <div class="related--products">
+          <div class="js--related-slider swiper">
+            <div class="swiper-wrapper">
+              {{ related_items }}
+            </div>
+          </div>
+          <div class="swiper-button-prev">
+            <svg width="22" height="45" viewBox="0 0 22 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.4999 2.27861L2.83325 22.5L19.4999 42.7213" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="swiper-button-next">              
+            <svg width="22" height="45" viewBox="0 0 22 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.49996 42.7214L19.1666 22.5L2.49996 2.27869" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var swiper = new Swiper('.js--related-slider', {
+        loop: false,
+        slidesPerView: "auto",
+        spaceBetween: 0,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
+    {% endunless %}
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Product recommendations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_product_recommendations",
+        "label": "Show dynamic recommendations",
+        "info": "Dynamic recommendations change and improve with time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products)",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_recommendations_heading",
+        "label": "Heading",
+        "default": "You may also like"
+      }
+    ]
+  }
+{% endschema %}

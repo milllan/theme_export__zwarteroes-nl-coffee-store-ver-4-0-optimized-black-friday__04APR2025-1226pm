@@ -1,0 +1,92 @@
+<div class="featured-static-product">
+  <div class="page-widths">
+    <div class="featured-grid">
+      <div style="background-color:{{ section.settings.bg_color }};" class="featured-grid-column featured-grid-content">
+        <div class="product-text-inner">
+          {% if section.settings.title != blank %}
+          <h1 style="color:{{ section.settings.text_color }};">{{ section.settings.title }}</h1>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <div style="color:{{ section.settings.text_color }};" class=""{{ section.settings.text }}</div>
+          {% endif %}
+          {% if section.settings.rating_text != blank %}
+          <div class="review-star">
+            <span class="produc-review-stars">★★★★★</span>
+            <span class="review-stars-text">{{ section.settings.rating_text }}</span>
+          </div>
+          {% endif %}
+          {% if section.settings.btn_link != blank and section.settings.btn_text != blank %}
+          <a style="background-color:{{ section.settings.btn_bg_color }}; color:{{ section.settings.btn_text_color }};" href="{{ section.settings.btn_link }}" class="btn btn-custom">{{ section.settings.btn_text }}</a>
+          {% endif %}
+        </div>
+      </div>
+      {% if section.settings.image %}
+      <div class="featured-grid-column featured-grid-img">
+        <img src="{{ section.settings.image | img_url: '1000x' }}" alt="{{ image.alt }}">
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Featured Static Product",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg_color",
+        "label": "Button Bg Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color",
+        "label": "Button Text Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "rating_text",
+        "label": "Rating Text"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Static Product"
+      }
+    ]
+  }
+{% endschema %}

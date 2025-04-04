@@ -1,0 +1,87 @@
+{{ 'lp-image-section.css' | asset_url | stylesheet_tag }}
+
+
+<section class="lp-image-section">
+  <div class="lp-wrapper lp-image-section__wrapper">
+    {% liquid
+    assign imageSectionImageFirst = section.settings.image_section_image_first
+    assign imageSectionImageSecond = section.settings.image_section_image_second
+    assign imageSectionImageThird = section.settings.image_section_image_third
+
+    assign imageSectionText = section.settings.image_section_text
+  
+    assign imageSectionLogo = section.settings.image_section_logo
+  %}
+    <div class="lp-image-section__wrapper">
+        <div class="image-section__img-grid">
+            {% if imageSectionImageFirst %}
+                <div class="lp-image-section__img-first lp-img--wrapper">
+                {{ imageSectionImageFirst | image_url: width: auto | image_tag: class: 'lp-image'}}
+                </div>
+            {% endif %}
+            {% if imageSectionImageSecond %}
+                <div class="lp-image-section__img-second lp-img--wrapper">
+                {{ imageSectionImageSecond | image_url: width: auto | image_tag: class: 'lp-image'}}
+                </div>
+            {% endif %}
+            {% if imageSectionImageThird %}
+                <div class="lp-image-section__img-third lp-img--wrapper">
+                {{ imageSectionImageThird | image_url: width: auto | image_tag: class: 'lp-image'}}
+                </div>
+            {% endif %}
+        </div>
+            {% if imageSectionText != '' %}
+                <p class="lp-image-section__text lp-text--black lp-text">
+                    {{imageSectionText}}
+                </p>
+            {% endif %}
+            {% if imageSectionLogo %}
+                <div class="lp-image-section__logo lp-img--wrapper">
+                  {{ imageSectionLogo | image_url: width: auto | image_tag: class: 'lp-image'}}
+                </div>
+            {% endif %}
+    </div>
+        
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Lp image-section",
+    "settings": [
+            {
+                "type": "image_picker",
+                "id": "image_section_image_first",
+                "label": "Section Grid First Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_section_image_second",
+                "label": "Section Grid Second Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_section_image_third",
+                "label": "Section Grid Third Image"
+            },
+            {
+                "type": "text",
+                "id": "image_section_text",
+                "label": "Section text"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_section_logo",
+                "label": "Section Image Logo"
+            }
+        ],
+    
+    
+    "presets": [
+      {
+        "name": "Lp image-section"
+      }
+    ]
+  }
+{% endschema %}

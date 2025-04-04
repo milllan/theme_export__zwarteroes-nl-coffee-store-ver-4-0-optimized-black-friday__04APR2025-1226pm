@@ -1,0 +1,197 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+{% if section.settings.show_image %}
+  {% if section.settings.bottom_image != blank %}
+     <img class="feature-dot_image" src="{{ section.settings.bottom_image | img_url: '' }}">
+  {% endif %}
+{% endif %}
+<div class="feature-columns bg-light-black">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header text-{{ section.settings.align_text }}">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+  
+    <div class="feature-columns-container">
+      
+      {%- for block in section.blocks -%}
+        {%- if block.type == "text_block" -%}
+          <div class="column text-{{ section.settings.align_text }}" {{ block.shopify_attributes }} data-aos="row-of-3">
+            <div class="wrapper">
+              {%- if block.settings.enable_image -%}
+                <div style="{% if section.settings.align_text == 'center' %}margin: 0 auto;{% endif %} width: 100%;">
+                  {%- if block.settings.image != blank -%}
+                    <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: block.settings.image.aspect_ratio }}%;">
+                      {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                      <img class="lazyload"
+                          data-src="{{ img_url }}"
+                          data-widths="[180, 360, 540, 720, 900, 1080]"
+                          data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                          data-sizes="auto"
+                          alt="{{ block.settings.image.alt }}">
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="text-white">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="rte-setting text-white text-spacing">{{ block.settings.text }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="icon-bar">
+      {%- for block in section.blocks -%}
+        {%- if block.type == "icon_block" -%}
+          <div class="icon-bar-item">
+            {%- if block.settings.icon != blank -%}
+            <div class="icon-wrap">
+              <img class="lazyload" src="{{ block.settings.icon | img_url: '175x' }}" alt="{{ block.settings.icon.alt }}">
+            </div>
+            {%- endif -%}
+            {%- if block.settings.caption != blank -%}
+              <div class="rte-setting text-white text-spacing">{{ block.settings.caption }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="btn-wrapper text-center">
+        <a href="{{ section.settings.button_link }}" class="btn btn--secondary">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Feature Columns",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "bottom Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Show Image",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "bottom_image",
+        "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Example title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "icon_block",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "caption",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Feature columns",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

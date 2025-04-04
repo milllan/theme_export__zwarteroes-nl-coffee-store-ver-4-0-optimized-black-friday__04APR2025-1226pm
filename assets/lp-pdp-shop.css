@@ -1,0 +1,283 @@
+.product-section-hey-lander {
+    font-family: 'Quicksand';
+}
+
+.product-section-hey-lander .page-content.page-content--product {
+    padding: 0px 0;
+    padding-bottom: 80px;
+}
+.product-section-hey-lander .variant-input-wrap .variant-input:nth-child(1) {
+    order: 3;
+}
+
+.product-section-hey-lander .variant-input-wrap .variant-input:nth-child(2) {
+    order: 1;
+}
+
+.product-section-hey-lander .variant-input-wrap .variant-input:nth-child(3) {
+  order: 2;
+}
+.product-section-hey-lander .page-width {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px !important;
+}
+.product-section-hey-lander .icon-and-text svg {
+    width: 25px;
+    height: 25px;
+}
+.product-section-hey-lander #pc_view, .product-section-hey-lander .jdgm-prev-badge__text {
+    display: inline-block !important;
+}
+.product-section-hey-lander label.variant__button-label {
+    padding: 14px;
+    font-size: 14px;
+    line-height: 140%;
+    min-height: 75px;
+    border: 1px solid #C8C8C8;
+    border-radius: 16px;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    background: #f0f0f0 !important;
+    flex-direction: column;
+}
+.product-section-hey-lander .usp_section ul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+}
+.product-section-hey-lander .usp_section ul li img {
+    margin-right: 7px;
+    max-width: 20px;
+}
+/*.product-section-hey-lander .product-variant {
+  padding-bottom: 0px;
+}*/
+/*.product-section-hey-lander .product-variant .variant-wrapper {
+        padding-bottom: 0px;
+    }*/
+.product-section-hey-lander .variant-input-wrap {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+.product-section-hey-lander .variant-input input[type=radio]:checked+.b-shop__variant-container label {
+    background: #fff !important;
+    border: 1px solid #000;
+}
+
+.product-section-hey-lander .section-header__title {
+    text-align: center;
+    font-size: 28px;
+}
+
+.product-section-hey-lander .product-block .title__grid {
+    padding-right: 0 !important;
+}
+
+.product-section-hey-lander .product-shop__review-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: -80px;
+
+    img {
+        max-width: 40px;
+        height: 40px;
+    }
+}
+
+.product-section-hey-lander .b-shop__product-review-text {
+    font-size: 14px;
+}
+
+.product-section-hey-lander .b-shop__variant-container {
+    position: relative;
+}
+
+.product-section-hey-lander .variant-label-saving {
+    position: absolute;
+    z-index: 5;
+    background: #f0bc1b;
+    text-transform: uppercase;
+    border-radius: 2px;
+    color: #000;
+    font-size: 11px;
+    right: 20px;
+    top: -10px;
+    min-width: 105px;
+    right: 30px;
+    text-align: center;
+}
+
+.product-section-hey-lander .variant-label-saving span {
+    padding: 2px 0;
+    display: inline-block;
+}
+
+.product-section-hey-lander #pc_view {
+    margin-bottom: 15px;
+}
+
+.product-section-hey-lander .product-block.product-text-block:first-of-type {
+    font-weight: 600;
+}
+
+.product-section-hey-lander .b-shop__payment-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: -15px;
+    padding-bottom: 0px;
+}
+
+.product-section-hey-lander .b-shop__retail {
+    color: #DF6835;
+    font-weight: 700;
+}
+
+.product-section-hey-lander .b-shop__retail:first-of-type {
+    color: #222222;
+
+}
+
+.product-section-hey-lander .b-shop__price {
+    font-weight: 500;
+    color: #666666;
+    text-decoration: line-through;
+}
+
+.product-section-hey-lander .b-shop__price-container {
+    display: flex;
+    gap: 5px;
+}
+.product-section-hey-lander .b-shop__weight-container p {
+    font-weight: 700;
+    font-size: 16px;
+}
+.product-section-hey-lander .icon-and-text {
+    justify-content: flex-start;
+    font-size: 12px;
+    gap: 6px;
+}
+.product-section-hey-lander .sales-point .icon {
+  margin-right: 0px;
+}
+.product-section-hey-lander .add-to-cart {
+    min-height: 48px;
+    font-size: 18px;
+    padding: 0;
+}
+
+.product-section-hey-lander .variant__label {
+    margin-bottom: 24px !important;
+}
+
+@media (min-width: 768px) {
+    .product-section-hey-lander .page-content.page-content--product {
+        padding: 80px 0;
+    }
+    .product-section-hey-lander .page-width {
+    padding: 0 40px !important;
+}
+  .product-section-hey-lander .usp_section ul {
+    gap: 20px;
+}
+    .product-section-hey-lander .section-header__title {
+        font-size: 32px;
+    }
+    
+
+    .product-section-hey-lander .variant-input-wrap {
+        flex-direction: row-reverse;
+        gap: 0;
+    }
+
+    .product-section-hey-lander .product-single__meta {
+        padding-left: 25px;
+        max-width: 530px;
+    }
+
+    .product-section-hey-lander label.variant__button-label {
+        padding: 16px 24px;
+        max-width: 168px;
+        text-align: center;
+        min-height: 140px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .product-section-hey-lander .product-shop__review-wrap {
+        margin-bottom: 16px;
+        position: unset;
+
+        img {
+            max-width: 52px;
+            height: 52px;
+        }
+    }
+
+    .product-section-hey-lander .b-shop__product-review-text {
+        font-size: 16px;
+    }
+
+    .product-section-hey-lander .variant-label-saving {
+        font-size: 12px;
+        left: -8px;
+        max-width: 115px;
+        right: unset;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .product-section-hey-lander .b-shop__payment-icons {
+        padding-bottom: 0;
+    }
+
+    .product-section-hey-lander .add-to-cart {
+        font-size: 20px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .product-section-hey-lander label.variant__button-label::before {
+        content: ' ';
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translate(0px, -10px);
+        width: 20px;
+        height: 20px;
+        z-index: 5;
+        border-radius: 50px;
+        border: 1px solid #29201D;
+    }
+
+    .product-section-hey-lander .variant-input input[type=radio]:checked+.b-shop__variant-container label::after {
+        content: " ";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 18px;
+        background-color: #29201D;
+        border-radius: 50px;
+    }
+
+    .product-section-hey-lander label.variant__button-label {
+        padding-left: 48px;
+    }
+}
+
+.product-section-hey-lander .is-active img {
+    border: 1px solid #222;
+}

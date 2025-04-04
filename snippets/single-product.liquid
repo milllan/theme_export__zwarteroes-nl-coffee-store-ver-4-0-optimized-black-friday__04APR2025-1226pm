@@ -1,0 +1,161 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+<div class="single--product-flex">
+  <div class="single--product-info">
+    <h2 class="single--title">{{ product.title }}</h2>
+    <div class="review-star">
+      <span class="produc-review-stars">★★★★★</span>
+      <span class="review-stars-text">5.0/0</span>
+    </div>
+    {% if section.settings.content != blank %}
+    <div class="rte">
+      {{ section.settings.content }}
+    </div>
+    {% endif %}
+    {% if section.settings.html != blank %}
+    <div class="rte discount--box">
+      {{ section.settings.html }}
+    </div>
+    {% endif %}
+    <div class="price__flex product_{{ product.id }}" id="{{ section_id }}">
+      {%- assign hide_sale_price = true -%}
+      {%- if product.compare_at_price_max > product.price -%}
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          {%- assign hide_sale_price = false -%}
+        {%- endif -%}
+        <span
+          data-a11y-price
+          class="visually-hidden"
+          aria-hidden="{{ hide_sale_price }}">
+            {{ 'products.general.regular_price' | t }}
+        </span>
+        <span data-product-price-wrap class="{% if hide_sale_price %} hide{% endif %}">
+          <span data-compare-price class="product__price product__price--compare">
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              {{ current_variant.compare_at_price | money }}
+            {%- endif -%}
+          </span>
+        </span>
+        <span data-compare-price-a11y class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+      {%- else -%}
+        <span data-a11y-price class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+      {%- endif -%}
+  
+      <span data-product-price
+        class="product__price single_product_price {% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}">
+        {%- unless product.empty? -%}
+          {{ current_variant.price | money }}
+        {%- else -%}
+          {{ 1999 | money }}
+        {%- endunless -%}
+      </span>
+      {% if section.settings.shipping_text != blank %}
+      <span class="product__price-shipping">
+        {{ section.settings.shipping_text }}
+      </span>
+      {% endif %}
+    </div>
+    {% comment %}
+    {%- if settings.product_save_amount -%}
+      {%- if settings.product_save_type == 'dollar' -%}
+        {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | money }}{%- endcapture -%}
+      {%- else -%}
+        {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%{%- endcapture -%}
+      {%- endif -%}
+      <span data-save-price class="product__price-savings{% if hide_sale_price %} hide{% endif %}">
+        {%- unless hide_sale_price -%}
+          {{ 'products.general.save_html' | t: saved_amount: saved_amount }}
+        {%- endunless -%}
+      </span>
+    {%- endif -%}
+    {% endcomment %}
+
+    <div
+      data-unit-price-wrapper
+      class="product__unit-price product__unit-price--spacing {% unless current_variant.unit_price_measurement %} hide{% endunless %}">
+      {%- capture unit_price_base_unit -%}
+        <span data-unit-base>
+          {%- if current_variant.unit_price_measurement -%}
+            {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+              {{ current_variant.unit_price_measurement.reference_value }}
+            {%- endif -%}
+            {{ current_variant.unit_price_measurement.reference_unit }}
+          {%- endif -%}
+        </span>
+      {%- endcapture -%}
+
+      <span data-unit-price>{{ current_variant.unit_price | money }}</span>/{{ unit_price_base_unit }}
+    </div>
+    <div class="product-block product-variant">
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          {%- render 'variant-dropdown',
+            product: product,
+            form_id: form_id,
+            section_id: section_id,
+            option: option,
+            forloop: forloop,
+            variant_labels: block.settings.variant_labels
+          -%}
+        {%- endfor -%}
+      {%- endunless -%}
+    </div>
+    {%- unless product.empty? -%}
+      <div class="product-block--action">
+        {%- render 'product-form-single',
+          form_id: form_id,
+          product: product,
+          section: section,
+          show_dynamic_checkout: block.settings.show_dynamic_checkout,
+          current_variant: current_variant
+        -%}
+      </div>
+    {%- endunless -%}
+  </div>
+
+    
+  <div class="single--product-gallery">
+    <div class="js--product-slider swiper">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+        <div class="gallery--item swiper-slide">
+          <img src="{{ image | img_url: '800x' }}" alt="{{ image.alt | escape }}">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="js--thumbs-sldier swiper">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+        <div class="gallery--item swiper-slide">
+          <img src="{{ image | img_url: '300x' }}" alt="{{ image.alt | escape }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+  	  <div class="swiper-button-prev"></div>
+    </div>    
+  </div>
+</div>
+<script>
+   var galleryTop = new Swiper('.js--product-slider', {
+    spaceBetween: 0,
+     slidesPerView: 'auto',
+    loop: true
+  });
+  var galleryThumbs = new Swiper('.js--thumbs-sldier', {
+    spaceBetween: 0,
+    slidesPerView: 'auto',
+    touchRatio: 0.2,
+    slideToClickedSlide: true,
+    loop: true,
+    centeredSlides: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  galleryTop.controller.control = galleryThumbs;
+  galleryThumbs.controller.control = galleryTop;
+</script>

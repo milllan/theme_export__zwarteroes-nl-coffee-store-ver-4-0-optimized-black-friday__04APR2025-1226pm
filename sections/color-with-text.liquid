@@ -1,0 +1,324 @@
+<div class="color-with-text" id="section--{{ section.id }}">
+   <div class="page-width">
+      <div class="option-section">
+         {% if section.settings.title != blank %}
+         <div class="option-header">
+            <h2>{{ section.settings.title }}</h2>
+         </div>
+         {% endif %}
+         <div class="option-Main">
+            <div class="option-leftContainer">
+               <div class="option-content">
+                  <div class="option-content-all">
+                     <center>
+                        {% if section.settings.left_icon %}
+                        <div class="option-img">
+                           <img src="{{ section.settings.left_icon | img_url: '500x' }}" alt="Image">
+                        </div>
+                        {% endif %}
+                        {% if section.settings.text != blank %}
+                        <div class="option-content-text">
+                           <h2>{{ section.settings.text }}</h2>
+                        </div>
+                        {% endif %}
+                        {% if section.settings.btn_link != blank and section.settings.btn_text != blank %}
+                        <div class="">
+                           <a href="{{ section.settings.btn_link }}" class="btn btn-yellow">{{ section.settings.btn_text }}</a>
+                        </div>
+                        {% endif %}
+                     </center>
+                  </div>
+               </div>
+            </div>
+            <div class="option-centerContainer">
+               {% if section.settings.divider_img %}
+               <img class="desktop-divider" src="{{ section.settings.divider_img | img_url: '' }}">
+               {% endif %}
+               {% if section.settings.divider_mobile_img %}
+               <img class="mobile-divider" src="{{ section.settings.divider_mobile_img | img_url: '' }}">
+               {% endif %}
+            </div>
+            <div class="option-rightContainer">
+               <div class="option-content">
+                  <div class="option-content-all">
+                     <center>
+                        {% if section.settings.right_icon != blank %}
+                        <div class="option-img">
+                           <img src="{{ section.settings.right_icon | img_url: '500x' }}" alt="Image">
+                        </div>
+                        {% endif %}
+                        {% if section.settings.right_text != blank %}
+                        <div class="option-content-text">
+                           <h2>{{ section.settings.right_text }}</h2>
+                        </div>
+                        {% endif %}
+                        {% if section.settings.btn_link_1 != blank and section.settings.btn_text_1 != blank %}
+                        <div>
+                           <a href="{{ section.settings.btn_link_1 }}" class="btn btn-brown">{{ section.settings.btn_text_1 }}</a>
+                        </div>
+                        {% endif %}
+                     </center>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% if section.settings.show_image %}
+   {% if section.settings.bottom_image != blank %}
+   <img class="header-dot" src="{{ section.settings.bottom_image | img_url: '' }}">
+   {% endif %}
+   {% endif %}
+</div>
+<style>
+  #section--{{ section.id }} {
+    padding-bottom: 200px;
+  }
+  #section--{{ section.id }} .option-leftContainer {
+    background-color: {{ section.settings.column_bg_1 }};
+  }
+  #section--{{ section.id }} .option-leftContainer .option-content-text {
+    color: {{ section.settings.text_color_1 }};
+  }
+  #section--{{ section.id }} .option-leftContainer .btn-yellow {
+    background: {{ section.settings.btn_bg }};
+    border-color: {{ section.settings.btn_border_color }};
+    color: {{ section.settings.btn_text_color }};
+  }
+  #section--{{ section.id }} .option-leftContainer .btn-yellow:hover {
+    background: {{ section.settings.btn_hover_bg }} !important;
+    border-color: {{ section.settings.border_hover_color }};
+    color: {{ section.settings.text_hover_color }};
+  }
+
+  #section--{{ section.id }} .option-rightContainer {
+    background-color: {{ section.settings.column_bg_2 }};
+  }
+  #section--{{ section.id }} .option-rightContainer .option-content-text {
+    color: {{ section.settings.text_color_2 }};
+  }
+  #section--{{ section.id }} .option-rightContainer .btn-brown {
+    background: {{ section.settings.btn_bg_1 }};
+    border-color: {{ section.settings.btn_border_color_1 }};
+    color: {{ section.settings.btn_text_color_1 }};
+  }
+  #section--{{ section.id }} .option-rightContainer .btn-brown:hover {
+    background: {{ section.settings.btn_hover_bg_1 }};
+    border-color: {{ section.settings.border_hover_color_1 }};
+    color: {{ section.settings.text_hover_color_1 }};
+  }
+</style>
+{% schema %}
+  {
+    "name": "Color With Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Left Column"
+      },
+      {
+        "type": "paragraph",
+        "content": "Left Column Color Panel"
+      },
+      {
+        "type": "color",
+        "id": "column_bg_1",
+        "label": "Background Colour",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_color_1",
+        "label": "Text Colour",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Button"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg",
+        "label": "Button Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "btn_border_color",
+        "label": "Button Border Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color",
+        "label": "button Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Button Hover"
+      },
+      {
+        "type": "color",
+        "id": "btn_hover_bg",
+        "label": "Button Hover Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "border_hover_color",
+        "label": "Button Hover Border Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_hover_color",
+        "label": "button Hover Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_icon",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "header",
+        "content": "Divider Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "divider_img",
+        "label": "Desktop image"
+      },
+      {
+        "type": "image_picker",
+        "id": "divider_mobile_img",
+        "label": "Mobile image"
+      },
+      {
+        "type": "header",
+        "content": "Right Column"
+      },
+      {
+        "type": "paragraph",
+        "content": "Right Column Color Panel"
+      },
+      {
+        "type": "color",
+        "id": "column_bg_2",
+        "label": "Background Colour",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_color_2",
+        "label": "Text Colour",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Button"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg_1",
+        "label": "Button Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "btn_border_color_1",
+        "label": "Button Border Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color_1",
+        "label": "button Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Button Hover"
+      },
+      {
+        "type": "color",
+        "id": "btn_hover_bg_1",
+        "label": "Button Hover Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "border_hover_color_1",
+        "label": "Button Hover Border Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_hover_color_1",
+        "label": "button Hover Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_icon",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "right_text",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "btn_text_1",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_link_1",
+        "label": "Button Link"
+      },
+      {
+        "type": "header",
+        "content": "bottom Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Show Image",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "bottom_image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Color With Text"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,167 @@
+
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+<div class="page-width icon_with_text_section" id="section--{{ section.id }}">
+  {% if section.settings.show_image %}
+  <img class="bg-pattern" src="{{ 'pattern-edge.png' | asset_url }}" alt="yellow pattern">
+  {% endif %}
+  {%- if section.settings.title != blank -%}
+    <div class="section-header">
+      <h2 class="section-header__title">{{ section.settings.title | escape }}</h2><br>
+       {%- if section.settings.text != blank -%}
+        <font size="+2">{{ section.settings.text }}</font><br>
+         {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="icon_with_text_container">
+      {%- for block in section.blocks -%}
+        <div class="icon_with_text_item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="icon__image lazyload"
+                src="{{ block.settings.image | img_url: '100x' }}"
+                alt="{{ block.settings.image.alt }}">
+          {%- else -%}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="rte-setting text-spacing"><font size="-0,5">{{ block.settings.text }}</font></div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+<style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .icon_with_text_section .icon_with_text_item:last-child {
+    border-color: {{ section.settings.border_color }};
+  }
+  .icon_with_text_section {
+    padding: {{ section.settings.mob_padding }};
+  }
+  @media (min-width: 768px) {
+    .icon_with_text_section {
+      padding: {{ section.settings.desk_padding }};
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Icon with text",
+    "max_blocks": 2,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+ {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Colour",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Colour",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border Colour",
+        "default": "#000"
+      },
+      {
+        "type": "text",
+        "id": "desk_padding",
+        "label": "Desktop Padding",
+        "default": "165px 0"
+      },
+      {
+        "type": "text",
+        "id": "mob_padding",
+        "label": "Mobile Padding",
+        "default": "120px 0"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Show Pattern Image",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Icon with text",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

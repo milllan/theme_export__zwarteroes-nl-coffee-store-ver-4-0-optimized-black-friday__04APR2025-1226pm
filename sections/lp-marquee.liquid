@@ -1,0 +1,58 @@
+{{ 'lp-marquee.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-marquee">
+  <div class="marquee">
+    {% for i in (1..3) %}
+      <div class="marquee__group">
+        {% for info in section.blocks %}
+          {% liquid
+            assign marqueImg = info.settings.maruqee_img
+          %}
+          <div class="marquee__item">
+            <div class="marquee__media">
+              {% if marqueImg %}
+                {{ marqueImg | image_url: width: auto | image_tag: class: 'lp-image' }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Lp maruqee",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Layout"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "marquee",
+        "name": "marquee",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Enter content for information icons"
+          }, {
+            "type": "image_picker",
+            "id": "maruqee_img",
+            "label": "Marquee Image"
+          }
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Lp Maruqee"
+      }
+    ]
+  }
+{% endschema %}

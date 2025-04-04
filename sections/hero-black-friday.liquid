@@ -1,0 +1,86 @@
+{{ 'hero-black-friday.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_color = section.settings.section_color
+  
+  assign section_btn_url = section.settings.section_btn_url
+  assign section_btn_text = section.settings.section_btn_text
+  assign section_img = section.settings.section_img
+  assign section_img_mob = section.settings.section_img_mob
+%}
+
+{% style %}
+  .{{ section.id }} {
+    background: {{ section_color }};
+  }
+{% endstyle %}
+
+<section class="hero-bf {{ section.id }}">
+    <div class="lp-wrapper">
+      {% if section_btn_url %}
+        <div class="hero-bf__btn">
+          <a
+               href="{{ section_btn_url }}"
+               title="{{ section_btn_text }}"
+               class="lp-btn">{{ section_btn_text }}</a>
+         </div>
+      {% endif %}
+    </div>
+
+  {% if section_img %}
+    <picture class="">
+      <source
+        class=""
+        media="(min-width: 768px)"
+        srcset="{{ section_img | image_url: height: auto }}">
+      <source
+        class=""
+        media="(min-width: 300px)"
+        srcset="{{ section_img_mob | image_url: height: auto }}">
+      {{ section_img | image_url: height: auto | image_tag:
+   loading: 'lazy',
+   class: '',
+   sizes: sizes,
+   widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+      }}
+    </picture>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Hero Black Friday",
+    "settings": [
+      {
+        "type": "color",
+        "id": "section_color",
+        "label": "Section color"
+      },
+      {
+        "type": "url",
+        "id": "section_btn_url",
+        "label": "Section btn url"
+      },
+      {
+        "type": "text",
+        "id": "section_btn_text",
+        "label": "Section btn text"
+      },
+      {
+        "type": "image_picker",
+        "id": "section_img",
+        "label": "Section background image - large screens"
+      },
+      {
+        "type": "image_picker",
+        "id": "section_img_mob",
+        "label": "Section background image - small screens"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Black Friday"
+      }
+    ]
+  }
+{% endschema %}

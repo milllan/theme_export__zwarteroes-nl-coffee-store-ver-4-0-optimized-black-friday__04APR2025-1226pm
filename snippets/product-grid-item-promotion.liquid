@@ -1,0 +1,36 @@
+{%- liquid
+  unless grid_item_width
+    assign grid_item_width = 'medium-up--one-quarter small--one-half'
+  endunless
+
+  unless per_row
+    assign per_row = '4'
+  endunless
+
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="grid__item grid-product__promotion grid-product {{ grid_item_width }}" data-aos="row-of-{{ per_row }}" data-product-handle="{{ product.handle }}" data-product-id="{{ product.id }}">
+  <div class="grid-product__content">
+      <div class="grid-promotion_img">
+        {%- if section.settings.promotion_image -%}
+          <img src="{{ section.settings.promotion_image | img_url: '800x' }}" alt="{{ section.settings.image.alt }}">
+        {%- endif -%}
+      </div>
+      <div class="grid-product__meta">
+        <div class="promotion_inner_area">
+          {% if section.settings.promotion_title != blank %}
+            <h2>{{ section.settings.promotion_title }}</h2>
+          {% endif %}
+          <div class="promotion-cta">
+            {% if section.settings.promotion_link_title != blank %}
+            <a href="{{ section.settings.promotion_link }}" class="">{{ section.settings.promotion_link_title }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

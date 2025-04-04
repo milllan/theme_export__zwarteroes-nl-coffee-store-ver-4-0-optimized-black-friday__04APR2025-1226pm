@@ -1,0 +1,108 @@
+{% comment %}
+  De volgende sectie is voor de desktopweergave
+{% endcomment %}
+<section class="hero-section" style="height: {{ section.height_desktop }};">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="hero-content">
+          <h1>{{ section.title }}</h1>
+          <p>{{ section.description }}</p>
+          <a href="{{ section.cta_link }}" class="btn btn-primary">{{ section.cta_text }}</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="hero-image">
+          <img src="{{ section.image | img_url: '600x600' }}" alt="{{ section.title }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+  De volgende sectie is voor de mobiele weergave
+{% endcomment %}
+<section class="hero-section-mobile" style="height: {{ section.height_mobile }};">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="hero-image">
+          <img src="{{ section.image | img_url: '600x600' }}" alt="{{ section.title }}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="hero-content">
+          <h1>{{ section.title }}</h1>
+          <p>{{ section.description }}</p>
+          <a href="{{ section.cta_link }}" class="btn btn-primary">{{ section.cta_text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Beschrijving"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Call to Action Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Call to Action Tekst"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Achtergrondafbeelding"
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Hoogte op desktop (px)",
+      "default": 500,
+      "min": 200,
+      "max": 1000,
+      "step": 50
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Hoogte op mobiel (px)",
+      "default": 300,
+      "min": 100,
+      "max": 500,
+      "step": 25
+    }
+  ],
+  "presets": [
+    {
+      "category": "Algemeen",
+      "name": "Hero Section",
+      "settings": {
+        "title": "Welkom bij Onze Winkel",
+        "description": "Ontdek onze geweldige producten en vind precies wat je zoekt.",
+        "cta_link": "/shop",
+        "cta_text": "Begin nu met winkelen",
+        "height_desktop": 500,
+        "height_mobile": 300
+      }
+    }
+  ]
+}
+{% endschema %}

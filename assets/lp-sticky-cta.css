@@ -1,0 +1,110 @@
+.lp-sticky-cta{
+    padding: 12px 0;
+    background: #fff;
+    border-top: 1px solid #C8C8C8;
+    position: fixed;
+    width: 100%;
+    bottom: -200px !important;
+    z-index: 99;
+    transition: .3s ease-in-out all;
+}
+
+.lp-sticky-cta.sticky{
+    bottom: 0 !important;
+    transition: .3s ease-in-out all;
+
+}
+
+.lp-sticky-cta .select__select {
+    border-radius: 50px;
+    border: 1px solid #DF6835;
+}
+.lp-sticky-cta__wrapper {
+    display: flex;
+    max-width: 1180px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.lp-sticky-cta__btn {
+    max-width: 100%;
+    width: 100%;
+}
+.lp-sticky__product-seclet-wrapp {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.lp-sticky-cta__option-text-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lp-sticky-cta .product-block {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.lp-sticky-cta  button.btn.btn--full.add-to-cart {
+    min-width: 260px;
+    margin-bottom: 0;
+    height: 40px;
+    font-size: 18px;
+    line-height: 0 !important;
+}
+
+.lp-sticky-cta .variant-wrapper.variant-wrapper--dropdown.js {
+    height: 40px;
+    margin-right: 0 !important;
+}
+
+.lp-sticky-cta__option-copy,
+.lp-sticky-cta__option-price{
+    font-weight: 700;
+}
+
+.lp-sticky-cta form.product-single__form {
+    width: 100%;
+}
+
+.sticky-cta-variant-wrapp{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .lp-sticky-cta__wrapper {
+        flex-direction: row;
+    }
+    .lp-sticky-cta__btn {
+    max-width: 320px;
+    width: 100%;
+}
+    .lp-sticky-cta__option-text-wrapper {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .lp-sticky__product-seclet-wrapp {
+        flex-wrap: nowrap;
+        width: unset;
+    }
+    .lp-sticky-cta .product-block {
+        width: unset;
+    }
+}
+
+.variant-input-wrap {
+    margin: 0 !important;
+}
+
+.lp-sticky-cta .grid__item.product-single__sticky {
+    display: none;
+}

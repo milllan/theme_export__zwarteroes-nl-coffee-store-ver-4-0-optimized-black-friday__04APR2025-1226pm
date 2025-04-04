@@ -1,0 +1,525 @@
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+</style></style><div class="type-steps" id="section--{{ section.id }}">
+  <div class="page-width">
+    <div class="steps-types">      
+       <div class="steps-Main">
+         {% for block in section.blocks %}
+           {% case block.type %}
+             {% when 'step-default' %}
+             <div class="questions step-{{ block.id }} step-{{ forloop.index }}" id="step-{{ forloop.index }}" {% unless forloop.index == 1 %} style="display:none;"{% endunless %}>
+               {% if block.settings.title != blank %}
+               <div class="steps-header">
+                  <h2>{{ block.settings.title }}</h2>
+               </div>
+               {% endif %}
+               <div class="step-row">                 
+                 <div class="step-column step-left">
+                   <div class="step--inner">
+                     {% if block.settings.icon_1 %}
+                     <div class="step-icon">
+                       <img src="{{ block.settings.icon_1 | img_url: '400x' }}" alt="{{ block.settings.icon_1.alt | default: block.settings.title_1 }}">
+                     </div>
+                      {% endif %}
+                     {% if block.settings.title_1 != blank %}
+                     <h3>{{ block.settings.title_1 }}</h3>
+                     {% endif %}
+                     {% if block.settings.btn_text_1 != blank %}
+                     <div class="btnWrap">
+                       <a href="{% if block.settings.anchor_to_1 != blank %}#{{ block.settings.anchor_to_1 }}{% else %}javascript:void(0);{% endif %}" class="btn">{{ block.settings.btn_text_1 }}</a>
+                     </div>
+                     {% endif %}
+                     <style>
+                       .step-{{ block.id }} .step-left {
+                         background: {{ block.settings.primary_color_1 }};
+                       }
+                       .step-{{ block.id }} .step-left .btnWrap .btn {
+                         background-color: {{ block.settings.secondary_color_1 }} !important;
+                         border-color: {{ block.settings.secondary_color_1 }} !important;
+                         color: {{ block.settings.primary_color_1 }} !important;
+                       }
+                       .step-{{ block.id }} .step-left .btnWrap .btn:hover {
+                         background-color: {{ block.settings.primary_color_1 }} !important;
+                         border-color: {{ block.settings.secondary_color_1 }} !important;
+                         color: {{ block.settings.secondary_color_1 }} !important;
+                       }
+                       .step-{{ block.id }} .step-left h3 {
+                         color: {{ block.settings.secondary_color_1 }};
+                       }
+                     </style>
+                   </div>
+                 <div class="mobile--divider">
+                   <img src="https://cdn.shopify.com/s/files/1/0017/9424/4660/files/divider-mobile.svg?v=1662532459" alt="Divider">
+                 </div>
+                 </div>
+                 {% if block.settings.divider_url != blank %}
+                 <div class="step-devider">
+                   <img src="{{ block.settings.divider_url }}" alt="Divider">
+                 </div>
+                {% endif %}
+                 <div class="step-column step-right">
+                   <div class="step--inner">
+                     {% if block.settings.icon_2 %}
+                     <div class="step-icon">
+                       <img src="{{ block.settings.icon_2 | img_url: '400x' }}" alt="{{ block.settings.icon_2.alt | default: block.settings.title_2 }}">
+                     </div>
+                     {% endif %}
+                     {% if block.settings.title_2 != blank %}
+                     <h3>{{ block.settings.title_2 }}</h3>
+                     {% endif %}
+                     {% if block.settings.btn_text_2 != blank %}
+                     <div class="btnWrap">
+                       <a href="{% if block.settings.anchor_to_2 != blank %}#{{ block.settings.anchor_to_2 }}{% else %}javascript:void(0);{% endif %}" class="btn">{{ block.settings.btn_text_2 }}</a>
+                     </div>
+                     {% endif %}
+                   </div>
+                   <style>
+                     .step-{{ block.id }} .step-right {
+                       background: {{ block.settings.primary_color_2 }};
+                     }
+                     .step-{{ block.id }} .step-right .btnWrap .btn {
+                       background-color: {{ block.settings.secondary_color_2 }} !important;
+                       border-color: {{ block.settings.secondary_color_2 }} !important;
+                       color: {{ block.settings.primary_color_2 }} !important;
+                     }
+                     .step-{{ block.id }} .step-right .btnWrap .btn:hover {
+                       background-color: {{ block.settings.primary_color_2 }} !important;
+                       border-color: {{ block.settings.secondary_color_2 }} !important;
+                       color: {{ block.settings.secondary_color_2 }} !important;
+                     }
+                     .step-{{ block.id }} .step-right h3 {
+                       color: {{ block.settings.secondary_color_2 }};
+                     }
+                   </style>
+                 </div>
+               </div>
+             </div>
+             {% when 'step-products' %}
+                 <div class="step-{{ block.id }} {{ block.settings.answer }}" id="step-{{ forloop.index }}" style="display:none">
+               {% if block.settings.title != blank %}
+               <div class="steps-header">
+                  <h2>{{ block.settings.title }}</h2>
+               </div>
+               {% endif %}
+               <div class="step-row step--product">                 
+                 <div class="step--product-list js-step__product swiper">
+                   <div class="swiper-wrapper">
+                   {%- for product in collections[block.settings.featured_products].products limit: 3 -%}
+                     <div class="step__product swiper-slide">
+                       {%- liquid
+                          assign on_sale = false
+                          if product.compare_at_price > product.price
+                            assign on_sale = true
+                          endif
+                          assign preview_image = product.featured_media.preview_image
+                          assign img_url = preview_image | img_url: '1024x'
+                          assign product_tags = product.tags | join: ','
+                          assign has_popular_label = false
+                          if product_tags contains '_label:popular'
+                            assign has_popular_label = true
+                          endif
+                       -%}
+                       <div class="product__inner grid-product__content">
+                         <div class="product__image-ratio">
+                           <a href="{{ product.url }}">
+                           {% if has_popular_label %}
+                             <div class="product__tag--popular">
+                                <svg width="220" height="187" viewBox="0 0 220 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M219.771 0L0 186.78V86.0751L101.28 0H219.771Z" fill="#EFB01E"/>
+                                </svg>
+                                 <span>Beste Keuze</span>
+                              </div>
+                           {% endif %}
+                           <img src="{{ img_url }}" alt="{{ preview_image.alt | escape }}">
+                           </a>
+                         </div>
+                         <div class="product--info text-center">
+                           <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                       {% if product.metafields.custom.coffee_with != blank %}
+                           <p>{{ product.metafields.custom.coffee_with }}</p>
+                       {% endif %}
+                           <div class="grid-product__price{% if on_sale %} price__compare-item{% endif %}">
+                            {%- if on_sale -%}
+                              <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                              <span class="grid-product__price--original">{{ product.compare_at_price | money }}</span>
+                              <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+                            {%- endif -%}
+                            {%- if product.price_varies -%}
+                              {%- assign price = product.price_min | money -%}
+                              {{ 'products.general.from_text_html' | t: price: price }}
+                            {%- else -%}
+                              {{ product.price  | money }}
+                            {%- endif -%}
+                  
+                            {%- assign product_variant = product.selected_or_first_available_variant -%}
+                            {%- if product_variant.unit_price_measurement -%}
+                              <div class="product__unit-price">
+                                {%- capture unit_price_base_unit -%}
+                                  {%- if product_variant.unit_price_measurement -%}
+                                    {%- if product_variant.unit_price_measurement.reference_value != 1 -%}
+                                      {{ product_variant.unit_price_measurement.reference_value }}
+                                    {%- endif -%}
+                                    {{ product_variant.unit_price_measurement.reference_unit }}
+                                  {%- endif -%}
+                                {%- endcapture -%}
+                  
+                                {{ product_variant.unit_price | money }}/{{ unit_price_base_unit }}
+                              </div>
+                            {%- endif -%}
+                           </div>
+                           <div class="features_list">
+                             <ul>
+                             {% if product.metafields.custom.features_list != blank %}
+                               {% for features in product.metafields.custom.features_list.value %}
+                               <li>
+                                 <span><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.93652L6.667 11.4365L16 2.43652" stroke="#DA642A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 
+                                 {{ features }}
+                               </li>
+                               {% endfor %}
+                             {% endif %}
+                             </ul>
+                           </div>
+                           <div class="steps_btn">
+                             <div class="quick__atc-action large_view_btn">
+          <product-form class="product-form" id="product-form-{{ product.id }}">
+                    
+                  {%- assign product_form_id = 'product-form-' | append: product.id -%}
+                  {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form'-%}
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    ><input
+                      type="hidden"
+                      name="quantity"
+                      value="1"
+              >
+                    {% if product.available and product.variants.size > 1 %}
+            <div class="card__quick-add-modal f" style="display:none">
+                <div class="product-block product-variant dashed-border" {{ block.shopify_attributes }}>
+                      {%- unless product.has_only_default_variant -%}
+                        
+                  
+                    {%- for option in product.options_with_values -%}
+                    {% if option.name == "Maatq" and option.name == "Selecteer verpakkingq" %}
+                    <variant-selects
+                    class="no-js-hidden"
+                    data-section="{{ product.id }}"
+                    data-url="{{ product.url }}"
+                    {{ block.shopify_attributes }}
+                  >
+                      <div class="js product-form__input">
+                        <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                          {{ option.name }}
+                        </label>
+                      <ul class="variant-radios">
+                        {%- for value in option.values -%}
+                          <li class="variant__options">
+                        
+                          <input
+                            type="radio"
+                            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                            name="{{ option.name }}_{{ product.id }}"
+                            value="{{ value | escape }}"
+                            form="{{ product_form_id }}"
+                            {% if option.selected_value == value %}
+                              checked
+                            {% endif %}
+                          >
+                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                            {{ value }}
+                          </label>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                      </div>
+                      <script type="application/json">
+                      {{ product.variants | json }}
+                    </script>
+                  </variant-selects>
+                  {% else %}
+                  <variant-selects
+                    class="no-js-hidden"
+                    data-section="{{ product.id }}"
+                    data-url="{{ product.url }}"
+                    {{ block.shopify_attributes }}
+                  >
+                      <div class="product-form__input product-form__input--dropdown">
+                        <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                          {{ option.name }}
+                        </label>
+                        <div class="select">
+                          <select
+                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                            class="select__select"
+                            name="options[{{ option.name | escape }}]"
+                            form="{{ product_form_id }}"
+                          >
+                            {%- for value in option.values -%}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}
+                                  selected="selected"
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {%- endfor -%}
+                          </select>
+                        </div>
+                      </div>
+                    <script type="application/json">
+                      {{ product.variants | json }}
+                    </script>
+                  </variant-selects>
+                  {% endif %}
+                    {%- endfor -%}
+
+              {%- endunless -%}
+                </div>
+              <div class="card__cta">
+              <div class="card__add-to-cart">
+           
+                    <div class="product-form__buttons">
+                      <button
+                        type="submit"
+                        name="add"
+                        data-add-to-cart
+                        class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                        {% if product.selected_or_first_available_variant.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        <span>
+                          {%- if product.selected_or_first_available_variant.available -%}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {%- else -%}
+                            {{ 'products.product.sold_out' | t }}
+                          {%- endif -%}
+                        </span>
+                      </button>
+                    <button class="btn-icon close-modal">
+                <span class="icon">
+                  <svg class="ss__icon" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.2907 13.3514C12.5836 13.6443 13.0585 13.6443 13.3514 13.3514C13.6443 13.0585 13.6443 12.5836 13.3514 12.2907L10.3658 9.30514L13.2391 6.43182C13.532 6.13892 13.532 5.66405 13.2391 5.37116C12.9462 5.07826 12.4713 5.07826 12.1785 5.37116L9.30514 8.24448L6.28033 5.21967C5.98744 4.92678 5.51256 4.92678 5.21967 5.21967C4.92678 5.51256 4.92678 5.98744 5.21967 6.28033L8.24448 9.30514L5.46094 12.0887C5.16805 12.3816 5.16805 12.8564 5.46094 13.1493C5.75383 13.4422 6.22871 13.4422 6.5216 13.1493L9.30514 10.3658L12.2907 13.3514Z"></path></svg>
+                </span>
+              </button>
+                    </div>
+                  
+            </div>
+            </div>
+            
+            </div>
+              {% endif %}
+          {% if product.available and product.has_only_default_variant %}
+            <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                      
+                    ><input
+                      type="hidden"
+                      name="quantity"
+                      value="1">
+            <button
+                        type="submit"
+                        name="add"
+                        data-add-to-cart
+                        class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                        {% if product.selected_or_first_available_variant.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        <span>
+                          {%- if product.selected_or_first_available_variant.available -%}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {%- else -%}
+                            {{ 'products.product.sold_out' | t }}
+                          {%- endif -%}
+                        </span>
+                      </button>
+            {% elsif product.available  %}
+            <div class="card__quick-add">Quick Add</div>
+            {% else %}
+            <div class="card__quick-sold-out">
+            <button
+                        type="submit"
+                        name="add"
+                        data-add-to-cart
+                        class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                        {% if product.selected_or_first_available_variant.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        <span>
+                          {%- if product.selected_or_first_available_variant.available -%}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {%- else -%}
+                            {{ 'products.product.sold_out' | t }}
+                          {%- endif -%}
+                        </span>
+                      </button></div>
+            {% endif %}
+                    {%- endform -%}
+                </product-form>
+        </div>
+        
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   {%- endfor -%}
+                   </div>
+                   <div class="swiper-scrollbar js-step__scrollbar"></div>
+                 </div>
+                 
+               </div>              
+             </div>
+           {% endcase %}
+         {% endfor %}
+       </div>
+    </div>
+  </div>
+</div>
+<script>
+  var swiper = new Swiper('.js-step__product', {
+    loop: false,
+    slidesPerView: "auto",
+  
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.js-step__scrollbar',
+    },
+  });
+</script>
+<script src="{{ 'collection-page-quiz.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+  {
+    "name": "Type Steps",
+    "settings": [
+      
+    ],
+    "blocks": [
+      {
+        "type": "step-default",
+        "name": "Step Default",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "What is your preferred grind?"
+          },
+          {
+            "type": "header",
+            "content": "Left Column"
+          },
+          {
+            "type": "color",
+            "id": "primary_color_1",
+            "label": "Primary Color",
+            "default": "#f0bc1b"
+          },
+          {
+            "type": "color",
+            "id": "secondary_color_1",
+            "label": "Secondary Color",
+            "default": "#fff"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon_1",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "title_1",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "btn_text_1",
+            "label": "Button Text"
+          },
+          {
+            "type": "text",
+            "id": "anchor_to_1",
+            "label": "Anchor ID"
+          },
+          {
+            "type": "header",
+            "content": "Right Column"
+          },
+          {
+            "type": "color",
+            "id": "primary_color_2",
+            "label": "Primary Color",
+            "default": "#da642a"
+          },
+          {
+            "type": "color",
+            "id": "secondary_color_2",
+            "label": "Secondary Color",
+            "default": "#fff"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon_2",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "title_2",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "btn_text_2",
+            "label": "Button Text"
+          },
+          {
+            "type": "text",
+            "id": "anchor_to_2",
+            "label": "Anchor ID"
+          },
+          {
+            "type": "header",
+            "content": "Divider"
+          },
+          {
+            "type": "text",
+            "id": "divider_url",
+            "label": "Image URL"
+          }
+        ]
+      },
+      {
+        "type": "step-products",
+        "name": "Step Products",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "answer",
+            "label": "Answer"
+          },
+          {
+            "type": "collection",
+            "id": "featured_products",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Type Steps"
+      }
+    ]
+  }
+{% endschema %}

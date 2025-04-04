@@ -1,0 +1,35 @@
+.related--product-section {
+  padding: 80px 0;
+}
+.related--products {
+  padding: 0 30px;
+  position: relative;
+}
+.js--related-slider .related--item {
+  padding: 0 15px;
+  width: 100%;
+  float: none;
+}
+
+@media (max-width: 768px) {
+  .js--related-slider .related--item{
+    width: 90%;
+  }
+  .related--products{
+    padding:0;
+  }
+  .related--products .swiper-button-next,
+  .related--products .swiper-button-prev{
+    display:none;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .js--related-slider .related--item {
+     width: 50%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .js--related-slider .related--item {
+     width: 33.33%;
+  }
+}

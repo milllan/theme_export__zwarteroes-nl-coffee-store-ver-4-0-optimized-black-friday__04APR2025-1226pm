@@ -1,0 +1,87 @@
+<section id="shopify-section-305d6112-7453-40cb-b409-cff616d6a997" class="shopify-section shopify-product-list">
+
+    <div class="product-list-scroll">
+        <div class="container">
+            <div class="product-list-wrap" style="--background-color:#ffffff; --scrollWidth: 285">
+
+                {% assign collection_handle = 'best-selling' %}
+                {% assign collection = collections[collection_handle] %}
+                
+                {% for product in collection.products %}
+                    <a href="{{ product.url }}" class="list-item">
+                        <span class="image-wrapper">
+                            <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}" width="50" height="50" loading="lazy">
+                        </span>
+                        {% assign custom_title = product.metafields.custom.best_selling_title %}
+                        <span class="product-list-title">
+                            {% if custom_title != blank %}
+                                {{ custom_title }}
+                            {% else %}
+                                {{ product.title }}
+                            {% endif %}
+                        </span>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+   <style>
+    #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .container{
+        padding-right: 10px;
+        padding-left: 10px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+       display:none;
+     }
+    #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .product-list-scroll .product-list-wrap {
+    display: flex;
+    gap: 5px;
+    padding: 10px 0;
+    background: #ffffff;
+    min-width: 285;
+    width: 285;
+}
+    #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .product-list-scroll .list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    flex: 1 0 84px;
+}
+   #shopify-section-305d6112-7453-40cb-b409-cff616d6a997   .product-list-scroll .image-wrapper {
+    min-width: 66px;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .product-list-scroll .product-list-title {
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    font-size: 13px;
+    line-height: 1.25;
+    text-align: center;
+}
+    #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .product-list-scroll .image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+}
+     @media(max-width:767px){
+      #shopify-section-305d6112-7453-40cb-b409-cff616d6a997  .container{
+         display:block;
+       }
+     }
+   </style>

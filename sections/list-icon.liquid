@@ -1,0 +1,222 @@
+{%- style -%}
+  {% if section.settings.bg_color != blank %}
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+  {% endif %}
+  {% if section.settings.text_color != blank %}
+  #section--{{ section.id }} .collection-header h2,
+  #section--{{ section.id }} .center-icons-inner h4, 
+  #section--{{ section.id }} .center-icons-inner p {
+    color: {{ section.settings.text_color }};
+  }
+  {% endif %}
+{%- endstyle -%}
+<div id="section--{{ section.id }}">
+<div class="wrapper">
+  <div class="collection-section">
+    {% if section.settings.top_title != blank %}
+        <div class="collection-header text-center">
+          <h2>{{ section.settings.top_title }}</h2>
+        </div>
+      {% endif %}
+    <div class="collection-center-icons">
+      {% for block in section.blocks %}
+        <div class="center-icons-inner text-center {% if block.settings.heading != blank %}icon_new{% endif %}">
+        {% if block.settings.icon %}
+         <div class="collection-center-icon">
+           <img src="{{ block.settings.icon | img_url: '' }}" alt="Image">
+         </div>
+         {% endif %}
+        {% if block.settings.heading != blank %}
+        <h4>{{ block.settings.heading }}</h4>
+        {% endif %}
+        </div>
+       {% endfor %}
+    </div>
+    {% if section.settings.title != blank or section.settings.text != blank %}
+    <div class="collection-content">
+      {% if section.settings.title != blank %}
+        <div class="collection-header">
+          <h2>{{ section.settings.title }}</h2>
+        </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="collection-content-text">
+            {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
+    <div class="collection-btn text-center">
+      <a class="btn{% if section.settings.btn_style == 'primary' %} btn-yellow{% endif %}" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text }}</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+</div>
+<style>
+  /*========== List Icon ==========*/ 
+  .wrapper {
+	margin-right: auto;
+	margin-left: auto; 
+	max-width:1500px; 
+}
+.collection-section {
+	margin:auto;
+	padding: 50px 0px;
+}
+.collection-center-icons {
+    display: flex;
+    padding: 25px;
+    justify-content: center;
+  flex-wrap: wrap;
+}
+
+.collection-center-icon {
+	width: auto;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.collection-center-icon img {
+	height: 75px;
+	width: 75px;
+}
+.collection-header{
+	font-size: 36px;
+	font-weight: 400;
+	padding: 25px;
+}
+.collection-content-text {
+	font-size: 18px;
+    color: #29201D;
+    font-weight: 500;
+    text-align: center;
+    width: 73%;
+    margin: auto;
+}
+
+.collection-content{
+	text-align:center;
+	margin-bottom: 30px;
+}
+.icon_new {
+  padding: 0 20px;
+}
+.icon_new img {
+  height: 120px !important;
+  width: 120px !important;
+}
+.icon_new h4 p {
+  margin: 0;
+}
+@media only screen and (max-width:600px) {
+    .icon_new img {
+      height: 60px !important;
+      width: 60px !important;
+    }
+	.collection-center-icon img {
+		height: 50px;
+		width: 50px;
+	}
+	.collection-center-icon {
+		padding: 10px;
+	}
+	.collection-content{
+		text-align:left;
+	}
+	.collection-header{
+		font-size: 24px;
+	}
+	.collection-content-text {
+		font-size: 18px;
+		width: 85%;
+		text-align:left;
+	}
+	
+}
+</style>
+{% schema %}
+  {
+    "name": "List Icon",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000"
+      },
+      {
+        "type": "text",
+        "id": "top_title",
+        "label": "Top Title"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      },
+      {
+        "type": "select",
+        "id": "btn_style",
+        "label": "Button Style",
+        "default": "primary",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Heading"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "List Icon"
+      }
+    ]
+  }
+{% endschema %}

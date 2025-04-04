@@ -1,0 +1,500 @@
+{%- liquid
+  assign main_menu = linklists[section.settings.main_menu_link_list]
+  assign toolbar_menu = linklists[section.settings.toolbar_menu]
+
+  assign logo_alignment = 'left'
+  if section.settings.main_menu_alignment == 'center-left' or section.settings.main_menu_alignment == 'center-split' or section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-drawer'
+    assign logo_alignment = 'center'
+  endif
+
+  assign dropdown_alignment = 'left'
+  if section.settings.main_menu_alignment == 'left-center' or section.settings.main_menu_alignment == 'center-split' or section.settings.main_menu_alignment == 'center'
+    assign dropdown_alignment = 'center'
+  endif
+
+  assign template_name = template | replace: '.', ' ' | truncatewords: 2, '' | handle
+
+  assign sticky_header = false
+  if section.settings.header_style == 'sticky'
+    assign sticky_header = true
+  endif
+  assign overlay_header = false
+  if template_name == 'index' and section.settings.sticky_index
+    assign overlay_header = true
+  endif
+  if template_name == 'collection' and collection.image and section.settings.sticky_collection
+    assign overlay_header = true
+  endif
+-%}
+
+{%- render 'drawer-menu',
+  section: section,
+  main_menu: main_menu,
+  toolbar_menu: toolbar_menu,
+  logo_alignment: logo_alignment
+-%}
+{%- render 'cart-drawer' -%}
+
+<style>
+  .site-nav__link,
+  .site-nav__dropdown-link:not(.site-nav__dropdown-link--top-level) {
+    font-size: {{ settings.type_navigation_size }}px;
+  }
+  {% if settings.type_navigation_capitalize %}
+    .site-nav__link, .mobile-nav__link--top-level {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .mobile-nav__link--top-level {
+      font-size: 1.1em;
+    }
+  {% endif %}
+
+  {% if mainmenu.length > 6 %}
+    .site-nav__link {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  {% endif %}
+
+  {% unless section.settings.mega_menu_images %}
+    .megamenu__colection-image {
+      display: none;
+    }
+  {% endunless %}
+
+  {%- if settings.color_header == settings.color_body_bg or settings.color_body_bg contains settings.color_header -%}
+    .site-header {
+      box-shadow: 0 0 1px rgba(0,0,0,0.2);
+    }
+
+    .toolbar + .header-sticky-wrapper .site-header {
+      border-top: 0;
+    }
+  {%- endif -%}
+
+  {%- if settings.color_announcement == settings.color_body_bg -%}
+    .announcement-bar {
+      border-bottom: 1px solid;
+    }
+  {%- endif -%}
+</style>
+
+<div data-section-id="{{ section.id }}" data-section-type="header">
+  {%- if overlay_header or section.settings.announcement_above_header -%}
+    <div class="">
+       {%- render 'announcement-bar', section: section -%}
+    </div>
+  {%- endif -%}
+
+  {%- unless overlay_header -%}
+    {%- if section.settings.show_locale_selector or section.settings.show_currency_selector or section.settings.toolbar_social or section.settings.toolbar_menu != blank -%}
+      {%- render 'toolbar',
+        section: section,
+        toolbar_menu: toolbar_menu,
+        overlay_header: overlay_header
+      -%}
+    {%- endif -%}
+  {%- endunless -%}
+
+  <div class="header-sticky-wrapper">
+    <div id="HeaderWrapper" class="header-wrapper{% if overlay_header %} header-wrapper--sticky is-light{% endif %}">
+
+      {%- if overlay_header -%}
+        {%- if section.settings.show_locale_selector or section.settings.show_currency_selector or section.settings.toolbar_social or section.settings.toolbar_menu != blank -%}
+          {%- render 'toolbar',
+            section: section,
+            toolbar_menu: toolbar_menu,
+            overlay_header: overlay_header
+          -%}
+        {%- endif -%}
+      {%- endif -%}
+      <header
+        id="SiteHeader"
+        class="site-header{% if settings.type_navigation_style == 'heading' %} site-header--heading-style{% endif %}"
+        data-sticky="{{ sticky_header }}"
+        data-overlay="{{ overlay_header }}">
+        <div class="page-width">
+          <div
+            class="header-layout header-layout--{{ section.settings.main_menu_alignment }}"
+            data-logo-align="{{ logo_alignment }}">
+
+            {%- if logo_alignment == 'left' -%}
+              <div class="header-item header-item--icons medium-up--hide">
+                {%- if section.settings.main_menu_alignment == 'left' or section.settings.main_menu_alignment == 'left-center' or section.settings.main_menu_alignment == 'left-drawer' -%}
+                  <button
+                    type="button"
+                    class="site-nav__link site-nav__link--icon js-drawer-open-nav{% if section.settings.main_menu_alignment == 'left' or section.settings.main_menu_alignment == 'left-center' %} medium-up--hide{% endif %}"
+                    aria-controls="NavDrawer">
+                    <svg width="34" height="24" viewBox="0 0 34 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.5 10.5215C0.809644 10.5215 0.25 11.0812 0.25 11.7715C0.25 12.4619 0.809644 13.0215 1.5 13.0215V10.5215ZM32.5 13.0215C33.1904 13.0215 33.75 12.4619 33.75 11.7715C33.75 11.0812 33.1904 10.5215 32.5 10.5215V13.0215ZM1.5 20.6882C0.809644 20.6882 0.25 21.2478 0.25 21.9382C0.25 22.6285 0.809644 23.1882 1.5 23.1882V20.6882ZM32.5 23.1882C33.1904 23.1882 33.75 22.6285 33.75 21.9382C33.75 21.2478 33.1904 20.6882 32.5 20.6882V23.1882ZM1.5 0.354491C0.809644 0.354491 0.25 0.914135 0.25 1.60449C0.25 2.29485 0.809644 2.85449 1.5 2.85449V0.354491ZM32.5 2.85449C33.1904 2.85449 33.75 2.29485 33.75 1.60449C33.75 0.914135 33.1904 0.354491 32.5 0.354491V2.85449ZM1.5 13.0215H32.5V10.5215H1.5V13.0215ZM1.5 23.1882H32.5V20.6882H1.5V23.1882ZM1.5 2.85449H32.5V0.354491H1.5V2.85449Z" fill="white"/>
+                    </svg>
+                    <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
+                  </button>
+                {%- endif -%}
+              </div>
+              <div class="header-item header-item--logo">
+                {%- render 'header-logo-block', section: section -%}
+              </div>
+            {%- endif -%}
+
+            {%- if logo_alignment == 'left' and section.settings.main_menu_alignment != 'left-drawer' -%}
+              <div class="header-item small--hide header-item--navigation{% if section.settings.main_menu_alignment == 'left-center' %} text-center{% endif %}">
+                {%- render 'header-desktop-nav', main_menu: main_menu, dropdown_alignment: dropdown_alignment -%}
+              </div>
+            {%- endif -%}
+
+            {%- if logo_alignment == 'center' -%}
+              <div class="header-item header-item--left header-item--navigation">
+                {%- if section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-split' -%}
+                  {%- if settings.search_enable -%}
+                    <div class="site-nav small--hide">
+                      <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-search-header">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.509 26.1896C10.0676 24.7178 9.08993 22.8553 8.69731 20.833C8.30145 18.805 8.50473 16.7057 9.28231 14.7913C10.0533 12.8877 11.3695 11.2543 13.0656 10.0963C16.5071 7.74589 21.0376 7.74589 24.479 10.0963C26.1752 11.2543 27.4914 12.8877 28.2623 14.7913C29.0399 16.7057 29.2432 18.805 28.8473 20.833C28.4547 22.8553 27.4771 24.7178 26.0357 26.1896C24.1267 28.1486 21.5075 29.2534 18.7723 29.2534C16.0371 29.2534 13.4179 28.1486 11.509 26.1896V26.1896Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.8103 12.2536C18.2611 12.3117 17.863 12.8041 17.9212 13.3534C17.9794 13.9026 18.4718 14.3006 19.021 14.2424L18.8103 12.2536ZM22.0998 16.0562C22.3151 16.5648 22.9019 16.8025 23.4105 16.5872C23.9191 16.3719 24.1568 15.7851 23.9415 15.2765L22.0998 16.0562ZM26.8938 25.3219C26.5029 24.9317 25.8698 24.9323 25.4796 25.3232C25.0894 25.714 25.09 26.3472 25.4808 26.7374L26.8938 25.3219ZM31.1275 32.3741C31.5184 32.7642 32.1515 32.7637 32.5417 32.3728C32.9319 31.9819 32.9313 31.3488 32.5405 30.9586L31.1275 32.3741ZM19.021 14.2424C20.3347 14.1032 21.5848 14.8397 22.0998 16.0562L23.9415 15.2765C23.0832 13.249 20.9997 12.0216 18.8103 12.2536L19.021 14.2424ZM25.4808 26.7374L31.1275 32.3741L32.5405 30.9586L26.8938 25.3219L25.4808 26.7374Z" fill="white"/>
+                        </svg>
+                        <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
+                      </a>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- if section.settings.main_menu_alignment == 'center-left' -%}
+                  {%- render 'header-desktop-nav', main_menu: main_menu, dropdown_alignment: dropdown_alignment -%}
+                {%- endif -%}
+
+                <div class="site-nav{% unless section.settings.main_menu_alignment == 'center-drawer' %} medium-up--hide{% endunless %}">
+                  <button
+                    type="button"
+                    class="site-nav__link site-nav__link--icon js-drawer-open-nav"
+                    aria-controls="NavDrawer">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" viewBox="0 0 64 64"><path d="M7 15h51M7 32h43M7 49h51"/></svg>
+                    <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
+                  </button>
+                </div>
+              </div>
+
+              {%- if section.settings.main_menu_alignment == 'center-split' -%}
+                {%- render 'header-split-nav', main_menu: main_menu, section: section, dropdown_alignment: dropdown_alignment -%}
+              {%- endif -%}
+
+              {%- if section.settings.main_menu_alignment != 'center-split' -%}
+                <div class="header-item header-item--logo">
+                  {%- render 'header-logo-block', section: section -%}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            <div class="header-item header-item--icons">
+              {%- render 'header-icons', section: section -%}
+            </div>
+          </div>
+
+          {%- if section.settings.main_menu_alignment == 'center' -%}
+            <div class="text-center">
+              {%- render 'header-desktop-nav', main_menu: main_menu, dropdown_alignment: dropdown_alignment, block: block, section: section -%}
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="site-header__search-container">
+          <div class="site-header__search">
+            <div class="page-width">
+              <form action="{{ routes.search_url }}" method="get" role="search"
+                id="HeaderSearchForm"
+                class="site-header__search-form">
+                <input type="hidden" name="type" value="{{ settings.search_type }}">
+                <button type="submit" class="text-link site-header__search-btn site-header__search-btn--submit">
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+                  <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+                </button>
+                <input type="search" name="q" value="{{ search.terms | escape | replace: '*', '' }}" placeholder="{{ 'general.search.placeholder' | t }}" class="site-header__search-input" aria-label="{{ 'general.search.placeholder' | t }}"/>
+              </form>
+              <button type="button" id="SearchClose" class="js-search-header-close text-link site-header__search-btn">
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64"><path d="M19 17.61l27.12 27.13m0-27.12L19 44.74"/></svg>
+                <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
+              </button>
+            </div>
+          </div>
+          {%- if settings.predictive_search_enabled -%}
+            <div id="PredictiveWrapper" class="predictive-results hide" data-image-size="{{ settings.predictive_image_size }}">
+              <div class="page-width">
+                <div id="PredictiveResults" class="predictive-result__layout"></div>
+                <div class="text-center predictive-results__footer">
+                  <button type="button" class="btn btn--small" data-predictive-search-button>
+                    <small>
+                      {{ 'general.search.view_more' | t }}
+                    </small>
+                  </button>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </header>
+    </div>
+  </div>
+
+  {%- unless overlay_header or section.settings.announcement_above_header -%}    
+    {%- render 'announcement-bar', section: section -%}
+  {%- endunless -%}
+</div>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu_link_list",
+        "label": "Navigation",
+        "default": "main-menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "mega_menu_images",
+        "label": "Show mega menu images",
+        "default": true,
+        "info": "[How to create a mega menu](https://archetypethemes.co/blogs/impulse/how-do-i-create-a-mega-menu)"
+      },
+      {
+        "type": "select",
+        "id": "main_menu_alignment",
+        "label": "Header layout",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Logo left, menu left"
+          },
+          {
+            "value": "left-center",
+            "label": "Logo left, menu center"
+          },
+          {
+            "value": "left-drawer",
+            "label": "Logo left, menu drawer"
+          },
+          {
+            "value": "center-left",
+            "label": "Logo center, menu left"
+          },
+          {
+            "value": "center-split",
+            "label": "Logo center, menu split"
+          },
+          {
+            "value": "center",
+            "label": "Logo center, menu below"
+          },
+          {
+            "value": "center-drawer",
+            "label": "Logo center, menu drawer"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_style",
+        "label": "Header style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "sticky",
+            "label": "Sticky"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_index",
+        "label": "Overlay header over home page",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_collection",
+        "label": "Overlay header over collection",
+        "info": "(if collection image is enabled)",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_compact",
+        "label": "Use compact style"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_above_header",
+        "label": "Always show above header"
+      },      
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Announcementbar Bg Color",
+        "default": "#1c1d1d"
+      },
+      {
+        "type": "header",
+        "content": "Toolbar"
+      },
+      {
+        "type": "link_list",
+        "id": "toolbar_menu",
+        "label": "Navigation",
+        "info": "This menu won't show dropdown items"
+      },
+      {
+        "type": "checkbox",
+        "id": "toolbar_social",
+        "label": "Show social icons"
+      },
+      {
+        "type": "header",
+        "content": "Language selector",
+        "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_locale_selector",
+        "label": "Show language selector",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Currency selector",
+        "info": "To add a currency, go to your [currency settings.](/admin/settings/payments)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_currency_selector",
+        "label": "Show currency selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_currency_flags",
+        "label": "Show currency flags",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "menu-img",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "menu-img_text",
+        "label": "title"
+      },
+      {
+        "type": "url",
+        "id": "menu-img_link",
+        "label": "Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo",
+        "name": "Logo",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo-inverted",
+            "label": "White logo",
+            "info": "Used when on top of an image"
+          },
+          {
+            "type": "range",
+            "id": "desktop_logo_width",
+            "label": "Desktop logo width",
+            "default": 200,
+            "min": 100,
+            "max": 400,
+            "step": 10,
+            "unit": "px"
+          },
+          {
+            "type": "range",
+            "id": "mobile_logo_width",
+            "label": "Mobile logo width",
+            "default": 140,
+            "min": 60,
+            "max": 200,
+            "step": 10,
+            "unit": "px",
+            "info": "Set as a max-width, may appear smaller"
+          }
+        ]
+      },
+      {
+        "type": "announcement",
+        "name": "Announcement",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Heading",
+            "default": "Hassle-free returns"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Text",
+            "default": "30-day postage paid returns"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      },
+      {
+        "type": "meganav_images",
+        "name": "Mega Menu Image",
+        "settings": [
+          {
+            "id": "meganav_trigger",
+            "type": "text",
+            "label": "Mega navigation trigger",
+            "info": "The menu item you want to convert to a mega navigation."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {}
+    }
+  }
+{% endschema %}

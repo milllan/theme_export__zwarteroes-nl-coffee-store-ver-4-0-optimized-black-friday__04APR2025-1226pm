@@ -1,0 +1,33 @@
+<div class="collection__tap">
+  <div class="page-width"> 
+    <ul>
+      {% assign collection_handle = "collection-" | append: collection.handle %}
+      {% for link in linklists[collection_handle].links %}
+       {% assign sub_collection = link.object %}
+       <li><a{% if link.active %} class="nav__active"{% endif %} href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Collection Sub menu",
+    "class": "collection__sticky",
+    "settings": []
+  }
+{% endschema %}
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("shopify-section-template--16430931345662__collection-sub-menu");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky-active");
+  } else {
+    header.classList.remove("sticky-active");
+  }
+}
+</script>

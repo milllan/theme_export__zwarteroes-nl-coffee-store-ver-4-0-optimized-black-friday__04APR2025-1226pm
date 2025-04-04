@@ -1,0 +1,200 @@
+<style>
+  .banner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .banner__image-wrapper,
+  .banner__text-wrapper {
+    width: 50%;
+  }
+  .banner__text-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .banner__text {
+    max-width: 500px;
+  }
+  .banner__image-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+  .mob_banner_area img {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 767px) {
+    .banner {
+      flex-direction: column;
+    }
+    .banner__image-wrapper,
+    .banner__text-wrapper {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="banner" style="height: {{ section.settings.section_height }}">
+  <div class="banner__text-wrapper">
+    <div class="banner__text">
+      {%- if section.settings.title != blank -%}
+        <h1>{{ section.settings.title | escape }}</h1>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="btn-wrapper">
+          <a href="{{ section.settings.button_link }}" class="btn btn-yellow">
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="banner__image-wrapper">
+    {%- if section.settings.bg_image != blank -%}
+      {%- assign img_url = section.settings.bg_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <img class="hero__image hero__image--{{ section.id }} lazyload"
+        src="{{ section.settings.bg_image | img_url: '300x' }}"
+        data-src="{{ img_url }}"
+        data-aspectratio="{{ section.settings.bg_image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="{{ section.settings.bg_image.alt | escape }}"
+        style="object-position: {{ section.settings.focal_point }}">
+      <noscript>
+        <img class="hero__image hero__image--{{ section.id }}"
+          src="{{ section.settings.bg_image | img_url: '1400x' }}"
+          alt="{{ section.settings.bg_image.alt | escape }}">
+      </noscript>
+    {%- else -%}
+      {%- if template == 'password' -%}
+        {%- assign password_image = 'password-page-background.jpg' | asset_url -%}
+        <img class="hero__image lazyload" src="{{ password_image }}">
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+  {%- if section.settings.mob_img != blank -%}
+    <div class="mob_banner_area">
+      <img src="{{ section.settings.mob_img | img_url: '1000x' }}">
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Banner",
+  "class": "index-section--hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_img",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Two line\ntitle slide."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Text protection",
+      "info": "Darkens your image to ensure your text is readable",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "focal_point",
+      "label": "Image focal point",
+      "info": "Used to keep the subject of your photo in view.",
+      "default": "center center",
+      "options": [
+        {
+          "value": "20% 0",
+          "label": "Top left"
+        },
+        {
+          "value": "top center",
+          "label": "Top center"
+        },
+        {
+          "value": "80% 0",
+          "label": "Top right"
+        },
+        {
+          "value": "20% 50%",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "80% 50%",
+          "label": "Right"
+        },
+        {
+          "value": "20% 100%",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "80% 100%",
+          "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "section_height",
+      "label": "Section Height",
+      "default": "500px",
+      "info": "Set the height of the section (e.g., '500px' or '50vh')."
+    }
+  ],
+  "presets": [{
+    "name": "Banner",
+    "settings": {
+      "title": "Endless\npossibilities.",
+      "text": "Bring your brand to life"
+    }
+  }]
+}
+{% endschema %}

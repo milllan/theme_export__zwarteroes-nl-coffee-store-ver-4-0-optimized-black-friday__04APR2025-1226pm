@@ -1,0 +1,78 @@
+{{ 'lp-zig-zag.css' | asset_url | stylesheet_tag }}
+
+
+<section class="lp-zig-zag lp-bg--blue">
+  <div class="lp-wrapper">
+
+    <div class="lp-zig-zag__wrapper">
+
+        {% if section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+              
+                  {% liquid
+                    assign zigZagTitle = block.settings.zig_zag_title
+                    assign zigZagText = block.settings.zig_zag_text
+                    assign zigZagImg = block.settings.zig_zag_image
+
+                  %}
+
+                  <div class="lp-zig-zag__inner-section">
+                    {% if zigZagImg %}
+                        <div class="lp-zig-zag__inner-img lp-img--wrapper">
+                          {{ zigZagImg | image_url: width: auto | image_tag: class: 'lp-image'}}
+                        </div>
+                      {% endif %}
+
+                    <div class="lp-zig-zag__inner-content">
+                        <h3 class="lp-zig-zag__title lp-title--secondary lp-text--black">
+                            {{zigZagTitle}}
+                        </h3>
+                        <p class="lp-zig-zag__text lp-text--black lp-text">
+                            {{zigZagText}}
+                        </p>
+                    </div>                  
+                  </div>                  
+              {% endfor %}
+        {% endif %}
+    </div>
+        
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Lp ZigZag Section",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "section",
+        "name": "inner section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "zig_zag_title",
+                "label": "Inner Section Title"
+            },
+            {
+                "type": "image_picker",
+                "id": "zig_zag_image",
+                "label": "Inner Section Image"
+            },
+            {
+                "type": "text",
+                "id": "zig_zag_text",
+                "label": "Inner Section Text"
+            }
+        ]
+      }
+    ],
+    
+    "presets": [
+      {
+        "name": "Lp Zig-zag"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,86 @@
+{% style %}
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.color }};
+  }
+{% endstyle %}
+<section class="product-brewing">
+  {{ 'product-brewing.css' | asset_url | stylesheet_tag }}
+  <div class="page-width">
+    <div id="section--{{ section.id }}">
+      <div class="brewing-top_grid">
+        {% if product.metafields.custom.brewing_content != blank or product.metafields.custom.brewing_image != blank %}
+        <div class="brewing__text">
+          <h2>Zetadvies</h2>
+          {% if product.metafields.custom.brewing_image != blank %}
+          <div class="brewing__image desktop-none mobile-brewing__image">            
+            {{ product.metafields.custom.brewing_image | image_url: width: 900 | image_tag  }}
+          </div>
+          {% endif %}
+          <div class="brewing__text-inner">
+            {% if product.metafields.custom.brewing_content != blank %}
+            <span class="brewing__text-svg">
+              <svg class="icon icon-quote" width="28" height="21" viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.56387 20.8051C5.70584 20.8167 4.8541 20.6488 4.0582 20.3095C3.26231 19.9703 2.53804 19.4669 1.92743 18.8294C1.31681 18.1918 0.832028 17.4325 0.501158 16.5952C0.170289 15.7579 -7.05018e-05 14.8598 2.18871e-08 13.9523C0.0529668 11.9901 0.725818 10.1023 1.91107 8.59156L6.97933 0.684469C7.29439 0.306693 7.73141 0.0666621 8.2049 0.0119584C8.67839 -0.0427453 9.15411 0.0915119 9.53887 0.388436C9.92363 0.685359 10.1898 1.12299 10.285 1.61654C10.3801 2.1101 10.2976 2.62341 10.0535 3.05595L7.47782 7.01057C9.02625 7.29784 10.4307 8.14952 11.4475 9.41745C12.4644 10.6854 13.0294 12.2899 13.0446 13.9523C13.0557 14.8556 12.8957 15.7519 12.574 16.5887C12.2522 17.4256 11.7753 18.1852 11.1713 18.824C10.5673 19.4628 9.84843 19.9672 9.05711 20.3074C8.26579 20.6476 7.41802 20.8169 6.56387 20.8051ZM21.5194 20.8051C20.6614 20.8167 19.8096 20.6488 19.0137 20.3095C18.2178 19.9703 17.4936 19.4669 16.8829 18.8294C16.2723 18.1918 15.7875 17.4325 15.4567 16.5952C15.1258 15.7579 14.9554 14.8598 14.9555 13.9523C15.0085 11.9901 15.6812 10.1023 16.8665 8.59156L21.9347 0.684469C22.0905 0.482367 22.287 0.319035 22.5098 0.207169C22.7325 0.0953024 22.976 0.0377004 23.2225 0.0377004C23.4691 0.0377004 23.7127 0.0953024 23.9354 0.207169C24.1582 0.319035 24.3547 0.482367 24.5105 0.684469C24.738 0.815412 24.935 0.99818 25.0873 1.21969C25.2397 1.4412 25.3435 1.69592 25.3912 1.96513C25.439 2.23435 25.4295 2.51118 25.3633 2.77601C25.2972 3.04084 25.1762 3.28651 25.009 3.49571L22.4333 7.44926C23.9818 7.73653 25.3862 8.58821 26.4031 9.85614C27.4199 11.1241 27.9849 12.7286 28.0001 14.391C27.9143 16.1391 27.1911 17.7845 25.9827 18.9806C24.7742 20.1767 23.1744 20.8302 21.5194 20.8051Z" fill="black"></path>
+              </svg>
+            </span>
+            <div class="rte">
+              {{ product.metafields.custom.brewing_content }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% if product.metafields.custom.brewing_image != blank %}
+        <div class="brewing__image mobile-none">
+          {{ product.metafields.custom.brewing_image | image_url: width: 900 | image_tag  }}
+        </div>
+        {% endif %}
+      </div>
+      {% if product.metafields.custom.brewing_column_1 != blank or product.metafields.custom.brewing_column_2 != blank or product.metafields.custom.brewing_column_3 != blank %}
+      <div class="pdp-usage-guide">
+        {% if product.metafields.custom.brewing_column_1 != blank %}
+        <div class="pdp-usage-guide_col">
+          {{ product.metafields.custom.brewing_column_1 }}
+        </div>
+        {% endif %}
+        {% if product.metafields.custom.brewing_column_2 != blank %}
+        <div class="pdp-usage-guide_col">
+          {{ product.metafields.custom.brewing_column_2 }}
+        </div>
+        {% endif %}
+        {% if product.metafields.custom.brewing_column_3 != blank %}
+        <div class="pdp-usage-guide_col">
+          {{ product.metafields.custom.brewing_column_3 }}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Brewing",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Brewing"
+      }
+    ],
+    "templates": [
+      "product"
+    ]
+  }
+{% endschema %}

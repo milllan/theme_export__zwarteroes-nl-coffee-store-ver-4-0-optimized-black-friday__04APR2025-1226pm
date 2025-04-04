@@ -1,0 +1,21 @@
+<article class="lp-accordion">
+  <div class="lp-accordion__header">
+    <h4 class="lp-accordion__title lp-text-champagne">
+      {{ faq_question }}
+    </h4>
+    <button class="lp-accordion__button">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 8H15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 15V1" class='accordion-opened-svg' stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        
+    </button>
+  </div>
+
+  <div class="lp-accordion__panel">
+    <p class="lp-text">
+      {{ faq_answer }}
+    </p>
+  </div>
+</article>
+

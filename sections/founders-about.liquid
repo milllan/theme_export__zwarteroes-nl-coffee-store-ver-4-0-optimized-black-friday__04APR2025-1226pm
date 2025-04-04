@@ -1,0 +1,166 @@
+{% style %}
+  @media (min-width: 769px) {
+    #section--{{ section.id }} {
+      background: {{ section.settings.bg_color }};
+    }
+  }
+   #section--{{ section.id }} {
+       color: {{ section.settings.text_color }};
+     }
+   @media (max-width: 768px) {
+    #section--{{ section.id }} .founder_left-col {
+      background-color: {{ section.settings.left_col_bg }};
+    }
+     #section--{{ section.id }} .founder_right-col {
+      background-color: {{ section.settings.right_col_bg }};
+    }
+  }
+{% endstyle %}
+
+<div class="founder_section" id="section--{{ section.id }}">
+  {% if section.settings.title != blank %}
+  <h2 class="main-title text-center">{{ section.settings.title }}</h2>
+  {% endif %}
+  <div class="founder_grid">
+    <div class="founder_left-col">
+      {% if section.settings.title != blank %}
+      <h2 class="text-center">{{ section.settings.title }}</h2>
+      {% endif %}
+      <div class="column-inner">
+        {% if section.settings.image_1 %}
+        <div class="settings--img">
+          <img src="{{ section.settings.image_1 | img_url: '800x' }}" alt="{{ image.alt }}">
+        </div>
+        {% endif %}
+        <div class="settings--founder">
+          {% if section.settings.title_1 != blank %}
+          <h3>{{ section.settings.title_1 }}</h3>
+          {% endif %}
+          {% if section.settings.founder_text_1 != blank %}
+          <span>{{ section.settings.founder_text_1 }}</span>
+          {% endif %}
+        </div>
+        {% if section.settings.text_1 != blank %}
+        <div class="settings--text">
+          {{ section.settings.text_1 }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="founder_right-col">
+      <div class="column-inner">
+        {% if section.settings.image_2 %}
+        <div class="settings--img">
+          <img src="{{ section.settings.image_2 | img_url: '800x' }}" alt="{{ image.alt }}">
+        </div>
+        {% endif %}
+        <div class="settings--founder">
+          {% if section.settings.title_2 != blank %}
+          <h3>{{ section.settings.title_2 }}</h3>
+          {% endif %}
+          {% if section.settings.founder_text_2 != blank %}
+          <span>{{ section.settings.founder_text_2 }}</span>
+          {% endif %}
+        </div>
+        {% if section.settings.text_2 != blank %}
+        <div class="settings--text">
+          {{ section.settings.text_2 }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Founders About",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Color Options"
+      },
+      {
+        "type": "color_background",
+        "id": "bg_color",
+        "label": "Desktop Background"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mobile Background"
+      },
+      {
+        "type": "color",
+        "id": "left_col_bg",
+        "label": "Left Column background"
+      },
+      {
+        "type": "color",
+        "id": "right_col_bg",
+        "label": "Right Column background"
+      },
+      {
+        "type": "header",
+        "content": "Left Column"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title_1",
+        "label": "Founder Name"
+      },
+      {
+        "type": "text",
+        "id": "founder_text_1",
+        "label": "Designation"
+      },
+      {
+        "type": "richtext",
+        "id": "text_1",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Right Column"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title_2",
+        "label": "Founder Name"
+      },
+      {
+        "type": "text",
+        "id": "founder_text_2",
+        "label": "Designation"
+      },
+      {
+        "type": "richtext",
+        "id": "text_2",
+        "label": "Text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Founders About"
+      }
+    ]
+  }
+{% endschema %}

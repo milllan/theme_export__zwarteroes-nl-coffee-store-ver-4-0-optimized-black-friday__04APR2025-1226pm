@@ -1,0 +1,177 @@
+<div class="story-with-text dots_area" id="section--{{ section.id }}">
+  <div class="page-width">
+     <div class="cart-section">
+       {% if section.settings.dots_show %}
+        <img src="{{ "header-dot-top.png" | asset_url }}" class="header-dot-top">
+       {% endif %}
+        {% if product.metafields.custom.story_images != blank %}
+        <div class="cart-center-images">          
+          {% for storyImage in product.metafields.custom.story_images.value %}
+           <div class="cart-center-image">
+             {{ storyImage | image_url: width: 500 | image_tag  }}
+           </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="cart-content">
+          {% if section.settings.title != blank %}
+           <div class="cart-header">{{ section.settings.title }}</div>
+          {% endif %}
+          {% if product.metafields.custom.story_content != blank %}
+           <div class="cart-content-text">
+             {{ product.metafields.custom.story_content }}
+           </div>
+          {% endif %}
+        </div>
+       {% if product.metafields.custom.map_image != blank %}
+        <div class="cartimg map_img">
+           {{ product.metafields.custom.map_image | image_url: width: 1024 | image_tag  }}
+        </div>
+        {% endif %}
+        {% if section.settings.link_text != blank and product.metafields.custom.read_full_story != blank %}
+        <div class="cart-link"><a href="{{ product.metafields.custom.read_full_story }}">{{ section.settings.link_text }}</a></div>
+        {% endif %}
+       {% if section.settings.dots_show %}
+        <img src="{{ "header-dot.png" | asset_url }}" class="header-dot-bottom">
+       {% endif %}
+     </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Story Map Image",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "dots_show",
+        "label": "Dots Show"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      }
+    ],    
+    "presets": [
+      {
+        "name": "Story Map Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+  
+.header-dot-top {
+	position: absolute;
+    top: 180px;
+    float: none;
+    left:0;
+    max-height: 240px;
+    max-width: 240px;
+}
+.header-dot-bottom {
+	position: absolute;
+    bottom: 150px;
+  right:0;
+    float: none;
+	max-height: 240px;
+    max-width: 240px;
+}
+.cart-header{
+	font-size: 40px;
+	font-family: "Permanent Marker";
+	font-weight: 400;
+	padding: 25px;
+}
+.cart-content-text {
+	font-size: 20px;
+    color: #29201D;
+    font-family: "Quicksand";
+    font-weight: 500;
+    text-align: center;
+    width: 63%;
+    margin: auto;
+}
+.cartimg {
+	max-height: 400px;
+	max-width: 700px;
+	margin:auto;
+	text-align:center;
+	padding: 35px;
+}
+
+.cartimg img {
+	height: 100%;
+	width: 100%;
+}
+.cart-content{
+	text-align:center;
+	margin-bottom: 30px;
+}
+.cart-link{
+	font-family: Quicksand;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 24px;
+	text-align: center;
+	margin : 25px;
+}
+.cart-link a{
+	text-decoration:none;
+	color: #DA642A;
+}
+.cart-center-images {
+	display: flex;
+    width: 100%;
+    padding: 25px 0px;
+    justify-content: center;
+}
+
+.cart-center-image {
+	width: auto;
+    padding: 4%;
+	padding-bottom: 0;
+}
+
+.cart-center-image img {
+	border-radius: 50%;
+  width: 170px;
+  height: 170px;
+}
+
+@media only screen and (max-width:600px) {
+
+	.header-dot-top, .header-dot-bottom {
+		display:none;
+	}
+	.cart-center-image {
+		padding: 2%;
+	}
+	.cart-center-image img {
+		height:75px;
+        width: 75px;
+	}
+	.cart-header{
+		font-size: 30px;
+	}
+	.cart-content-text {
+		font-size: 16px;
+		width: 90%;
+	}
+	.cart-link{
+		font-size: 18px;
+		margin:0px;
+	}
+}
+{% endstylesheet %}

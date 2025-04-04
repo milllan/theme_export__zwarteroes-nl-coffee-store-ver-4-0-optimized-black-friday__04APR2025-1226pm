@@ -1,0 +1,259 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+  <div class="feature-row-wrapper feature-story 
+    {% if section.settings.show-yellow-line %} feature-story-with-pattern {% endif %} 
+    image-{{ section.settings.image_size }} image-{{ section.settings.layout }} {{ section.id }}"
+    style="background-color: {{ section.settings.bg_color }}">
+    <div class="page-width">
+    {%- capture image_layout -%}
+      <div class="feature-row__item feature-row-image" data-aos>
+          
+          {%- if section.settings.image != blank -%}
+            {%- if section.settings.show-icons -%}
+              <img class="insta-image lazyload small--hide" src="{{ 'insta-fans.png' | asset_url }}" alt="insta fans">
+            {%- endif -%}
+            <div>
+              <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
+                {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                <img class="feature-row__image lazyload"
+                  data-src="{{ img_url }}"
+                  data-widths="[180, 360, 540, 750, 900, 1080]"
+                  data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ section.settings.image.alt }}">
+              </div>
+            </div>
+            {%- if section.settings.button_label != blank -%}
+              <div class="btn-wrapper appear-delay{% cycle '','-1','-2','-3','-4' %} hide {% if section.settings.show-yellow-line %} small--show {% endif %}">
+                {%- if section.settings.show-icons -%}
+                <img class="funnky-arrow lazyload" src="{{ 'funnky-arrow.png' | asset_url }}" alt="Funnky arrow">
+                {%- endif -%}
+                <a href="{{ section.settings.button_link }}" class="btn {% if section.settings.button_style == 'secondary' %} btn--tertiary{% elsif section.settings.button_style == 'custom' %} btn-custom{% endif %}">
+                  {{ section.settings.button_label }}
+                </a>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+          {%- if section.settings.image == blank -%}
+            <div>
+              <div class="image-wrap">
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            </div>
+          {%- endif -%}
+      </div>
+    {%- endcapture -%}
+  
+    <img class="pattern-image lazyload {% if section.settings.show-yellow-line %} small--hide {% endif %}" src="{{ 'pattern-edge-right.png' | asset_url }}" alt="pattern">
+  
+    {%- if section.settings.show-yellow-line -%}
+      <img class="line-image lazyload" src="{{ 'line-yellow.png' | asset_url }}" alt="yellow line">
+    {%- endif -%}
+
+    <div class="feature-row"> 
+      {%- if section.settings.layout == 'left' -%}
+        {{ image_layout }}
+      {%- endif -%}
+
+      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
+        {%- if section.settings.show-icons -%}
+          <img class="insta-image lazyload medium-up--hide" src="{{ 'insta-fans.png' | asset_url }}" alt="insta fan image">
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <div class="subheading appear-delay{% cycle '','-1','-2','-3','-4' %}" style="color: {{ section.settings.text_color }}">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <div class="h1 appear-delay{% cycle '','-1','-2','-3','-4' %}" style="color: {{ section.settings.text_color }}">{{ section.settings.title | escape }}</div>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="rte appear-delay{% cycle '','-1','-2','-3','-4' %}" style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <div class="btn-wrapper appear-delay{% cycle '','-1','-2','-3','-4' %} {% if section.settings.show-yellow-line %} small--hide {% endif %}">
+          {%- if section.settings.show-icons -%}
+            <img class="funnky-arrow lazyload" src="{{ 'funnky-arrow.png' | asset_url }}" alt="Funnky arrow">
+          {%- endif -%}
+            <a href="{{ section.settings.button_link }}" class="btn {% if section.settings.button_style == 'secondary' %} btn--tertiary{% elsif section.settings.button_style == 'custom' %} btn-custom{% endif %}">
+              {{ section.settings.button_label }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.layout == 'right' -%}
+        {{ image_layout }}
+      {%- endif -%}
+    </div>
+    </div>
+  </div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+{% style %}
+  .feature-story.{{ section.id }} .btn-custom {
+    background:{{ section.settings.button_color }};
+    border-color:{{ section.settings.button_color }};
+    color:#fff;
+  }
+  .feature-story.{{ section.id }} .btn-custom:hover {
+    background:#fff !important;
+    color:{{ section.settings.button_color }};
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Story",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "default": "medium",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "default": "primary",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary"
+          },
+          {
+            "value": "custom",
+            "label": "Custom color"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button Color",
+        "default": "#F0BC1B",
+        "info":"It works only on custom button"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Image on left"
+          },
+          {
+            "value": "right",
+            "label": "Image on right"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show-icons",
+        "label": "Show icons",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show-yellow-line",
+        "label": "Show yellow line",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Story"
+      }
+    ]
+  }
+{% endschema %}

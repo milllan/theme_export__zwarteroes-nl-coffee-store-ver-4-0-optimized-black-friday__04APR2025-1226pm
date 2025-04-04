@@ -1,0 +1,181 @@
+<div class="banner">
+  <div class="banner__image-wrapper">
+    {%- if section.settings.bg_image != blank -%}
+      {%- assign img_url = section.settings.bg_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+      <img class="hero__image hero__image--{{ section.id }} lazyload{% if has_mobile_image %} small--hide{% endif %}"
+        src="{{ section.settings.bg_image | img_url: '300x' }}"
+        data-src="{{ img_url }}"
+        data-aspectratio="{{ section.settings.bg_image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="{{ section.settings.bg_image.alt | escape }}"
+        style="object-position: {{ section.settings.focal_point }}">
+      {%- if has_mobile_image -%}
+        {%- assign img_url_mobile = section.settings.bg_image_mobile | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <img class="hero__image hero__image--{{ section.id }} lazyload medium-up--hide"
+          src="{{ section.settings.bg_image_mobile | img_url: '300x' }}"
+          data-src="{{ img_url_mobile }}"
+          data-aspectratio="{{ section.settings.bg_image_mobile.aspect_ratio }}"
+          data-sizes="auto"
+          alt="{{ section.settings.bg_image_mobile.alt | escape }}"
+          style="object-position: {{ section.settings.focal_point }}">
+      {%- endif -%}
+      <noscript>
+        <img class="hero__image hero__image--{{ section.id }}"
+          src="{{ section.settings.bg_image | img_url: '1400x' }}"
+          alt="{{ section.settings.bg_image.alt | escape }}">
+      </noscript>
+    {%- else -%}
+      {%- if template == 'password' -%}
+        {%- assign password_image = 'password-page-background.jpg' | asset_url -%}
+        <img class="hero__image lazyload" src="{{ password_image }}">
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <div class="page-width banner__text-wrapper">
+    <div class="feature-row">
+      <div class="feature-row__item feature-row__text feature-row__text--left" data-aos>
+        {%- if section.settings.title != blank -%}
+          <h1 class="h1 appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="rte small--hide appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <div class="btn-wrapper appear-delay{% cycle '','-1','-2','-3','-4' %}">
+            <img class="lazyload small--hide" src="{{ 'arrow-vector.png' | asset_url }}">
+            <a href="{{ section.settings.button_link }}" class="btn btn-yellow">{{ section.settings.button_label }}</a>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="rte medium-up--hide appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="feature-row__item feature-row__images" data-aos>
+        {%- if section.settings.image != blank -%}
+          <div>
+            <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
+              {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              <img class="feature-row__image lazyload"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 750, 900, 1080]"
+                data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ section.settings.image.alt }}">
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.image == blank -%}
+          <div></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner",
+  "class": "index-section--hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Two line\ntitle slide."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Text Protection",
+      "info": "Darkens your image to ensure your text is readable",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "focal_point",
+      "label": "Image Focal Point",
+      "info": "Used to keep the subject of your photo in view.",
+      "default": "center center",
+      "options": [
+        {
+          "value": "20% 0",
+          "label": "Top Left"
+        },
+        {
+          "value": "top center",
+          "label": "Top Center"
+        },
+        {
+          "value": "80% 0",
+          "label": "Top Right"
+        },
+        {
+          "value": "20% 50%",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "80% 50%",
+          "label": "Right"
+        },
+        {
+          "value": "20% 100%",
+          "label": "Bottom Left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "settings": {
+        "title": "Endless\npossibilities.",
+        "text": "Bring your brand to life"
+      }
+    }
+  ]
+}
+
+{% endschema %}

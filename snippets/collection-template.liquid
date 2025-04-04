@@ -1,0 +1,75 @@
+{%- liquid
+  assign per_row = 4
+  assign paginate_by = per_row | times: 7
+
+  for block in section.blocks
+    case block.type
+    when 'product_grid'
+      assign per_row = block.settings.per_row
+      assign paginate_by = per_row | times: block.settings.rows_per_page
+    endcase
+  endfor
+
+  assign current_filter_size = 0
+
+  for filter in collection.filters
+    assign current_filter_size = current_filter_size | plus: filter.active_values.size
+  endfor
+-%}
+
+{%- paginate collection.products by paginate_by -%}
+
+{%- for block in section.blocks -%}
+  <div {{ block.shopify_attributes }}>
+    {%- case block.type -%}
+      {% comment %}
+    {%- when 'collection_description' -%}
+      {%- if collection.description != blank and current_filter_size == 0 -%}
+        <div class="rte collection__description">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+      {% endcomment %}
+    {%- when 'subcollections' -%}
+      {%- if current_filter_size == 0 -%}
+        {%- render 'subcollections', per_row: block.settings.subcollections_per_row -%}
+      {%- endif -%}
+    {%- when 'product_grid' -%}
+      
+
+      {%- if block.settings.enable_collection_count -%}
+        <p class="medium-up--hide text-center" data-scroll-to>{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</p>
+      {%- endif -%}
+
+      <div
+        class="d__grid {% if block.settings.mobile_flush_grid %} small--grid--flush{% endif %}"{% unless block.settings.enable_collection_count %} data-scroll-to{% endunless %}>
+        
+        {%- liquid
+          assign grid_item_width = 'd__item'
+        -%}
+        {%- assign promotion_product = all_products[section.settings.promotion_product] -%}
+        {%- render 'product-grid-item-promotion', product: promotion_product, section: section, grid_item_width: grid_item_width -%}
+        {%- for product in collection.products -%}
+          {%- render 'product-grid-item', product: product, grid_item_width: grid_item_width, per_row: per_row -%}
+        {%- else -%}
+          <div class="grid__items">
+            <p>{{ 'collections.general.no_matches' | t }}</p>
+          </div>
+        {%- endfor -%}
+
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+
+      {%- if settings.quick_shop_enable -%}
+        {%- for product in collection.products -%}
+          {%- render 'quick-shop-modal', product: product -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endcase -%}
+  </div>
+{%- endfor -%}
+
+{%- endpaginate -%}

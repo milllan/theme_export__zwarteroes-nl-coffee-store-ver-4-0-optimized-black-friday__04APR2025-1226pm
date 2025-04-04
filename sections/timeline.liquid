@@ -1,0 +1,173 @@
+{% style %}
+  .timeline-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  } 
+{% endstyle %}
+
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+<div class="timeline timeline-{{ section.id }}">
+  <img class="bg-pattern" src="{{ 'pattern-vertical.png' | asset_url }}" alt="vertical pattern">
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.text != blank -%}
+      <div class="section-header">
+        {%- if section.settings.title != blank -%}
+          <h1>{{ section.settings.title }}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+        <p>{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  
+    {%- for block in section.blocks -%}
+      
+      <div class="text-image-row image-{{ block.settings.layout }}" {{ block.shopify_attributes }} data-aos="row-of-3">
+        <div class="image-column">
+          {%- if block.settings.title != blank -%}
+            <div class="heading">{{ block.settings.title }}</div>
+          {%- endif -%}
+          <div class="image-container image_{{ block.settings.image_align }}" style="max-width: {{ block.settings.image_width }}px;">
+            {%- if block.settings.image != blank -%}
+              <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: block.settings.image.aspect_ratio }}%;">
+                {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                <img class="lazyload"
+                    data-src="{{ img_url }}"
+                    data-widths="[180, 360]"
+                    data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt="{{ block.settings.image.alt }}">
+              </div>
+            {%- endif -%}
+          </div>
+          
+        </div>
+        <div class="text-column">
+          <div class="text-wrapper" style="background-color: {{ block.settings.bg_color }}; color: {{ block.settings.text_color }}">
+          {%- if block.settings.text != blank -%}
+            <div class="rte-setting text-spacing">{{ block.settings.text }}</div>
+          {%- endif -%}
+          {%- if block.settings.text_2 != blank -%}
+            <div class="h5">{{ block.settings.text_2 }}</div>
+          {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Timeline",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#f0bc1b"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Year",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Example title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.</p>"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Image on left"
+              },
+              {
+                "value": "right",
+                "label": "Image on right"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "image_align",
+            "label": "Image Alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "middle",
+                "label": "Middle"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Timeline",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

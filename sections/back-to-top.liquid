@@ -1,0 +1,48 @@
+{% if section.settings.title != blank %}
+<div class="back-to-top">
+  <a href="#back-to-top">
+  <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M11 6L6 1L1 6" stroke="#29201D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  {{ section.settings.title }}
+  </a>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Back to Top",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Text",
+        "default": "BACK TO THE TOP"
+      }
+    ],    
+    "presets": [
+      {
+        "name": "Back to Top"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+  .back-to-top{
+    padding:60px 0;
+    text-align:center;
+  }
+  .back-to-top a{    
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #29201D;
+    position:relative;
+  }
+  .back-to-top a svg{
+    display: block;
+    margin: 0 auto 15px;
+  }
+  
+{% endstylesheet %}

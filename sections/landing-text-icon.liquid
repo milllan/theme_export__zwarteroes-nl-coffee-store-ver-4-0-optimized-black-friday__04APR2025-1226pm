@@ -1,0 +1,110 @@
+{%- style -%}
+  {% if section.settings.bg_color != blank %}
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+  {% endif %}
+  {% if section.settings.text_color != blank %}
+  #section--{{ section.id }} .section_header h2,
+  #section--{{ section.id }} .landing_icon_grid .text_column .rte {
+    color: {{ section.settings.text_color }};
+  }
+  {% endif %}
+{%- endstyle -%}
+<section class="landing-text-icon" id="section--{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section_header text-center">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {% endif %}
+    <div class="landing_icon_grid js--text-swiper swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+        {% if block.settings.text != blank %}
+          <div class="text_column swiper-slide text-center">
+            <div class="rte">
+              {{ block.settings.text }}
+            </div>
+            {% if block.settings.icon %}
+            <div class="text_column-icon">
+              <img src="{{ block.settings.icon | img_url: '300x' }}" alt="{{ image.alt }}">
+            </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="slider--control">
+        <div class="swiper-button-prev">
+          <svg width="22" height="45" viewBox="0 0 22 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.4999 2.27861L2.83325 22.5L19.4999 42.7213" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="swiper-button-next">              
+          <svg width="22" height="45" viewBox="0 0 22 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.49996 42.7214L19.1666 22.5L2.49996 2.27869" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var swiper = new Swiper('.js--text-swiper', {
+    loop: true,
+    slidesPerView: "auto",
+    spaceBetween: 0,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+{% schema %}
+  {
+    "name": "Landing text With Icon",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Text",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing text With Icon"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,136 @@
+<section class="featured--single-product" id="offer__product">
+  <div class="page-width">
+    {% if section.settings.title != blank or section.settings.sub_title != blank %}
+    <div class="section_heading text-center">
+      {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.sub_title != blank %}
+      <p>{{ section.settings.sub_title }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    {%- assign product = all_products[section.settings.featured_product] -%}
+    {%- render 'single-product',
+      product: product,
+      section_id: section.id
+    -%}
+   
+  </div>
+  <script>
+    $(document).ready(function(){
+      $('a[href*="#"]').on('click', function(event) {
+    
+        if (this.hash !== "") {
+          event.preventDefault();
+    
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top - 70
+          }, 800, function(){
+    
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            //window.location.hash = hash;
+          });
+        } 
+      });
+
+      $('[data-variant-input]').change(function(){
+        $('.single_product_var').find('option').removeAttr('selected');
+        let getVal = $(this).val();
+        let getIndexdata = $("[data-variant-input] option[value='"+getVal+"']").attr('data-var-index').split('-')[1];
+        let getIndex = $(this).find('option').attr('data-var-index').split('-')[1];
+        $('.single_product_var option').eq(getIndexdata-1).attr('selected','selected');
+        let prices = $('.single_product_var option').eq(getIndexdata).attr('data-price');
+        $('.single_product_price').html(prices);
+      })
+      
+       $('[data-variant-input]').change(function()
+      {
+         let sel_val = [];
+         let section_id = $(this).attr('data-section');
+         let prodId = $(this).attr('data-prodid');
+          $('[data-section='+section_id+']').each(function(){
+            sel_val.push($(this).find(":selected").val())      
+                let title = $(this).find(":selected").val() + ' / '; 
+          })
+        let strconcat = sel_val.join(' / ');
+        let price = ''
+         $('.single_product_var').find('option').removeAttr('selected');
+         $('.single_product_var option').each(function(){
+           let val = $(this).attr('data-vartitle');
+            if(val == strconcat)
+            {
+              price = $(this).attr('data-price')
+              $(this).attr('selected','selected');
+              return;
+            }
+        })
+        $('#'+section_id).find('.single_product_price').html(price);
+     })
+    });
+  </script>
+</section>
+{% schema %}
+  {
+    "name": "Featured Single Product",
+    "class": "single--product-offer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "THE OFFER"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title",
+        "default": "Waar de subtiele fruitige en soms funky smaken samenkomen."
+      },
+      {
+        "type": "product",
+        "id": "featured_product",
+        "label": "Product"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "type": "html",
+        "id": "html",
+        "label": "HTMl Code content",
+        "default": "<p>Use code <strong style='color: #da642a;'>SYSTEM</strong> for $100 off today</p>"
+      },
+      {
+        "type": "text",
+        "id": "shipping_text",
+        "label": "Shipping Text",
+        "default": "+ Free Shipping"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg_color",
+        "label": "Button Bg Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color",
+        "label": "Button Text Color"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button Text",
+        "default": "Add To Cart & Save $100"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Single Product"
+      }
+    ]
+  }
+{% endschema %}

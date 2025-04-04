@@ -1,0 +1,137 @@
+.lp-faq {
+  padding: 40px 0;
+}
+
+.lp-faq__title {
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.lp-accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: normal;
+  gap: 16px;
+  cursor: pointer;
+  padding: 16px 0;
+}
+
+
+.lp-faq__items {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.lp-accordion {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lp-faq__items .lp-accordion:first-child {
+  border-top: unset;
+}
+
+.lp-accordion__title {
+  font-size: 16px;
+  line-height: 120%;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.lp-accordion .lp-accordion__button svg {
+  transition: all 0.3s ease;
+}
+
+.lp-accordion.show-text .accordion-opened-svg {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.lp-accordion__button {
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  height: 24px;
+  width: 24px;
+  padding: unset;
+  display: grid;
+  place-items: center;
+}
+
+.lp-accordion__panel {
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  padding-right: 24px;
+}
+
+.lp-faq__items .lp-accordion:last-child .lp-accordion__panel {
+  padding-bottom: 0;
+}
+
+.lp-accordion.show-text .lp-accordion__panel {
+  visibility: visible;
+  opacity: 1;
+  padding-bottom: 16px;
+  max-height: 500px !important;
+}
+
+.lp-accordion__panel p {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--lp-color-black);
+  margin: 0;
+  font-weight: var(--lp-fw-regular);
+  padding-right: 24px;
+  font-family: 'Quicksand';
+
+}
+
+.lp-accordion__panel a {
+  color: var(--lp-color-champagne);
+}
+
+.lp-faq__btn-wrapper {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.lp-faq__btn-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 130%;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .lp-faq {
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .lp-faq__title {
+    margin-bottom: 48px;
+    max-width: none;
+  }
+
+  .lp-faq__items {
+    max-width: 860px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+  }
+
+  .lp-accordion__title {
+    font-size: 18px;
+  }
+
+  .lp-accordion__panel p {
+    padding-right: 200px;
+
+  }
+}

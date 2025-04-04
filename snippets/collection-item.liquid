@@ -1,0 +1,12 @@
+{%- liquid
+  if collection.empty?
+      assign title_output = 'home_page.onboarding.collection_title' | t
+    elsif collection_title
+      assign title_output = collection_title
+    else
+      assign title_output = collection.title | escape
+    endif
+-%}
+<li>
+  <a href="{{ collection.url }}">{{ title_output }}</a>
+</li>

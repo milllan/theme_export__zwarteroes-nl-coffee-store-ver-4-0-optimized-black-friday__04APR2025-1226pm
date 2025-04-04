@@ -1,0 +1,803 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction }}">
+  <head>
+	{% render 'pandectes-rules' %}
+    
+<!---------------- This is Rules END--------------------->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+    {%- render 'social-meta-tags' -%}
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" as="script">
+    <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'style.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style">
+    <link rel="preload" href="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" as="script">
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0633/1672/1913/t/1/assets/splide.min.js" as="script">
+
+    {% render 'replo-head' %}
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-5GRHDS5');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Added by AVADA SEO Suite -->
+    {% include 'avada-seo' %}
+    <!-- /Added by AVADA SEO Suite -->
+    <meta name="facebook-domain-verification" content="bhpri28n9mx64yngju7jgqcdc35thn">
+    <meta name="google-site-verification" content="MGlYLmoCB3rpF3YrBKd-Ax_BiwFHLhLqN-SHNj3JtlE">
+
+    {% assign noindex_handles = 'gelukt,account,passwordrecovery,pharmacie-mondial,koffie-game,koffiebonen-kopen,en-int,en-int/pages/koffiebonen-bestellen,en-int/pages/light-roast,en-int/pages/proefpakket,en-int/pages/vers-gebrand,en-int/pages/single-origin,en-int/pages/eerlijke-koffiebonen,en-int/pages/pagina1,pages/verrassing,pages/thanks,pages/huis-blend,pages/abonneer,filter-choco,filter-fruity,espresso-choco,espresso-fruitig,bestsellers-tasting-box-actie,koffie-cadeaupakket,smaakmatch'
+      | split: ','
+    %}
+    {% assign noindex_follow_handles = '' | split: ',' %}
+    {% assign noindex_urls = 'cart,/pages/duurzame-koffiebonen,/pages/actievoorwaarden-sage-barista-pack,/pages/proefpakket,/pages/light-roast,/pages/verse-koffiebonen-bestellen,/pages/cafeinevrije-koffiebonen,/pages/specialty-coffee,/pages/fairtrade-koffie,/pages/koffiebonen-bestellen,/pages/koffiebonen-kopen,/pages/eerlijke-koffie,/pages/koffiebonen-vers-gebrand,/pages/eerlijke-koffiebonen,/pages/duurzame-koffiebonen,/pages/koffiebonen-online-bestellen,/pages/koffiebonen-online-kopen,/pages/vers-gebrande-koffiebonen-2'
+      | split: ','
+    %}
+    {% assign noindex_follow_urls = '/pages/prijs-transparantie,/pages/oeps' | split: ',' %}
+
+    {% if request.path contains '/en-de/' or request.path contains '-actie' %}
+      <meta name="robots" content="noindex">
+    {% else %}
+      {% assign is_noindex = false %}
+      {% assign is_noindex_follow = false %}
+
+      {% for handle_item in noindex_handles %}
+        {% if handle contains handle_item %}
+          {% assign is_noindex = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for handle_item in noindex_follow_handles %}
+        {% if handle contains handle_item %}
+          {% assign is_noindex_follow = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for url_item in noindex_urls %}
+        {% if page.url == url_item %}
+          {% assign is_noindex = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for url_item in noindex_follow_urls %}
+        {% if page.url == url_item %}
+          {% assign is_noindex_follow = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% if is_noindex_follow %}
+        <meta name="robots" content="noindex,follow">
+      {% elsif is_noindex %}
+        <meta name="robots" content="noindex">
+      {% endif %}
+    {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com">
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.gstatic.com">
+
+    {%- render 'seo-title' -%}
+
+    <!-- Google tag (gtag.js) -->
+    {% comment %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-885385871"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-885385871');
+      </script>
+    {% endcomment %}
+
+    {%- render 'font-face' -%}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {%- render 'css-variables' -%}
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {{ 'popup-style.css' | asset_url | stylesheet_tag }}
+    {{ 'customization.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+      window.theme = window.theme || {};
+      theme.routes = {
+        home: "{{ routes.root_url }}",
+        cart: "{{ routes.cart_url | append: '.js' }}",
+        cartPage: "{{ routes.cart_url }}",
+        cartAdd: "{{ routes.cart_add_url | append: '.js' }}",
+        cartChange: "{{ routes.cart_change_url | append: '.js' }}"
+      };
+      theme.strings = {
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        inStockLabel: {{ 'products.product.in_stock_label' | t | json }},
+        stockLabel: {{ 'products.product.stock_label' | t: count: '[count]' | json }},
+        willNotShipUntil: {{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }},
+        willBeInStockAfter: {{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
+        waitingForStock: {{ 'products.product.waiting_for_stock' | t | json }},
+        savePrice: {{ 'products.general.save_html' | t: saved_amount: '[saved_amount]' | json }},
+        cartEmpty: {{ 'cart.general.empty' | t | json }},
+        cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }},
+        searchCollections: {{ 'general.search.collections' | t | json }},
+        searchPages: {{ 'general.search.pages' | t | json }},
+        searchArticles: {{ 'general.search.articles' | t | json }}
+      };
+      theme.settings = {
+        dynamicVariantsEnable: true,
+        cartType: {{ settings.cart_type | json }},
+        isCustomerTemplate: {% if request.page_type contains 'customers/' %}true{% else %}false{% endif %},
+        moneyFormat: {{ shop.money_format | json }},
+        saveType: {{ settings.product_save_type | json }},
+        productImageSize: {{ settings.product_grid_image_size | json }},
+        productImageCover: {{ settings.product_grid_image_fill }},
+        predictiveSearch: {{ settings.predictive_search_enabled }},
+        predictiveSearchType: {{ settings.search_type | json }},
+        quickView: {{ settings.quick_shop_enable }},
+        themeName: 'Luxx',
+        themeVersion: "1.0"
+      };
+    </script>
+
+    {{ content_for_header }}
+
+    <script src="{{ 'vendor-scripts-v10.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+
+    {%- if shop.enabled_currencies.size > 1 -%}
+      <link
+        rel="preload"
+        as="style"
+        href="{{ 'currency-flags.css' | asset_url | split: '?' | first }}"
+        onload="this.onload=null;this.rel='stylesheet'"
+      >
+      <link rel="stylesheet" href="{{ 'currency-flags.css' | asset_url | split: '?' | first }}">
+    {%- endif -%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+
+    {%- if request.page_type contains 'customers/' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {% render 'script' %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    {% render 'judgeme_core' %}
+
+    {% render 'gsf-conversion-pixels' %}
+
+    {% render 'analyzify-product-datalayer.liquid' %}
+    {{ 'lp-base.css' | asset_url | stylesheet_tag }}
+  
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "qyd1ogu3g1");
+</script>
+
+  </head>
+
+  <body
+    id="back-to-top"
+    class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}"
+    data-center-text="{{ settings.type_body_align_text }}"
+    data-button_style="{{ settings.button_style }}"
+    data-type_header_capitalize="{{ settings.type_header_capitalize }}"
+    data-type_headers_align_text="{{ settings.type_headers_align_text }}"
+    data-type_product_capitalize="{{ settings.type_product_capitalize }}"
+    data-swatch_style="{{ settings.swatch_style }}"
+    {% if settings.disable_animations %}
+      data-disable-animations="true"
+    {% endif %}
+  >
+    <!-- AMP Conversion Edits - Start -->
+
+    <script>
+      const formatMoney = amount => theme.Currency.formatMoney(amount, '{{ shop.money_format }}')
+  
+    function ampAddComparePrice (itemEl, compareTotal, linePrice) {
+      const pricesEl = itemEl.querySelector('.amp-cart__cart-line-price');
+      if (!pricesEl) return
+  
+      const newPrices = `
+        <div class="amp-cart__cart-line-price--original">${formatMoney(compareTotal)}</div>  
+        <div class="amp-cart__cart-line-price--discounted">${formatMoney(linePrice)}</div>          
+      `;
+      pricesEl.innerHTML = newPrices;
+    }
+
+function removeComparePrice (itemEl, linePrice) {
+  const existingCompare = itemEl.querySelector('.amp-cart__cart-line-price--discounted');
+  const itemPrices = itemEl.querySelector('.amp-cart__cart-line-price');
+
+  if (existingCompare && itemPrices) {
+    itemPrices.innerHTML = formatMoney(linePrice);
+  }
+}
+
+function ampShowComparePrice(cart) {
+  cart.items.forEach(async item => {
+    const data = await fetch(`/products/${item.handle}.js`).then(res => res.json())
+
+    const variant = data.variants.find(i => i.id == item.variant_id);
+    const compare = variant.compare_at_price;
+    const price = variant.price;
+    const img = variant.featured_image ? variant.featured_image.src : data.featured_image;
+    const imgEls = document.querySelectorAll(`.amp-cart__cart-line img[src*="${img}"]`)
+
+    imgEls.forEach(imgElem => {
+      let itemEl = imgElem.parentNode;
+      if (!itemEl) return;
+      
+      const hasDiscountedPrice = itemEl.querySelector('.amp-cart__cart-line-price--discounted') && itemEl.querySelector('.amp-cart__cart-line-price--original')
+      if (hasDiscountedPrice) return
+      if (compare && (compare !== price)) {
+        ampAddComparePrice(itemEl, compare * item.quantity, item.line_price);
+      } else {
+        removeComparePrice(itemEl, item.line_price);
+      }
+    })
+    
+  })
+}
+      window.AMP_CART_LOADED = () => {
+        try{
+
+          document.querySelector('.amp-cart')?.addEventListener('click', e => {
+            if (!e.target.closest('.amp-cart__upsell-item-button')) return;
+            setTimeout(() => {
+              const upsellAtc = document.querySelector('.amp-cart__variant-selector-button')
+              if (upsellAtc) upsellAtc.childNodes[0].data = "In Winkelwagen"   
+            }, 0)
+          })
+          
+        }catch(err){
+          console.log(err)
+        }
+      }
+      window.AMP_CART_UPDATED = (cart) => {
+        ampShowComparePrice(cart);
+        const ampCartFooter = document.querySelector('.amp-cart__footer');
+        const ampItemsContainer = document.querySelector('.amp-cart__cart-lines');
+        const paymentIcons = `<img class="amp-custom-img" src="https://cdn.shopify.com/s/files/1/0017/9424/4660/files/Frame-10.png?v=1722964006" alt="Payment Options" />`
+        if (document.querySelector('.amp-custom-img')) return
+        ampCartFooter.insertAdjacentHTML("beforeend", paymentIcons);        
+      }
+    </script>
+    <style>
+      
+      .amp-button.amp-cart__variant-selector-button.false {
+          background: rgb(218, 100, 42) !important;
+          color: rgb(255, 255, 255);
+          font-weight: 600;
+          border-radius: 50px;
+        }
+        .amp-cart__cart-line-title {
+          text-transform: capitalize !important;
+          font-size: 15px !important;
+        }
+        .amp-cart__footer-checkout-button {
+          margin-top: 10px !important;
+        }
+        .amp-cart-drawer .amp-custom{
+          margin: 0;
+        }
+        .amp-cart__upsell-item-button, .amp-cart__discount-box-button, .amp-cart__footer-checkout-button {
+          border-radius: 45px!important;
+          margin-bottom: 20px !important;
+      }
+        .amp-cart__footer-checkout-button {
+          font-size: 21px;
+          font-family: 'permanent-marker';
+      }
+        .amp-cart__cart-line-title {
+          font-family: 'Quicksand' !important;
+      }
+      .amp-cart__upsell-header {
+          font-weight: bold;
+          font-size: 16px;
+      }
+      .amp-cart__upsell-item-button, .amp-cart__discount-box-button {
+          font-family: 'Quicksand' !important;
+          text-transform: uppercase !important;
+      }
+        .amp-cart__footer {
+      	position: sticky !important;
+      	z-index: 5 !important;
+      	bottom: 0 !important;
+      }
+        .amp-cart-drawer .amp-cart__cart-lines .amp-cart__cart-line-price,
+      .amp-cart-drawer .amp-cart__cart-lines .amp-cart__cart-line-price--original,
+      .amp-cart-drawer .amp-cart__cart-lines .amp-cart__cart-line-price--discounted {
+        direction: ltr;
+      }
+
+        .amp-cart__footer-checkout-button, .amp-button {
+          transition: ease;
+        }
+
+        .amp-cart__footer-checkout-button:hover, .amp-button:hover {
+          background: #2b2b2b !important;
+        }
+
+        .amp-cart__footer {
+          display: flex !important;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .amp-cart__footer img {
+          width: 80%;
+          max-width: 80% !important;
+          margin: auto;
+        }
+
+        .amp-cart__variant-selector {
+          z-index: 100 !important;
+        }
+
+        .amp-cart__variant-selector-option-select select {
+          height: auto !important;
+        }
+    </style>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5GRHDS5"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="popup_overlay"></div>
+    <div class="slide_popup login_popup hidden_popup_divs">
+      {% render 'login-forms' %}
+    </div>
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">
+      {{- 'general.accessibility.skip_to_content' | t -}}
+    </a>
+    <div id="PageContainer" class="page-container">
+      <div class="transition-body">
+        {% capture layout %}    {%- section 'header' -%}      {%- if template == 'index' -%}  {%- section 'best-custom-selling' -%}{%- endif -%}{% endcapture %}
+        {{ layout | replace: '<img', "<img loading='lazy' " -}}
+        {%- render 'main' -%}
+        {%- capture mainLayout %}
+      <main class="asyncLoad main-content" id="MainContent">
+        {{ content_for_layout }} 
+      </main>
+      {%- section 'footer-promotions' -%}
+      {%- section 'footer' -%}
+{% endcapture %}
+        {{ mainLayout | replace: '<img', "<img loading='lazy' " }}
+      </div>
+    </div>
+
+    {%- section 'newsletter-popup' -%}
+    {%- liquid
+      render 'video-modal'
+      render 'photoswipe-template'
+    -%}
+    <script src="{{ 'variant-selector.js' | asset_url }}" defer="defer"></script>
+    {{ '//cdn.shopify.com/s/files/1/0633/1672/1913/t/1/assets/splide.min.js' | script_tag }}
+    {% if template contains 'product' %}
+      {%- assign reviewAppDescription = blank -%}
+      {%- assign ratingValue = blank -%}
+      {%- assign reviewCount = blank -%}
+
+      {%- if productReviewsPlugin == 'rivyo-review' -%}
+        {%- assign product_schema = product.metafields.product_schema -%}
+        {%- if product_schema.th_ratingCount > 0 -%}
+          {%- assign reviewAppDescription = '"Rivyo Review"' -%}
+          {%- assign ratingValue = product_schema.th_ratingValue -%}
+          {%- assign reviewCount = product_schema.th_ratingCount -%}
+        {%- endif -%}
+      {%- elsif product.metafields.reviews.rating_count != blank and product.metafields.reviews.rating_count > 0 -%}
+        {%- assign reviewAppDescription = '"Reviews"' -%}
+        {%- assign ratingValue = product.metafields.reviews.rating.value -%}
+        {%- assign reviewCount = product.metafields.reviews.rating_count -%}
+      {%- elsif product.metafields.spr.reviews != blank -%}
+        {%- assign ratingValueReviewArray = product.metafields.spr.reviews | split: '"ratingValue": "' -%}
+        {%- assign ratingValueArr = ratingValueReviewArray[1] | split: '"' -%}
+        {%- assign reviewValue = ratingValueArr[0] -%}
+        {%- assign reviewsCountStrArray = product.metafields.spr.reviews | split: '"reviewCount": "' -%}
+        {%- assign reviewsCountArr = reviewsCountStrArray[1] | split: '"' -%}
+        {%- assign reviewsCount = reviewsCountArr[0] -%}
+        {%- unless reviewsCount == blank -%}
+          {%- assign reviewAppDescription = '"Shopify Product Reviews"' -%}
+          {%- assign ratingValue = reviewValue -%}
+          {%- assign reviewCount = reviewsCount -%}
+        {%- endunless -%}
+      {%- elsif product.metafields.judgeme.badge != blank %}
+        {%- assign ratingValueReviewArray = product.metafields.judgeme.badge | split: "data-average-rating='" -%}
+        {%- assign ratingValueArr = ratingValueReviewArray[1] | split: "'" -%}
+        {%- assign reviewValue = ratingValueArr[0] -%}
+        {%- assign reviewsCountStrArray = product.metafields.judgeme.badge | split: "data-number-of-reviews='" -%}
+        {%- assign reviewsCountArr = reviewsCountStrArray[1] | split: "'" -%}
+        {%- assign reviewsCount = reviewsCountArr[0] -%}
+        {%- unless reviewsCount == '0' -%}
+          {%- assign reviewAppDescription = '"Judge.me Reviews"' -%}
+          {%- assign ratingValue = reviewValue -%}
+          {%- assign reviewCount = reviewsCount -%}
+        {%- endunless -%}
+      {%- elsif product.metafields.yotpo.reviews_count
+        and product.metafields.yotpo.reviews_count != '0'
+        and product.metafields.yotpo.reviews_count != 0
+      %}
+        {%- assign reviewAppDescription = '"Yotpo Reviews"' -%}
+        {%- assign ratingValue = product.metafields.yotpo.reviews_average -%}
+        {%- assign reviewCount = product.metafields.yotpo.reviews_count -%}
+      {%- elsif productReviewsPlugin == 'orankl-reviews'
+        and product.metafields.orankl.review_count
+        and product.metafields.orankl.review_count != '0'
+        and product.metafields.orankl.review_count != 0
+      %}
+        {%- assign reviewAppDescription = '"Orankl Reviews"' -%}
+        {%- assign ratingValue = product.metafields.orankl.rating -%}
+        {%- assign reviewCount = product.metafields.orankl.review_count -%}
+      {%- elsif product.metafields.loox.num_reviews
+        and product.metafields.loox.num_reviews != '0'
+        and product.metafields.loox.num_reviews != 0
+      %}
+        {%- assign reviewAppDescription = '"Loox Reviews"' -%}
+        {%- assign ratingValue = product.metafields.loox.avg_rating -%}
+        {%- assign reviewCount = product.metafields.loox.num_reviews -%}
+      {%- elsif productReviewsPlugin == 'socialshopwave-reviews' %}
+        {%- assign ssw_review_enabled = 1 -%}
+        {%- if shop.metafields.ssw.review_enabled -%}
+          {%- assign ssw_review_enabled = shop.metafields.ssw.review_enabled -%}
+        {%- endif -%}
+        {%- assign ssw_unite_reviews = 0 -%}
+        {%- if shop.metafields.ssw.unite_reviews -%}
+          {%- assign ssw_unite_reviews = shop.metafields.ssw.unite_reviews -%}
+        {%- endif -%}
+        {%- if ssw_review_enabled == 1 -%}
+          {%- assign ssw_count_rate = 0 -%}
+          {%- assign ssw_avg_rate = 0 -%}
+          {%- assign ssw_rate_data_key = 'review' -%}
+          {%- if ssw_unite_reviews == 1 -%}
+            {%- if shop.metafields.ssw.unite_product_ids -%}
+              {%- assign ssw_unite_product_ids = shop.metafields.ssw.unite_product_ids | split: ',' -%}
+              {%- assign unite_product_id = product.id | downcase -%}
+              {%- if ssw_unite_product_ids contains unite_product_id -%}
+                {%- assign ssw_rate_data_key = 'unite_review' -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- if product.metafields.ssw[ssw_rate_data_key] -%}
+            {%- assign ssw_count_rate = product.metafields.ssw[ssw_rate_data_key].count | plus: 0 -%}
+            {%- assign ssw_avg_rate = product.metafields.ssw[ssw_rate_data_key].avg | plus: 0 -%}
+            {%- assign ssw_product_id = product.id -%}
+            {%- if product.metafields.ssw[ssw_rate_data_key].product_id -%}
+              {%- assign ssw_product_id = product.metafields.ssw[ssw_rate_data_key].product_id | plus: 0 -%}
+            {%- endif -%}
+            {%- if ssw_product_id != product.id -%}
+              {%- assign ssw_count_rate = 0 -%}
+              {%- assign ssw_avg_rate = 0 -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- if ssw_avg_rate > 0 and ssw_count_rate > 0 -%}
+            {%- assign reviewAppDescription = '"SocialShopWave Reviews"' -%}
+            {%- assign ratingValue = ssw_avg_rate -%}
+            {%- assign reviewCount = ssw_count_rate -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- elsif productReviewsPlugin == 'areviews' %}
+        {%- assign ratingValueReviewArray = product.metafields.areviews.product_reviews
+          | split: "'ratingValue' content='"
+        -%}
+        {%- assign ratingValueArr = ratingValueReviewArray[1] | split: "'" -%}
+        {%- assign reviewValue = ratingValueArr[0] -%}
+        {%- assign reviewsCountStrArray = product.metafields.areviews.product_reviews
+          | split: "'ratingCount' content='"
+        -%}
+        {%- assign reviewsCountArr = reviewsCountStrArray[1] | split: "'" -%}
+        {%- assign reviewsCount = reviewsCountArr[0] -%}
+        {%- unless reviewsCount == blank -%}
+          {%- assign reviewAppDescription = '"Areviews"' -%}
+          {%- assign ratingValue = reviewValue -%}
+          {%- assign reviewCount = reviewsCount -%}
+        {%- endunless -%}
+      {%- elsif product.metafields.vnreviews.reviewCount
+        and product.metafields.vnreviews.reviewCount != '0'
+        and product.metafields.vnreviews.reviewCount != 0
+      %}
+        {%- assign reviewAppDescription = '"Trust Reviews"' -%}
+        {%- assign ratingValue = product.metafields.vnreviews.ratingValue -%}
+        {%- assign reviewCount = product.metafields.vnreviews.reviewCount -%}
+      {%- elsif product.metafields.stamped.reviews_count
+        and product.metafields.stamped.reviews_count != '0'
+        and product.metafields.stamped.reviews_count != 0
+      %}
+        {%- assign reviewAppDescription = '"Stamped.io Product Reviews Addon"' -%}
+        {%- assign ratingValue = product.metafields.stamped.reviews_average -%}
+        {%- assign reviewCount = product.metafields.stamped.reviews_count -%}
+      {%- elsif product.metafields.okendo.ReviewCount
+        and product.metafields.okendo.ReviewCount != '0'
+        and product.metafields.okendo.ReviewCount != 0
+      -%}
+        {%- assign reviewAppDescription = '"Okendo Reviews"' -%}
+        {%- assign ratingValue = product.metafields.okendo.ReviewAverageValue -%}
+        {%- assign reviewCount = product.metafields.okendo.ReviewCount -%}
+      {%- elsif product.metafields.okendo.summaryData.reviewCount
+        and product.metafields.okendo.summaryData.reviewCount != '0'
+        and product.metafields.okendo.summaryData.reviewCount != 0
+      -%}
+        {%- assign reviewAppDescription = '"Okendo Reviews"' -%}
+        {%- assign ratingValue = product.metafields.okendo.summaryData.reviewAverageValue -%}
+        {%- assign reviewCount = product.metafields.okendo.summaryData.reviewCount -%}
+      {%- endif -%}
+
+      {%- if reviewAppDescription == blank and ratingValue == blank and reviewCount == blank -%}
+        {%- assign reviewAppDescription = 'Product Reviews' -%}
+        {%- assign ratingValue = 5 -%}
+        {%- assign reviewCount = 27 -%}
+      {%- endif -%}
+
+      {% assign current_variant = product.selected_or_first_available_variant %}
+      {%- assign isBarCodeAvailable = false -%}
+      {%- assign isValidGtinLength = false -%}
+      {%- assign gtinString = 'gtin' -%}
+
+      {%- if current_variant.barcode != blank -%}
+        {%- assign isBarCodeAvailable = true -%}
+        {%- assign gtinStringLength = current_variant.barcode | size -%}
+        {%- if gtinStringLength == 8 or gtinStringLength == 12 or gtinStringLength == 13 or gtinStringLength == 14 -%}
+          {%- assign isValidGtinLength = true -%}
+          {%- assign gtinString = gtinString | append: gtinStringLength -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- assign min = 10 -%}
+      {%- assign max = 1000 -%}
+      {%- assign date_fract = 'now' | date: '%N' -%}
+      {%- assign diff = max | minus: min -%}
+      {%- assign random_number = 'now' | date: '%N' | modulo: diff -%}
+      {%- assign random_number = random_number | plus: min -%}
+
+      {% comment %}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+          "@id": {{ canonical_url | append: '#product' | json }},
+            "@id": "{{ shop.url }}{{ product.url }}#productSchema",
+            "offers": [
+              {%- for variant in product.variants -%}
+                {
+                  "@type": "Offer",
+                  "name": {{ variant.title | json }},
+                  "availability": {%- if variant.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
+                  "price": {{ variant.price | divided_by: 100.00 | json }},
+                  "priceCurrency": {{ shop.currency | json }},
+                  "itemCondition": "https://schema.org/NewCondition",
+                  "inventoryLevel": {{ variant.inventory_quantity | json }},
+                  "priceValidUntil": {{ 'now' | date: '%s' | plus: 864000 | date: '%Y-%m-%d' | json }},
+                  {%- if variant.sku != blank -%}
+                    "sku": {{ variant.sku | json }},
+                  {%- endif -%}
+                  "url": {{ shop.url | append: variant.url | json }}
+                }{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            ],
+            "brand": {
+              "@type": "Brand",
+              "name": {{ product.vendor | json }}
+            },
+            "name": {{ product.title | json }},
+            "description": {{ product.description | strip_html | json }},
+            "category": {{ product.type | json }},
+            "url": "{{ shop.url }}{{ product.url }}",
+            "sku": {{ product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | default: product.id | json }},
+            "productId": {{ product.id | json }},
+            {%- if isBarCodeAvailable and isValidGtinLength -%}
+            "{{ gtinString }}": {{ current_variant.barcode |json }},
+            {%- elsif isBarCodeAvailable -%}
+            "mpn": {{ current_variant.barcode | json }},
+            {%- else -%}
+            "mpn": {{ current_variant.sku | default: current_variant.id | default: product.id | json }},
+            {%- endif -%}
+            {%- if product.selected_or_first_available_variant.weight != blank %}
+                "weight": "{{ product.selected_or_first_available_variant.weight | weight_with_unit | replace: " ", "" }}",
+            {%- endif -%}
+            "image": {
+              "@type": "ImageObject",
+              "url": "https:{{ product.featured_image | img_url: '1024x' }}",
+              "image": "https:{{ product.featured_image | img_url: '1024x' }}",
+              "name": {{ product.featured_image.alt | json }},
+              "width": "1024",
+              "height": "1024"
+            },{%- if ratingValue != blank and reviewCount != blank -%}
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": {{ ratingValue | json }},
+                "reviewCount": {{ reviewCount | json }}
+            },{%- endif -%}
+            "review": {
+              "@type": "Review",
+              "reviewBody": "Cool product!",
+              "author": {
+                "@type": "Person",
+                "name": "Lavender Tenorio"
+              },
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": 5,
+                "worstRating": 1,
+                "bestRating": 5
+              }
+            }
+        }
+        </script>
+      {% endcomment %}
+    {% endif %}
+
+    {% if template contains 'product' %}
+      {%- assign simp_current_variant = product.selected_or_first_available_variant -%}
+
+      {%- if cart.currency.iso_code == 'GBP'
+        or cart.currency.iso_code == 'USD'
+        or cart.currency.iso_code == 'AUD'
+        or cart.currency.iso_code == 'BWP'
+        or cart.currency.iso_code == 'BND'
+        or cart.currency.iso_code == 'DOP'
+        or cart.currency.iso_code == 'GTQ'
+        or cart.currency.iso_code == 'HKD'
+        or cart.currency.iso_code == 'INR'
+        or cart.currency.iso_code == 'ILS'
+        or cart.currency.iso_code == 'YEN'
+        or cart.currency.iso_code == 'KES'
+        or cart.currency.iso_code == 'KOR'
+        or cart.currency.iso_code == 'LBP'
+        or cart.currency.iso_code == 'MYR'
+        or cart.currency.iso_code == 'MXN'
+        or cart.currency.iso_code == 'NPR'
+        or cart.currency.iso_code == 'NZD'
+        or cart.currency.iso_code == 'NIO'
+        or cart.currency.iso_code == 'NGN'
+        or cart.currency.iso_code == 'PKR'
+        or cart.currency.iso_code == 'CNY'
+        or cart.currency.iso_code == 'PHP'
+        or cart.currency.iso_code == 'SGD'
+        or cart.currency.iso_code == 'LKR'
+        or cart.currency.iso_code == 'CHF'
+        or cart.currency.iso_code == 'TWD'
+        or cart.currency.iso_code == 'TSH'
+        or cart.currency.iso_code == 'THB'
+        or cart.currency.iso_code == 'UGX'
+        or cart.currency.iso_code == 'KWD'
+        or cart.currency.iso_code == 'CLP'
+      -%}
+        {%- assign simp_product_price = simp_current_variant.price | money_without_currency | remove: ',' -%}
+      {%- else -%}
+        {%- assign simp_product_price = simp_current_variant.price
+          | money_without_currency
+          | remove: '.'
+          | replace: ',', '.'
+        -%}
+      {%- endif -%}
+
+      <div itemscope itemtype=" http://schema.org/Product ">
+        <meta itemprop="name" content="{{product.title}}">
+        <meta itemprop="description" content="{{product.description | strip_html | truncatewords: 50}}">
+        <meta itemprop="sku" content="{{ product.selected_or_first_available_variant.sku }}">
+        <meta itemprop="url" content="{{ shop.secure_url }}{{ product.url }}">
+        <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+        <meta itemprop="brand" content="{{ product.vendor }}">
+        <meta itemprop="mpn" content="{{ product.selected_or_first_available_variant.sku }}">
+        {% assign gtin_num = product.selected_or_first_available_variant.barcode | size %}
+        {% if gtin_num == 12 or gtin_num == 13 or gtin_num == 14 %}
+          <meta itemprop="gtin{{gtin_num}}" content="{{ product.selected_or_first_available_variant.barcode }}">
+        {% endif %}
+        {%- assign review_count = product.metafields.judgeme.badge
+          | split: "data-number-of-reviews='"
+          | last
+          | split: "'"
+          | first
+          | plus: 0
+        -%}
+        {%- assign review_value = product.metafields.judgeme.badge
+          | split: "data-average-rating='"
+          | last
+          | split: "'"
+          | first
+          | plus: 0
+        -%}
+        {% if review_count > 0 %}
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="{{ review_value }}">
+            <meta itemprop="ratingCount" content="{{ review_count }}">
+          </div>
+        {% endif %}
+        <div itemprop="offers" itemscope itemtype=" http://schema.org/Offer ">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+          <meta itemprop="price" content="{{ simp_product_price }}">
+          <meta itemprop="priceValidUntil" content="{{ "today" | date: '%s' | plus: 3650000 | date: "%Y-%m-%d" }}">
+          <meta
+            itemprop="availability"
+            content=" http://schema.org/{%  if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}"
+          >
+          <meta
+            itemprop="itemCondition"
+            itemtype=" http://schema.org/OfferItemCondition "
+            content=" http://schema.org/NewCondition "
+          >
+          <meta itemprop="seller" content="{{ shop.name | escape }}">
+          <meta itemprop="url" content="{{ shop.secure_url }}{{ product.selected_or_first_available_variant.url }}">
+        </div>
+      </div>
+    {% endif %}
+    {% if product %}
+<script>
+  window.addEventListener('load', function() {
+  var _learnq = window._learnq || [];
+  function addedToCart() {
+   fetch(`${window.location.origin}/cart.js`)
+   .then(res => res.clone().json().then(data => {
+    var cart = {
+      total_price: data.total_price/100,
+      $value: data.total_price/100,
+      total_discount: data.total_discount,
+      original_total_price: data.original_total_price/100,
+      items: data.items
+    }
+    if (item !== 'undefined') {
+      cart = Object.assign(cart, item)
+    }
+    if (klAjax) {
+       _learnq.push(['track', 'Added to Cart', cart]);
+       klAjax = false;
+      }
+   }))
+  };
+  (function (ns, fetch) {
+    ns.fetch = function() {
+      const response = fetch.apply(this, arguments);
+      response.then(res => {
+        if (`${window.location.origin}/cart/add.js`
+          .includes(res.url) && res.url !== '') {
+              addedToCart()
+        }
+      });
+      return response
+     }
+  }(window, window.fetch));
+  var klAjax = true;
+  var atcButtons = document.querySelectorAll("form[action*='/cart/add'] button[type='submit']");
+  for (var i = 0; i < atcButtons.length; i++) { 
+    atcButtons[i].addEventListener("click", function() {
+      if (klAjax) {
+        _learnq.push(['track', 'Added to Cart', item]);
+        klAjax = false;
+      }
+    })
+  }
+  });
+</script>
+      {% endif %}
+  </body>
+    
+</html>

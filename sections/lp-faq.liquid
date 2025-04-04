@@ -1,0 +1,88 @@
+{{ 'lp-faq.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign faq_title = section.settings.faq_title
+  assign faqBtnUrl = section.settings.faq_btn_url
+  assign faqBtnText = section.settings.faq_btn_text
+%}
+
+<section class="lp-faq lp-bg--gray">
+  <div class="lp-wrapper">
+    {% if faq_title != '' %}
+      <h2 class="lp-faq__title lp-title lp-text--center lp-center">
+        {{ faq_title }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="lp-faq__items lp-js-accordions">
+        {% for block in section.blocks %}
+          {% liquid
+            assign faq_question = block.settings.faq_question
+            assign faq_answer = block.settings.faq_answer
+          %}
+          {% render 'lp-accordion'
+            , faq_question: faq_question
+            , faq_answer: faq_answer %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if faqBtnUrl %}
+      <div class="lp-faq__btn">
+        <a
+          href="{{ faqBtnUrl }}"
+          title="{{ faqBtnText }}"
+          class="lp-btn lp-center">{{ faqBtnText }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script src="{{ 'lp-accordion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Lp Faq",
+    "settings": [
+      {
+        "type": "text",
+        "id": "faq_title",
+        "label": "Title"
+      },
+      {
+        "type": "url",
+        "id": "faq_btn_url",
+        "label": "Section Button Url"
+      },
+      {
+        "type": "text",
+        "id": "faq_btn_text",
+        "label": "Section Button Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "Faq Questions",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_question",
+            "label": "Question"
+          }, {
+            "type": "text",
+            "id": "faq_answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Lp Faq"
+      }
+    ]
+  }
+  
+{% endschema %}

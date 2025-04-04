@@ -1,0 +1,145 @@
+{%- style -%}
+  {% if section.settings.bg_color != blank %}
+    #section--{{ section.id }} {
+      background-color: {{ section.settings.bg_color }};
+    }
+  {% endif %}
+  {% if section.settings.text_color != blank %}
+    #section--{{ section.id }} {
+      color: {{ section.settings.text_color }};
+    }
+  {% endif %}
+{%- endstyle -%}
+<div class="landing_icon-text" id="section--{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+    <div class="section_heading text-center">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    {% endif %}
+    <div class="section--grid">
+      {% for block in section.blocks %}
+      <div class="section--grid-col text-center">
+        {% if block.settings.icon %}
+        <div class="setting--icon">
+          <img class="{{ block.settings.image_size }}" src="{{ block.settings.icon | img_url: '300x' }}" alt="{{ image.alt }}">
+        </div>
+        {% endif %}
+        {% if block.settings.title != blank %}
+        <div class="setting--title">
+          <h4>{{ block.settings.title }}</h4>
+        </div>
+        {% endif %}
+        {% if block.settings.text != blank %}
+        <div class="setting--text">
+          {{ block.settings.text }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<style>
+  .landing_icon-text {
+    padding: 50px 0;
+  }
+  .landing_icon-text .section--grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .landing_icon-text .setting--icon {
+    margin-bottom: 15px;
+  }
+  .icon_small {
+    width: 50px;
+    height: 50px;
+  }
+  .icon_medium {
+    width: 80px;
+    height: 80px;
+  }
+  .icon_large {
+    width: 120px;
+    height: 120px;
+  }
+  .section_heading {
+    margin-bottom: 35px;
+  }
+  @media (min-width: 769px) {
+    .landing_icon-text .section--grid .section--grid-col {
+      flex: 1;
+      padding: 0 15px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Landing Icon With Text",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "select",
+            "id": "image_size",
+            "label": "Icon Size",
+            "default": "icon_medium",
+            "options": [
+              {
+                "value": "icon_small",
+                "label": "Small"
+              },
+              {
+                "value": "icon_medium",
+                "label": "Medium"
+              },
+              {
+                "value": "icon_large",
+                "label": "Large"
+              }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Icon With Text"
+      }
+    ]
+  }
+{% endschema %}

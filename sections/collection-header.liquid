@@ -1,0 +1,30 @@
+<div class="collection-hero__title">  
+  <div class="page-width">    
+    <div class="collection-filter">
+      <div class="collection-filter__items">
+        <div class="collection-filter__select-container">
+          
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="collection__header">
+      <header class="section-header">
+        <h1 class="section-header__title">
+          {{ collection.title }}
+        </h1>
+        {% if collection.metafields.custom.short_description != balnk %}
+        <div class="rte">{{ collection.metafields.custom.short_description }}</div>
+        {% endif %}
+      </header>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Collection header",
+    "settings": [
+      
+    ]
+  }
+{% endschema %}

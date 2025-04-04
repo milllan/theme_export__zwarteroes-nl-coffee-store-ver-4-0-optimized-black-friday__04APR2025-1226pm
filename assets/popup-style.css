@@ -1,0 +1,141 @@
+.popup_overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    opacity: 0.2;
+    background-color: #000;
+  display:none;
+  z-index:999;
+}
+
+/*drawer styles*/
+.drawer__cart-empty{
+  text-align:center;
+}
+#CartDrawer{
+  height:75%;
+  top:150px;
+}
+#CartDrawerForm{
+  position:relative;
+}
+#cartDrawer_bottom{
+  position:absolute;
+  bottom:0px;
+  display: none;
+}
+.drawer__cart-emptys{
+  position:absolute;
+  top:25%;
+  left:10%;
+}
+.mob_cart_bg{
+  width:50%;
+  visibility:hidden;
+}
+ .angle_mob_cart{
+   text-align:center;
+   margin-top: 33px;
+    display:none;
+  }
+.drawer_fill_cart{
+  margin:40px;
+}
+.drawer_fill_cart{
+  text-decoration:none;
+  background-color: #DA642A;
+  color:#fff;
+  font-size:22px;
+border-radius: 45px;
+  padding: 1px 14px;
+  font-family: permanent-marker;
+}
+#CartDrawer > .is-empty{
+  height:50%;
+}
+/* login popup*/
+.slide_popup{
+    position: fixed;
+    top: 50%;
+    transform:translateY(-50%);
+    z-index: 9999;
+    background: #fff;
+    right: -400px;
+   /* display: none; */
+  width:25%; 
+}
+.popup_txt_clr{
+  color: #DA642A;
+
+}
+.newcustomer_bottom{
+  background: #F0BC1B;
+}
+.login_form_popup > .page-content{
+  padding-bottom:0px !important;
+}
+.newcustomer_bottom{
+      display: inline-flex;
+    width: 100%;
+    padding: 15px 0px 10px 15px;
+}
+.close_arrow{
+  width:30%;
+}
+.login_popup_field { 
+border: 2px solid #DA642A;
+  width:300px;
+}
+.login_popup_field:focus { 
+border: 2px solid #DA642A;
+}
+.btn_submit_popup{
+background: #DA642A;
+border:2px solid #DA642A;
+  color:#fff;
+ /* width: 45%; */
+  /* padding: 5px 0px !important; */
+}
+
+.btn_submit_popup:hover{
+background: #fff !important;
+  border:2px solid #DA642A ;
+  color:#DA642A !important;
+}
+.hidden_popup_divs{
+  display:none;
+}
+#register_form .section-header{
+  margin-bottom:20px;
+}
+#register_form input,
+#customer_login input{
+  width:100%;
+}
+.login_form_popup .page-width{
+  padding-top: 25px;
+}
+@media only screen and (max-width: 767px) {
+  .slide_popup{
+    width:100%;
+    top:-500px;
+    right:0px;
+  }
+  .mob_cart_bg{
+    visibility:visible;
+  }
+  #cartDrawer_bottom > .close_arrow{
+    visibility:hidden;
+  }
+  .drawer_cart_btn{
+    padding-bottom:0;
+  }
+  
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
+  .slide_popup{
+    width:50%;
+  }
+}
+
