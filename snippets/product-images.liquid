@@ -11,7 +11,8 @@
     <div class="product__photos product__photos-{{ section_id }} product__photos--{{ thumbnail_position }}">
 
       <div class="product__main-photos" data-aos data-product-single-media-group>
-        <div data-product-photos class="product-slideshow">
+        <style>.product-slideshow{min-height:370px}@media only screen and (max-width:768px){.product-slideshow{min-height:100vw}}</style>
+        <div data-product-photos class="product-slideshow" style="">
           {%- for media in product.media -%}
             {%- render 'media',
               section_id: section_id,
@@ -96,19 +97,46 @@
                       </span>
                     {%- endif -%}
 
-                    {%- assign img_url = media.preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-                    <img class="animation-delay-{{ forloop.index | times: 3 }} lazyload"
-                        data-src="{{ img_url }}"
-                        data-widths="[120, 360, 540, 720]"
-                        data-aspectratio="{{ media.preview_image.aspect_ratio }}"
-                        data-sizes="auto"
-                        alt="{{ media.alt | escape | split: '#' | first }}">
+{%- comment -%}
+  Constraints:
+  - Displayed size: 76x76 pixels.
+  - Visible only on screens wider than 768px (display: none below).
+  - Goal: Native lazy loading, remove lazysizes.
+{%- endcomment -%}
 
-                    <noscript>
-                      <img class="lazyloaded"
-                        src="{{ media | img_url: '400x' }}"
-                        alt="{{ media.alt | escape }}">
-                    </noscript>
+{%- comment -%}
+  Original lazysizes code:
+  {%- assign img_url = media.preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  <img class="animation-delay-{{ forloop.index | times: 3 }} lazyload"
+      data-src="{{ img_url }}"
+      data-widths="[120, 360, 540, 720]"
+      data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+      data-sizes="auto"
+      alt="{{ media.alt | escape | split: '#' | first }}">
+
+  <noscript>
+    <img class="lazyloaded"
+      src="{{ media | img_url: '400x' }}"
+      alt="{{ media.alt | escape }}">
+  </noscript>
+{%- endcomment -%}
+
+{%- comment -%} Widths for srcset: 1x (76px) and 2x (152px) are usually sufficient for a 76px display {%- endcomment -%}
+{%- assign thumbnail_widths = '76, 114, 152, 228' -%}
+{%- assign img_alt = media.alt | escape | split: '#' | first -%}
+{%- capture img_class -%}product-thumbnail-image animation-delay-{{ forloop.index | times: 3 }} lazyloaded{%- endcapture -%}
+                    {{ media.preview_image | image_url: width: '152' | image_tag: 
+                        widths: thumbnail_widths,
+                        loading: 'lazy',
+                        fetchpriority: 'low',
+                        decoding: 'async',
+                        alt: img_alt,
+                        class: img_class,
+                        sizes: "76px",
+                        width: "76",
+                        height: "76",
+                        style: 'opacity:1!Important'
+                    }}
                   </a>
                 </div>
               </div>

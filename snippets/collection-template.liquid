@@ -41,6 +41,19 @@
         <p class="medium-up--hide text-center" data-scroll-to>{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</p>
       {%- endif -%}
 
+      <style>.d__grid{contain:content}.grid-product{contain:content;content-visibility:auto;contain-intrinsic-size:auto calc(50vw - 22px) auto 99vw}
+/* Ensure margin is handled correctly with grid gap on larger screens */
+@media only screen and (min-width: 769px) {
+    .grid-product {
+         contain-intrinsic-size:auto calc(50vw - 45px) auto 75vw
+    }
+}
+@media screen and (min-width: 920px) {
+   .grid-product {
+         content-visibility:visible
+   }
+}
+      </style>
       <div
         class="d__grid {% if block.settings.mobile_flush_grid %} small--grid--flush{% endif %}"{% unless block.settings.enable_collection_count %} data-scroll-to{% endunless %}>
         

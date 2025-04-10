@@ -69,6 +69,7 @@
       </div>
     </div>
     <script>
+{% comment %}
       var swiper = new Swiper('.js--related-slider', {
         loop: false,
         slidesPerView: "auto",
@@ -78,6 +79,23 @@
           prevEl: '.swiper-button-prev',
         },
       });
+{% endcomment %}
+(function initSwiperRecom() {
+  // Check if Swiper is available
+  if (typeof Swiper !== 'function') {
+    setTimeout(initSwiperRecom, 50);return;
+  }
+  // Initialize Swiper when available
+  new Swiper('.js--related-slider', {
+    loop: false,
+    slidesPerView: "auto",
+    spaceBetween: 0,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+})();
     </script>
     {% endunless %}
   {% endif %}

@@ -383,6 +383,7 @@
   </div>
 </div>
 <script>
+{% comment %}
   var swiper = new Swiper('.js-step__product', {
     loop: false,
     slidesPerView: "auto",
@@ -392,6 +393,23 @@
       el: '.js-step__scrollbar',
     },
   });
+{% endcomment %}
+(function initSwiperSteps() {
+  // Check if Swiper is available
+  if (typeof Swiper !== 'function') {
+    setTimeout(initSwiperSteps, 50);return;
+  }
+  // Initialize Swiper when available
+  new Swiper('.js-step__product', {
+    loop: false,
+    slidesPerView: "auto",
+  
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.js-step__scrollbar',
+    },
+  });
+})();
 </script>
 <script src="{{ 'collection-page-quiz.js' | asset_url }}" defer="defer"></script>
 {% schema %}

@@ -2,6 +2,9 @@
   .reviews-{{ section.id }} {
     background-color: {{ section.settings.color_background }};
     color: {{ section.settings.color_text }};
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vw auto 690px;
   }
   .reviews-{{ section.id }} .section-header h2 {
     color: {{ section.settings.color_title }};
@@ -115,6 +118,7 @@
 </div>
 
 <script>
+{% comment %}
   var swiper = new Swiper(".reviews-slider", {
     slidesPerView: "auto",
     navigation: {
@@ -125,6 +129,24 @@
       el: '.swiper-scrollbar',
     },
   });
+{% endcomment %}
+(function initSwiperReviewsTestimonials() {
+  // Check if Swiper is available
+  if (typeof Swiper !== 'function') {
+    setTimeout(initSwiperReviewsTestimonials, 50);return;
+  }
+  // Initialize Swiper when available
+  new Swiper(".reviews-slider", {
+    slidesPerView: "auto",
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
+})();
 </script>
 {% schema %}
   {

@@ -6,7 +6,7 @@
     {% if section.settings.top-image %} show-pattern{% endif %}">
     <div class="page-widths">
     {%- capture image_layout -%}
-      <div class="feature-row__item feature-row-image" data-aos>
+      <div class="feature-row__item tifw feature-row-image" data-aos>
           {%- if section.settings.image != blank -%}
             <div>
                 <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
@@ -33,14 +33,14 @@
     <div class="feature-row">
       
       {%- if section.settings.top-image -%}
-        <img class="pattern-image lazyload" src="{{ 'pattern-vertical.png' | asset_url }}" alt="vertical line">
+        <img class="pattern-image" width="491" height="491" src="{{ 'pattern-vertical.png' | asset_url }}" alt="vertical line">
       {%- endif -%}
       
       {%- if section.settings.layout == 'left' -%}
         {{ image_layout }}
       {%- endif -%}
 
-      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
+      <div class="feature-row__item tifw2 feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
         {%- if section.settings.subtitle != blank -%}
           <div class="subheading appear-delay{% cycle '','-1','-2','-3','-4' %}" style="color: {{ section.settings.text_color }}">{{ section.settings.subtitle }}</div>
         {%- endif -%}
@@ -56,7 +56,7 @@
               {{ section.settings.button_label }}
             </a>
             {%- if section.settings.btn-arrow -%}
-            <img class="img-arrow lazyload" src="{{ 'arrow-vector.png' | asset_url }}">
+            <img class="img-arrow" width="60" height="70" src="{{ 'arrow-vector.png' | asset_url }}">
             {%- endif -%}
           </div>
         {%- endif -%}

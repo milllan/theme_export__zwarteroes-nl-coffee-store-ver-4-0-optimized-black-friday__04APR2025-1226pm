@@ -37,7 +37,7 @@
 
   <div class="page-width banner__text-wrapper">
     <div class="feature-row">
-      <div class="feature-row__item feature-row__text feature-row__text--left" data-aos>
+      <div class="feature-row__item hn3 feature-row__text feature-row__text--left" data-aos>
         {%- if section.settings.title != blank -%}
           <h1 class="h1 appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h1>
         {%- endif -%}
@@ -55,7 +55,7 @@
         {%- endif -%}
       </div>
 
-      <div class="feature-row__item feature-row__images" data-aos>
+      <div class="feature-row__item hn32 feature-row__images" data-aos>
         {%- if section.settings.image != blank -%}
           <div>
             <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">

@@ -5,6 +5,14 @@
 {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
 
 {%- style -%}
+@font-face {
+  font-family: 'permanent-marker';
+  font-display:swap;
+  src: url('{{ "permanent-marker.eot" | asset_url }}');
+  src: url('{{ "permanent-marker.eot" | asset_url }} ?#iefix') format("embedded-opentype"),
+       url('https://cdn.shopify.com/s/files/1/0017/9424/4660/files/permanent-marker.latin_bebdd583-9f68-4301-9a40-2afbae50d542.woff2?v=1744194940') format("woff2"),
+       url('{{ "permanent-marker.woff" | asset_url }}') format("woff");
+}
   {{ header_font | font_face: font_display: 'swap' }}
   {{ base_font | font_face: font_display: 'swap' }}
 

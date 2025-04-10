@@ -10,7 +10,26 @@
                 {% for product in collection.products %}
                     <a href="{{ product.url }}" class="list-item">
                         <span class="image-wrapper">
+{% comment %}
                             <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}" width="50" height="50" loading="lazy">
+{% endcomment %}
+{%- assign image = product.featured_image -%}
+{%- assign image_alt = product.title | escape -%}
+
+{% comment %} Smaller widths for tiny thumbnail {% endcomment %}
+{%- assign image_widths = '50, 100, 150, 200' -%} 
+
+{%- if image != blank -%}
+    {{ image | image_url: width: master | image_tag:
+        widths: image_widths,
+        decoding: 'async',
+        alt: image_alt,
+        width: 50,
+        height: 50,
+        class: 'product-thumbnail',
+        sizes: '50px'
+    }}
+{%- endif -%}
                         </span>
                         {% assign custom_title = product.metafields.custom.best_selling_title %}
                         <span class="product-list-title">

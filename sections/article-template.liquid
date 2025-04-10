@@ -90,9 +90,193 @@
       </header>
     {%- endunless -%}
 
+   {%- liquid
+      assign processed_content = article.content
+      assign img_pattern = '<img([^>]+)>'
+      assign img_src_pattern = 'src="([^"]+)"'
+      assign img_alt_pattern = 'alt="([^"]*)"'
+      assign img_width_pattern = 'width="([^"]*)"'
+      assign img_height_pattern = 'height="([^"]*)"'
+      assign widths = '1,10,360,480,540,720,900,1080,1280'
+    -%}
+
+    {%- capture processed_content -%}
+      {%- assign content_parts = processed_content | split: '<img' -%}
+      {%- for part in content_parts -%}
+        {%- if forloop.first -%}
+          {{ part }}
+        {%- else -%}
+          {%- assign img_tag = part | split: '>' | first -%}
+          {%- assign img_src = img_tag | split: 'src="' | last | split: '"' | first -%}
+          {%- assign img_alt = img_tag | split: 'alt="' | last | split: '"' | first -%}
+          {%- assign img_width = img_tag | split: 'width="' | last | split: '"' | first -%}
+          {%- assign img_height = img_tag | split: 'height="' | last | split: '"' | first -%}
+          
+          {%- assign srcset_parts = '' -%}
+          {%- assign width_array = widths | split: ',' -%}
+          {%- for width in width_array -%}
+            {%- assign width = width | strip -%}
+            {%- assign sized_url = img_src | append: '&width=' | append: width -%}
+            {%- assign srcset_parts = srcset_parts | append: sized_url | append: ' ' | append: width | append: 'w' -%}
+            {%- unless forloop.last -%}
+              {%- assign srcset_parts = srcset_parts | append: ', ' -%}
+            {%- endunless -%}
+          {%- endfor -%}
+
+          <img 
+            width="1280"
+            height="800"
+            src="{{ img_src }}&width=1280"
+            srcset="{{ srcset_parts }}"
+            sizes="(max-width: 768px) calc(100vw - 36px), (max-width: 1024px) 75vw, 854px"
+            alt="{{ img_alt }}">
+          {{ part | remove_first: img_tag | remove_first: '>' }}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+
+
     <div class="article__body rte">
-      {{ article.content }}
+      {% comment %}
+        Capture the original article content. Use 'article.content' unless
+        your theme specifically uses a pre-processed variable like 'processed_content'.
+      {% endcomment %}
+      {% assign original_content = processed_content %}
+      {% assign contains_youtube = false %}
+
+      {% comment %} Check if the content likely contains a YouTube iframe to process {% endcomment %}
+      {% if original_content contains 'youtube.com/embed/' %}
+
+        {% assign contains_youtube = true %}
+        {% comment %} Use CDN links for lite-youtube-embed (replace with local assets if preferred) {% endcomment %}
+        {% assign lite_youtube_css = 'https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.min.css' %}
+        {% assign lite_youtube_js = 'https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.min.js' %}
+      
+        {% comment %} Output the CSS and JS right before the modified content {% endcomment %}
+        {% comment %}{% endcomment %}
+        {{ lite_youtube_css | stylesheet_tag }}
+        <script src="{{ lite_youtube_js }}" defer></script>
+        {% comment %}{% endcomment %}
+      
+        {% comment %}
+          Process the content:
+          1. Split the content by the start of the responsive video div.
+          2. Iterate through parts. If a part contains a youtube embed iframe:
+             - Extract the Video ID.
+             - Replace the original iframe structure with <lite-youtube-embed>.
+          3. Reconstruct the content.
+        {% endcomment %}
+        {% assign content_parts = original_content | split: '<div class="responsive-video">' %}
+        {% assign modified_content = content_parts[0] %}
+      
+        {% for i in (1..content_parts.size) %}
+          {% assign part = content_parts[i] %}
+          {% if part == blank %}{% continue %}{% endif %}
+      
+          {% comment %} Check if this part contains the YouTube iframe structure {% endcomment %}
+          {% if part contains '<iframe' and part contains 'src="https://www.youtube.com/embed/' and part contains '</iframe></div>' %}
+      
+            {% comment %} Extract the Video ID {% endcomment %}
+            {% assign video_id_segment = part | split: 'src="https://www.youtube.com/embed/' | last %}
+            {% assign video_id_dirty = video_id_segment | split: '"' | first %}
+            {% assign video_id = video_id_dirty | split: '?' | first | split: '&' | first %} {% comment %} Clean up potential query params {% endcomment %}
+      
+            {% comment %} Find the content *after* the original closing tag {% endcomment %}
+            {% assign closing_tag = '</iframe></div>' %}
+            {% assign remaining_part = part | split: closing_tag | last %}
+      
+            {% comment %} Append the lite-youtube component (inside the original wrapper) and the remaining part {% endcomment %}
+            {% assign replacement_html = '<div class="responsive-video"><lite-youtube class="yt-lazy-load" style="max-width:100%" videoid="' | append: video_id | append: '"></lite-youtube></div>' %}
+            {% assign modified_content = modified_content | append: replacement_html | append: remaining_part %}
+      
+          {% else %}
+            {% comment %} If not a YouTube iframe block, add the wrapper back and the original part {% endcomment %}
+            {% assign modified_content = modified_content | append: '<div class="responsive-video">' | append: part %}
+          {% endif %}
+        {% endfor %}
+      
+        {% comment %} Output the modified content {% endcomment %}
+        {{ modified_content }}
+      
+      {% else %}
+        {% comment %} If no YouTube embeds found, output the original content directly {% endcomment %}
+        {% comment %}{{ article.content }}{% endcomment %}
+        {{ original_content }}
+      {% endif %}
     </div>
+
+{% comment %} If YouTube videos were processed, add the Intersection Observer script {% endcomment %}
+{% comment %}
+{% if contains_youtube %}
+<script>
+  function loadLiteYouTubeAssets() {
+    console.log('  loadLiteYouTubeAssets 000');
+    // Check if assets are already loaded or loading
+    if (window.liteYouTubeAssetsLoaded) {
+      return;
+    }
+    window.liteYouTubeAssetsLoaded = true; // Set flag immediately
+
+    console.log('  Loading Lite YouTube Embed assets...');
+
+    // Create and append the CSS link tag
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '{{ lite_youtube_css_url }}'; // Use Liquid variable for URL
+    document.head.appendChild(link);
+
+    // Create and append the JS script tag
+    const script = document.createElement('script');
+    script.src = '{{ lite_youtube_js_url }}'; // Use Liquid variable for URL
+    script.defer = true; // Defer execution until HTML parsing is complete
+    document.body.appendChild(script); // Append to body is generally fine
+  }
+
+  // Use Intersection Observer to load assets when a video is near viewport
+  document.addEventListener('DOMContentLoaded', () => {
+    const lazyYouTubeVideos = document.querySelectorAll('.responsive-video,.article__body lite-youtube.yt-lazy-load');
+          console.log('  lazyYouTubeVideos',lazyYouTubeVideos);
+
+    if (lazyYouTubeVideos.length > 0) {
+      let obs; // Declare observer variable
+               console.log('   lazyYouTubeVideos.length',lazyYouTubeVideos.length);
+
+      const obsCallback = (entries, obs) => {
+        entries.forEach(entry => {
+          // If the element is intersecting (visible or about to be)
+          if (entry.isIntersecting) {
+               console.log('      isIntersecting',entry);
+            // Load assets (function ensures it only runs once)
+            loadLiteYouTubeAssets();
+            // Assets are loading/loaded, we don't need the observer anymore
+            // Disconnect the observer to stop watching all elements
+             if (obs) { // Ensure observer exists before disconnecting
+               obs.disconnect();
+               console.log('Lite YouTube observer disconnected.');
+             }
+          }
+        });
+      };
+
+      // Observer options: rootMargin expands the "trigger zone" by 500px top/bottom
+      const obsOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '500px',
+      };
+
+      // Create and assign the observer
+      obs = new IntersectionObserver(obsCallback, obsOptions);
+
+      // Start observing each lazy video element
+      lazyYouTubeVideos.forEach(video => {
+        obs.observe(video);
+      });
+    }
+  });
+</script>
+{% endif %}
+{% endcomment %}
+
 
     {%- if section.settings.social_sharing_blog -%}
       {%- render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image -%}

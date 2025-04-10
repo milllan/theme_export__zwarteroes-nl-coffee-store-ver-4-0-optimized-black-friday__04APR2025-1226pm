@@ -58,16 +58,18 @@
         itemprop="url"
         class="site-header__logo-link{% if block.settings.logo-inverted %} logo--has-inverted{% endif %}">
         <img
+          decoding="async" loading="lazy" width="276px" height="50px"
           class="small--hide"
           src="{{ block.settings.logo | img_url: header_logo_size }}"
           srcset="{{ block.settings.logo | img_url: header_logo_size }} 1x, {{ block.settings.logo | img_url: header_logo_size, scale: 2 }} 2x"
           alt="{{ block.settings.logo.alt | default: shop.name }}"
           itemprop="logo">
         <img
+          decoding="async" loading="eager" width="276px" height="50px"
           class="medium-up--hide"
           src="{{ block.settings.logo | img_url: header_logo_size_mobile }}"
           srcset="{{ block.settings.logo | img_url: header_logo_size_mobile }} 1x, {{ block.settings.logo | img_url: header_logo_size_mobile, scale: 2 }} 2x"
-          alt="{{ block.settings.logo.alt | default: shop.name }}">
+          alt="{{ block.settings.logo.alt | default: shop.name }}" >
       </a>
       {%- if block.settings.logo-inverted -%}
         <a

@@ -964,9 +964,9 @@ html[dir=rtl] .grid--center .grid__item{
 
 @media only screen and (min-width:769px){.medium-up--one-whole{width:100%;}.medium-up--one-half{width:50%;}.medium-up--one-third{width:33.33333%;}.medium-up--two-thirds{width:66.66667%;}.grid--uniform .medium-up--one-half:nth-of-type(odd),.grid--uniform .medium-up--one-third:nth-of-type(3n+1){clear:both;}.medium-up--one-quarter{width:25%;}.medium-up--two-quarters{width:50%;}.medium-up--three-quarters{width:75%;}.grid--uniform .medium-up--one-quarter:nth-of-type(4n+1){clear:both;}.medium-up--one-fifth{width:20%;}.medium-up--two-fifths{width:40%;}.medium-up--three-fifths{width:60%;}.medium-up--four-fifths{width:80%;}.grid--uniform .medium-up--one-fifth:nth-of-type(5n+1){clear:both;}.medium-up--one-sixth{width:16.66667%;}.medium-up--two-sixths{width:33.33333%;}.medium-up--three-sixths{width:50%;}.medium-up--four-sixths{width:66.66667%;}.medium-up--five-sixths{width:83.33333%;}.grid--uniform .medium-up--one-sixth:nth-of-type(6n+1),.grid--uniform .medium-up--three-sixths:nth-of-type(odd),.grid--uniform .medium-up--two-sixths:nth-of-type(3n+1){clear:both;}}
 
-.show{display:block !important;}
+.show{display:block !important;content-visibility: visible!important;}
 
-.hide{display:none !important;}
+.hide{display:none !important;content-visibility: hidden!important;}
 
 .text-left{text-align:left !important;}
 
@@ -974,11 +974,11 @@ html[dir=rtl] .grid--center .grid__item{
 
 .text-center{text-align:center !important;}
 
-@media only screen and (max-width:768px){.small--show{display:block !important;}.small--hide{display:none !important;}.small--text-left{text-align:left !important;}.small--text-right{text-align:right !important;}.small--text-center{text-align:center !important;}}
+@media only screen and (max-width:768px){.small--show{display:block !important;content-visibility: visible!important;}.small--hide{display:none !important;content-visibility: hidden!important;}.small--text-left{text-align:left !important;}.small--text-right{text-align:right !important;}.small--text-center{text-align:center !important;}}
 
-@media only screen and (max-width:959px){.medium-down--show{display:block !important;}.medium-down--hide{display:none !important;}.medium-down--text-left{text-align:left !important;}.medium-down--text-right{text-align:right !important;}.medium-down--text-center{text-align:center !important;}}
+@media only screen and (max-width:959px){.medium-down--show{display:block !important;content-visibility: visible!important;}.medium-down--hide{display:none !important;content-visibility: hidden!important;}.medium-down--text-left{text-align:left !important;}.medium-down--text-right{text-align:right !important;}.medium-down--text-center{text-align:center !important;}}
 
-@media only screen and (min-width:769px){.medium-up--show{display:block !important;}.medium-up--hide{display:none !important;}.medium-up--text-left{text-align:left !important;}.medium-up--text-right{text-align:right !important;}.medium-up--text-center{text-align:center !important;}}
+@media only screen and (min-width:769px){.medium-up--show{display:block !important;content-visibility: visible!important;}.medium-up--hide{display:none !important;content-visibility: hidden!important;}.medium-up--text-left{text-align:left !important;}.medium-up--text-right{text-align:right !important;}.medium-up--text-center{text-align:center !important;}}
 
 .flex-grid{
   display:flex;
@@ -2273,6 +2273,7 @@ svg:not(:root){
 
 iframe,img{
   max-width:100%;
+  height:auto;
 }
 
 img[data-sizes=auto]{
@@ -2321,7 +2322,7 @@ img[data-sizes=auto]{
 }
 
 .grid__image-ratio img{
-    opacity:0;
+    /*opacity:0;*/
     position:absolute;
     top:0;
     left:0;
@@ -2701,6 +2702,8 @@ svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,s
 
 .drawer{
   display:none;
+    contain: content;
+    content-visibility: hidden;
   position:fixed;
   overflow:hidden;
   -webkit-overflow-scrolling:touch;
@@ -2775,6 +2778,7 @@ svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,s
 
 .drawer--right.drawer--is-open{
     display:block;
+      content-visibility: visible;
     transform:translateX(-350px);
     transition-duration:0.45s
   }
@@ -2789,6 +2793,7 @@ svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,s
 .js-drawer-closing .main-content:after,.js-drawer-open .main-content:after{
   content:"";
   display:block;
+    content-visibility: visible;
   position:fixed;
   top:0;
   left:0;
@@ -3075,8 +3080,11 @@ svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,s
     opacity:0
   }
 
-.no-js .image-wrap .animate-me,.no-js .image-wrap img:not([role=presentation]),.no-js .image-wrap svg{
+.no-js .image-wrap .animate-me,.no-js .image-wrap img:not([role=presentation]),.no-js .image-wrap svg {
       opacity:1
+  }
+.image-wrap img[loading]{
+      opacity:1!Important
   }
 
 .aos-animate .image-wrap .animate-me,.aos-animate .image-wrap .lazyloaded:not([role=presentation]),.aos-animate .image-wrap svg{
@@ -4293,6 +4301,7 @@ form+.footer__social{
 
 .site-header__search-container{
   display:none;
+    content-visibility: hidden;
   position:absolute;
   left:0;
   right:0;
@@ -4304,6 +4313,7 @@ form+.footer__social{
 
 .site-header__search-container.is-active{
     display:block;
+      content-visibility: visible;
     overflow:visible;
     bottom:0;
   }
@@ -5261,17 +5271,21 @@ form+.footer__social{
   line-height:1.8;
   transform:none;
   opacity:0;
+    contain: content;
+    content-visibility: hidden;
   transition:all 300ms cubic-bezier(0.2, 0.06, 0.05, 0.95);
   transition-delay:0.3s
 }
 
 .is-focused>.megamenu,.site-nav--has-dropdown:hover .megamenu{
     opacity:1;
+      content-visibility: visible;
     transition-delay:0s
 }
 
 .is-focused>.megamenu .appear-animation,.site-nav--has-dropdown:hover .megamenu .appear-animation{
       opacity:1;
+        content-visibility: visible;
       transform:none;
     }
 
@@ -5312,6 +5326,8 @@ form+.footer__social{
 
 .modal{
   display:none;
+    content-visibility: hidden;
+    contain: content;
   bottom:0;
   left:0;
   opacity:1;
@@ -5344,6 +5360,7 @@ form+.footer__social{
 
 .modal-open .modal:before{
       content:"";
+        content-visibility: visible;
       position:fixed;
       top:0;
       left:0;
@@ -5388,11 +5405,13 @@ form+.footer__social{
 
 .modal--is-closing{
   display:flex !important;
+    content-visibility: visible!important;
   overflow:hidden;
 }
 
 .modal--is-active{
   display:flex !important;
+    content-visibility: visible!important;
   overflow:hidden;
 }
 

@@ -20,9 +20,9 @@
         <div class="icon_with_text_item" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
             {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <img class="icon__image lazyload"
+            <img class="icon__image"
                 src="{{ block.settings.image | img_url: '100x' }}"
-                alt="{{ block.settings.image.alt }}">
+                alt="{{ block.settings.image.alt }}" decoding="async" loading="lazy" fetchpriority="low" width="100px" height="100px">
           {%- else -%}
             {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}

@@ -51,6 +51,7 @@
   </div>
 </section>
 <script>
+{% comment %}
   var swiper = new Swiper('.js--text-swiper', {
     loop: true,
     slidesPerView: "auto",
@@ -60,6 +61,23 @@
       prevEl: '.swiper-button-prev',
     },
   });
+{% endcomment %}
+(function initSwiperText() {
+  // Check if Swiper is available
+  if (typeof Swiper !== 'function') {
+    setTimeout(initSwiperText, 50);return;
+  }
+  // Initialize Swiper when available
+  new Swiper('.js--text-swiper', {
+    loop: true,
+    slidesPerView: "auto",
+    spaceBetween: 0,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+})();
 </script>
 {% schema %}
   {

@@ -16,13 +16,28 @@
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
     {%- endif -%}
     {%- render 'social-meta-tags' -%}
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" as="script">
+    {% if request.page_type contains 'blog' or request.page_type contains 'article' %}
+    <link rel="preload" href="https://fonts.gstatic.com/s/quicksand/v31/6xKtdSZaM9iE8KbpRA_hK1QN.woff2" as="font" type="font/woff2" crossorigin>
+    {% endif %}
+
+    {% if request.page_type == "page" %}
+    <!-- Google Font Preconnect / Replit speed opt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Font Stylesheet / Replit speed opt -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@100;200;300;400;500;600;700;800;900;950&family=Inter:wght@100;200;300;400;500;600;700;800;900;950&family=Source+Serif+4:wght@100;200;300;400;500;600;700;800;900;950&family=Montserrat:wght@100;200;300;400;500;600;700;800;900;950&display=swap" rel="stylesheet">
+    {% endif %}
+
     <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'style.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style">
     <link rel="preload" href="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" as="script">
+    <link rel="preload" href="{{ 'customization.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'lp-base.css' | asset_url }}" as="style">
+    {% comment %}
     <link rel="preload" href="https://cdn.shopify.com/s/files/1/0633/1672/1913/t/1/assets/splide.min.js" as="script">
+    {% endcomment %}
 
     {% render 'replo-head' %}
     <!-- Google Tag Manager -->
@@ -91,8 +106,10 @@
     <link rel="preconnect" href="https://cdn.shopify.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    {% comment %}
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.gstatic.com">
+    {% endcomment %}
 
     {%- render 'seo-title' -%}
 
@@ -171,8 +188,6 @@
       >
       <link rel="stylesheet" href="{{ 'currency-flags.css' | asset_url | split: '?' | first }}">
     {%- endif -%}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
 
@@ -190,13 +205,33 @@
     {{ 'lp-base.css' | asset_url | stylesheet_tag }}
   
   <script type="text/javascript">
+<script>
+  function loadClarity() {
     (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "qyd1ogu3g1");
+  }
+  
+  // Load after 3 seconds OR on first interaction (click/touch/scroll)
+  setTimeout(loadClarity, 99);
+  document.addEventListener('click', loadClarity, { once: true });
+  document.addEventListener('touchstart', loadClarity, { once: true, passive: true });
+</script>
 </script>
 
+{%- unless request.design_mode -%}
+<!-- debugbear.com RUM tracking, 2025-04-04, miLL -->
+<script>
+!function(){
+var id="WKE2YeXPhvuC";
+if(window.__lighthouse||navigator.webdriver||/(Chrome-Lighthouse|HeadlessChrome|Google Page Speed Insights)/i.test(navigator.userAgent))return;var k="dbbRumLoaded_"+id,l=!1;try{l=window.localStorage&&"1"===localStorage.getItem(k)}catch(e){}if(l||100*Math.random()>75){var r="dbbRum",w=window,d=document,a=addEventListener,s=d.createElement("script");s.async=!0;w[r]=w[r]||[];w[r].push(["presampling",40]);["error","unhandledrejection"].forEach(function(t){a(t,function(e){w[r].push([t,e])})});s.src="https://cdn.debugbear.com/"+id+".js";d.head.appendChild(s);try{window.localStorage&&localStorage.setItem(k,"1")}catch(e){}}}()
+</script>
+{% comment %}
+<script data-rum-site-id="c8da4445-8d62-406e-b1f8-fee55932bb5f" src="https://assets.speedvitals.com/vitals.min.js" defer></script>
+{% endcomment %}
+{%- endunless %}
   </head>
 
   <body
@@ -383,7 +418,7 @@ function ampShowComparePrice(cart) {
     <div id="PageContainer" class="page-container">
       <div class="transition-body">
         {% capture layout %}    {%- section 'header' -%}      {%- if template == 'index' -%}  {%- section 'best-custom-selling' -%}{%- endif -%}{% endcapture %}
-        {{ layout | replace: '<img', "<img loading='lazy' " -}}
+        {{ layout | replace: '<img', "<img decoding='async'" -}}
         {%- render 'main' -%}
         {%- capture mainLayout %}
       <main class="asyncLoad main-content" id="MainContent">
@@ -392,7 +427,31 @@ function ampShowComparePrice(cart) {
       {%- section 'footer-promotions' -%}
       {%- section 'footer' -%}
 {% endcapture %}
-        {{ mainLayout | replace: '<img', "<img loading='lazy' " }}
+        {% comment %}{{ mainLayout | replace: '<img', "<img m decoding='async'" -}}{% endcomment %}
+        {% comment %}
+          Step 1: Add decoding='async' to ALL images first.
+        {% endcomment %}
+        {% assign processed_mainLayout = mainLayout | replace: '<img', "<img loading='lazy' fetchpriority='low' decoding='async'" %}
+        
+        {% comment %}
+          Step 2: Find the *first* image (which now has decoding='async')
+                  and prepend the eager/high attributes.
+        {% endcomment %}
+        {% if template.name == 'collection' or template.name == 'search' %}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "<img loading='lazy' fetchpriority='low'", "<img hidden_promo_img loading='lazy' fetchpriority='low'" %}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "<img loading='lazy' fetchpriority='low'", "<img loading='eager' fetchpriority='high'" %}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "<img loading='lazy' fetchpriority='low'", "<img loading='eager' fetchpriority='high'" %}
+        {%- else -%}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "<img loading='lazy' fetchpriority='low'", "<img loading='eager' fetchpriority='high'" %}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "<iframe", "<iframe loading='lazy' fetchpriority='low'" %}
+        {%- endif -%}
+
+        {% if request.page_type == "page" %}
+          {% comment %}Add afallback font for Replo pages, to reduce CLS on Page titles using Mulish font{% endcomment %}
+          {% assign processed_mainLayout = processed_mainLayout | replace_first: "font-family:Mulish", "font-family:Mulish,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue" %}
+        {% endif %}
+        
+        {{ processed_mainLayout }}
       </div>
     </div>
 
@@ -402,7 +461,9 @@ function ampShowComparePrice(cart) {
       render 'photoswipe-template'
     -%}
     <script src="{{ 'variant-selector.js' | asset_url }}" defer="defer"></script>
+    {% comment %}
     {{ '//cdn.shopify.com/s/files/1/0633/1672/1913/t/1/assets/splide.min.js' | script_tag }}
+    {% endcomment %}
     {% if template contains 'product' %}
       {%- assign reviewAppDescription = blank -%}
       {%- assign ratingValue = blank -%}
@@ -798,6 +859,201 @@ function ampShowComparePrice(cart) {
   });
 </script>
       {% endif %}
+
+{%- if content_for_layout contains "lazyload" -%}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const lazyImages = document.querySelectorAll('img[data-src].lazyload');
+  if (lazyImages.length === 0) return; // Exit if no lazy images
+
+  function loadLazysizes() {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+    document.head.appendChild(s);
+  }
+
+  const obs = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadLazysizes();
+          obs.disconnect(); // Stop ALL observations
+        }
+      });
+    },
+    { rootMargin: '400px' } // Trigger 400px before entering viewport
+  );
+
+  // Observe ALL lazy images (but disconnect after first trigger)
+  lazyImages.forEach(img => obs.observe(img));
+});
+</script>
+{% endif %}
+
+{%- unless request.design_mode -%}
+<script>
+const shouldPrerender = 
+    /Chrome/.test(navigator.userAgent) &&
+    (navigator.hardwareConcurrency || 4) > 2 &&
+    !(navigator.connection && navigator.connection.saveData);
+if (shouldPrerender) {
+  (function () {
+      const ignores = [
+          /\/members\/?/,
+          uri => uri.includes("/my-account"),
+          uri => uri.includes("/account"),
+          uri => uri.includes("/checkout"),
+          uri => uri.includes("/cart"),
+          uri => uri.includes("/wishlist"),
+          uri => uri.includes(".png"),
+          uri => uri.includes(".jpg"),
+          uri => uri.includes("/login"),
+          uri => uri.includes("/search"),
+          uri => uri.includes("tel:"),
+          //uri => uri.hash.includes('#private'),
+          //uri => uri.searchParams.has('secret'),
+          //uri => uri.hostname !== window.location.hostname
+      ];
+  
+      function shouldIgnore(link) {
+          try {
+              const url = new URL(link.href);
+              return ignores.some(rule => {
+                  if (rule instanceof RegExp) {
+                      return rule.test(url.pathname);
+                  }
+                  return typeof rule === 'function' && rule(url.pathname);
+              });
+          } catch {
+              return true; // Ignore invalid URLs
+          }
+      }
+  
+      let scriptPrerender = document.createElement('script');
+      scriptPrerender.setAttribute('type', 'speculationrules');
+      document.head.appendChild(scriptPrerender);
+  
+      // 2. Handle dynamic content with MutationObserver
+      const observer = new IntersectionObserver((entries) => {
+          const linksToPrerender = [];
+          
+          entries.forEach(entry => {
+              if (entry.isIntersecting && !shouldIgnore(entry.target)) {
+                  linksToPrerender.push(entry.target.href);
+              }
+          });
+  
+          if (linksToPrerender.length > 0) {
+              scriptPrerender.innerHTML = JSON.stringify({
+                  "prerender": linksToPrerender.map(url => ({
+                      "source": "list",
+                      "urls": [url],
+                      "eagerness": "moderate"
+                  }))
+              });
+              //console.log(`[Prerender] Updated speculation rules with ${linksToPrerender.length} URLs`);
+          }
+      }, { rootMargin: "99px" });
+  
+      // 3. MutationObserver for dynamic content
+      const domObserver = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+              mutation.addedNodes.forEach((node) => {
+                  if (node.nodeType === Node.ELEMENT_NODE) {
+                      node.querySelectorAll('a').forEach(link => {
+                          if (!shouldIgnore(link)) {
+                              observer.observe(link);
+                          }
+                      });
+                  }
+              });
+          });
+      });
+  
+      // Initial observation
+      document.querySelectorAll('a').forEach(link => {
+          if (!shouldIgnore(link)) {
+              observer.observe(link);
+          }
+      });
+  
+      // Start watching for DOM changes
+      domObserver.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+  })();
+}
+function loadQL(){
+  //console.log('load quicklink js');
+  ['mousemove'].forEach(e => window.removeEventListener(e, loadQL));
+    window.removeEventListener('scroll', scrollHandlerQL);
+  setTimeout(function(){
+      const s = document.createElement('script');
+      s.onload = function(){
+          quicklink.listen({
+              delay: 9,
+              throttle: 2,
+              ignores: [/\/members\/?/,uri => uri.includes("/my-account"),uri => uri.includes("/account"),uri => uri.includes("/checkout"),uri => uri.includes("/cart"),uri => uri.includes("/wishlist"),uri => uri.includes(".png"),uri => uri.includes(".jpg"),uri => uri.includes("/login")]
+          });
+      };
+      s.src = '//unpkg.com/quicklink@2.3.0/dist/quicklink.umd.js';
+      document.head.appendChild(s)
+  },9)
+}
+function scrollHandlerQL() {
+    if (window.scrollY > 99) {
+      // Your function here
+      console.log('Scrolled past 99px!');
+      loadQL();
+      // Remove the event listener so it only runs once
+      window.removeEventListener('scroll', scrollHandlerQL);
+    }
+}
+['mousemove'].forEach(e => window.addEventListener(e, loadQL));
+window.addEventListener('scroll', scrollHandlerQL)
+</script>
+{%- endunless %}
+
   </body>
+    {%- if content_for_layout contains "swiper" -%}
+{% comment %}
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+{% endcomment %}
+      <script>
+        (function() {
+          // Check if Swiper is already loaded or if no swiper elements exist
+          if (typeof Swiper !== 'undefined') return;
+          const swiperElements = document.querySelectorAll('.swiper');
+          if (!swiperElements.length) return;
     
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Load CSS
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css';
+                document.head.appendChild(link);
+    
+                // Load JS
+                const s = document.createElement('script');
+                s.src = 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js';
+                document.body.appendChild(s);
+    
+                // Disconnect observer after first intersection
+                observer.disconnect();
+              }
+            });
+          }, {
+            rootMargin: '500px',
+            threshold: 0.01
+          });
+    
+          swiperElements.forEach(el => observer.observe(el));
+        })();
+      </script>
+    {%- endif -%}
 </html>

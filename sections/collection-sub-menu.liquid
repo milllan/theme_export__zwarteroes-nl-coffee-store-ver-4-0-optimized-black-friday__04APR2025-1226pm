@@ -18,16 +18,19 @@
 {% endschema %}
 
 <script>
-window.onscroll = function() {myFunction()};
-
-var header = document.getElementById("shopify-section-template--16430931345662__collection-sub-menu");
-var sticky = header.offsetTop;
-
 function myFunction() {
+  var sticky = header.offsetTop;
   if (window.pageYOffset > sticky) {
     header.classList.add("sticky-active");
   } else {
     header.classList.remove("sticky-active");
   }
+}
+
+var header = document.getElementById("shopify-section-template--16430931345662__collection-sub-menu");
+if (!!header){ 
+  window.onscroll = function() {
+    myFunction()
+  };
 }
 </script>

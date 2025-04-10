@@ -252,7 +252,7 @@
       {% endcomment %}
       {% if section.settings.menu-img  != blank %}
         <a href="{{ section.settings.menu-img_link }}" class="mobile_menu_img">
-          <img src="{{ section.settings.menu-img | img_url : "500x" }}">
+          <img decoding="async" loading="lazy" fetchpriority="low" width="500px" height="246px" src="{{ section.settings.menu-img | img_url : "500x" }}">
           {% if section.settings.menu-img_text != blank %}
           <h3>{{ section.settings.menu-img_text }}</h3>
           {% endif %}

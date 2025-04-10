@@ -111,6 +111,8 @@
         {%- endif -%}
         <a href="{{ product.url | within: collection }}" class="grid-product__link">
         {%- if fixed_aspect_ratio -%}
+          {%- comment -%}
+          Old code:
           <div
             class="grid__image-ratio grid__image-ratio--{{ settings.product_grid_image_size }}">
             <img class="lazyload{% unless settings.product_grid_image_fill %} grid__image-contain{% endunless %}"
@@ -119,7 +121,47 @@
                 data-aspectratio="{{ preview_image.aspect_ratio }}"
                 data-sizes="auto"
                 alt="{{ preview_image.alt | escape }}">
-          </div>
+          </div>{%- endcomment -%}
+          {%- comment -%} Assuming 'preview_image' holds the image object {%- endcomment -%}
+          {%- assign img_object = preview_image -%}
+          
+          {% if img_object != blank %}
+            {%- comment -%} Prepare image classes, including conditional contain class {%- endcomment -%}
+            {%- capture img_classes -%}
+              {%- unless settings.product_grid_image_fill %} grid__image-contain {% endunless -%}
+            {%- endcapture -%}
+            {%- assign img_class = img_classes | strip | prepend: 'product-grid-image miLL-pgi ' -%} {%- comment -%} Add a base class, remove leading/trailing whitespace {%- endcomment -%}
+          
+            {%- comment -%} Define image widths for srcset {%- endcomment -%}
+            {%- assign img_widths = '240, 360, 540, 720, 900, 1080' -%}
+          
+            {%- comment -%} Define sizes attribute based on layout rules {%- endcomment -%}
+            {%- assign img_sizes = '(max-width: 599px) calc(100vw - 99px), (max-width: 1023px) calc(50vw - 45px), 457px' -%}
+          
+            {%- assign img_alt = img_object.alt | escape -%}
+          
+            {%- comment -%} Container div controls visual aspect ratio {%- endcomment -%}
+            <div class="grid__image-ratio grid__image-ratio--{{ settings.product_grid_image_size }}">
+              {%- comment -%} Generate the image tag ( The image_tag will add width/height attributes for CLS prevention.
+                     The CSS for grid__image-ratio and potentially grid__image-contain
+                     will handle the actual visual display (contain/cover)) {%- endcomment -%}
+              {{ img_object | image_url: width: img_object.width | image_tag:
+                  widths: img_widths,
+                  sizes: img_sizes,
+                  alt: img_alt,
+                  class: img_class,
+                  loading: 'lazy',
+                  fetchpriority: 'low',
+                  decoding: 'async'
+              }}
+            </div>
+            {%- comment -%} No <noscript> needed {%- endcomment -%}
+          {% else %}
+            {%- comment -%} Optional: Placeholder if no image exists {%- endcomment -%}
+            <div class="grid__image-ratio grid__image-ratio--{{ settings.product_grid_image_size }}">
+              {{ 'product-apparel-placeholder' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
         {%- else -%}
           <div class="image-wrap"
             style="height: 0; padding-bottom: {{ 100 | divided_by: preview_image.aspect_ratio }}%;"

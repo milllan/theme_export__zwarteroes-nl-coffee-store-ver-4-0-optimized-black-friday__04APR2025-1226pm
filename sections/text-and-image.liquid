@@ -11,10 +11,11 @@
     style="background-color: {{ section.settings.bg_color }}">
     <div class="page-width">
     {%- capture image_layout -%}
-      <div class="feature-row__item{% if overlap_images %} feature-row__item--overlap-images{% endif %}" style="max-width: {{ section.settings.image_width }}px" data-aos>
+      <div class="feature-row__item{% if overlap_images %} ti1 feature-row__item--overlap-images{% endif %}" style="max-width: {{ section.settings.image_width }}px" data-aos>
           {%- if section.settings.image != blank -%}
             <div>
                 <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
+{% comment -%}
                   {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
                   <img class="feature-row__image lazyload"
                     data-src="{{ img_url }}"
@@ -22,12 +23,35 @@
                     data-aspectratio="{{ section.settings.image.aspect_ratio }}"
                     data-sizes="auto"
                     alt="{{ section.settings.image.alt }}">
+{% endcomment -%}
+{%- comment -%} Get image object and related data {% endcomment -%}
+{%- assign image = section.settings.image -%}
+{%- assign image_alt = image.alt | escape -%}
+
+{% comment %} Define widths for srcset generation (reusing from original data-widths) {% endcomment %}
+{%- assign image_widths = '180, 360, 480, 540, 750, 900, 1080' -%}
+
+{% comment %} Define sizes - assuming image fills container width. '100vw' is a common default. {% endcomment %}
+{%- assign image_sizes = '(max-width:768px) calc(100vw - 74px), 608px' -%}
+
+{%- if image != blank -%}
+    {{ image | image_url: width: image.width | image_tag:
+        widths: image_widths,
+        loading: 'lazy',
+        decoding: 'async',
+        alt: image_alt,
+        class: 'feature-row__image image1 feature-row__image--native',
+        sizes: image_sizes,
+        style: ''
+    }}
+{%- endif -%}
                 </div>
             </div>
           {%- endif -%}
           {%- if section.settings.image2 != blank -%}
             <div>
                 <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image2.aspect_ratio }}%;">
+{% comment -%}
                   {%- assign img_url = section.settings.image2 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
                   <img class="feature-row__image lazyload"
                     data-src="{{ img_url }}"
@@ -35,6 +59,28 @@
                     data-aspectratio="{{ section.settings.image2.aspect_ratio }}"
                     data-sizes="auto"
                     alt="{{ section.settings.image2.alt }}">
+{% endcomment -%}
+{%- comment -%} Get image object and related data {% endcomment -%}
+{%- assign image = section.settings.image2 -%}
+{%- assign image_alt = image.alt | escape -%}
+
+{% comment %} Define widths for srcset generation (reusing from original data-widths) {% endcomment %}
+{%- assign image_widths = '180, 360, 480, 540, 750, 900, 1080' -%}
+
+{% comment %} Define sizes - assuming image fills container width. '100vw' is a common default. {% endcomment %}
+{%- assign image_sizes = '(max-width:768px) calc(100vw - 74px), 608px' -%}
+
+{%- if image != blank -%}
+    {{ image | image_url: width: image.width | image_tag:
+        widths: image_widths,
+        loading: 'lazy',
+        decoding: 'async',
+        alt: image_alt,
+        class: 'feature-row__image image2 feature-row__image--native',
+        sizes: image_sizes,
+        style: ''
+    }}
+{%- endif -%}
                 </div>
             </div>
           {%- endif -%}
@@ -58,7 +104,7 @@
         {{ image_layout }}
       {%- endif -%}
 
-      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
+      <div class="feature-row__item ti2 feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
         {%- if section.settings.subtitle != blank -%}
           <div class="subheading appear-delay{% cycle '','-1','-2','-3','-4' %}" style="color: {{ section.settings.text_color }}">{{ section.settings.subtitle }}</div>
         {%- endif -%}
@@ -73,7 +119,7 @@
             <a href="{{ section.settings.button_link }}" class="btn {% if section.settings.button_style == 'secondary' %} btn--tertiary{% elsif section.settings.button_style == 'custom' %} btn-custom{% endif %}">
               {{ section.settings.button_label }}
             </a>
-            <img class="img-arrow lazyload" src="{{ 'arrow-vector.png' | asset_url }}">
+            <img class="img-arrow" width="60" height="70" src="{{ 'arrow-vector.png' | asset_url }}">
           </div>
         {%- endif -%}
       </div>
@@ -84,7 +130,7 @@
     </div>
 </div>
         {%- if section.settings.show_footer -%}
-          <img class="wave-image lazyload" src="{{ 'wave-white.png' | asset_url }}" alt="wave">
+          <img class="wave-image" src="{{ 'wave-white.png' | asset_url }}" alt="wave">
         {%- endif -%}
 </div>
 

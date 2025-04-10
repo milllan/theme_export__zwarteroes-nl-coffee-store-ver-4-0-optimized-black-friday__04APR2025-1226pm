@@ -1,13 +1,3 @@
-@font-face {
-  font-family: 'permanent-marker';
-  src: url('//zwarteroes.nl/cdn/shop/t/76/assets/permanent-marker.eot?v=158136642842512304301731932611');
-  src: url('//zwarteroes.nl/cdn/shop/t/76/assets/permanent-marker.eot?v=158136642842512304301731932611 ?#iefix') format("embedded-opentype"),
-       url('//zwarteroes.nl/cdn/shop/t/76/assets/permanent-marker.woff?23144') format("woff"),
-       url('//zwarteroes.nl/cdn/shop/t/76/assets/permanent-marker.woff2?v=182960522779776434991731932611') format("woff2"),
-       url('https://cdn.shopify.com/s/files/1/0017/9424/4660/files/permanent-marker.ttf?v=1659178452') format("truetype"),
-       url('//zwarteroes.nl/cdn/shop/t/76/assets/permanent-marker.svg?23144 #permanent-marker') format("svg");
-}
-
 .h1, .h2, .h3, h1, h2, h3 { 
   font-family: 'permanent-marker';
 }
@@ -361,6 +351,8 @@
 .footer-pattern-image img {
   position:absolute;
   height:100%;
+  width:100%;
+  display:block;
 }
 .footer-top-menu .site-footer__linklist {
   display:flex;

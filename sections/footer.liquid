@@ -25,6 +25,8 @@
 {%- endif -%}
 
 <footer class="asyncLoad site-footer" data-section-id="{{ section.id }}" data-section-type="footer-section">
+  {%- comment -%}
+  Old code:
   {%- if section.settings.bg_image -%}
   <div class="footer-pattern-image">
     {%- assign img_url = section.settings.bg_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -44,7 +46,51 @@
         alt="{{ section.settings.bg_image_mobile.alt | escape }}">
     {% endif %}
   </div>
-  {%- endif -%}
+  {%- endif -%}{%- endcomment -%}
+
+  {%- comment -%} Assign image objects for clarity and checking {%- endcomment -%}
+  {%- assign desktop_image = section.settings.bg_image -%}
+  {%- assign mobile_image = section.settings.bg_image_mobile -%}
+  
+  {%- comment -%} Proceed only if there is at least a desktop image {%- endcomment -%}
+  {% if desktop_image != blank %}
+    <div class="footer-pattern-image">
+      <picture>
+        {%- comment -%} Mobile source (<= 768px) {%- endcomment -%}
+        {% if mobile_image != blank %}
+          {%- assign mobile_widths_string = '360, 540, 720, 900' -%}
+          {%- assign mobile_widths_array = mobile_widths_string | split: ',' -%} {%- comment -%} *** FIX: Split the string into an array *** {%- endcomment -%}
+          {%- capture mobile_srcset -%}
+            {%- for width in mobile_widths_array -%} {%- comment -%} *** FIX: Loop over the array *** {%- endcomment -%}
+              {%- assign width_trimmed = width | strip -%} {%- comment -%} Remove potential whitespace from split {%- endcomment -%}
+              {{- mobile_image | image_url: width: width_trimmed }} {{ width_trimmed }}w{%- unless forloop.last -%}, {%- endunless -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          <source
+            media="(max-width: 768px)"
+            srcset="{{ mobile_srcset }}"
+            sizes="100vw" {%- comment -%} ADJUST if needed {%- endcomment -%}
+          >
+        {% endif %}
+  
+        {%- comment -%} Desktop / Fallback image (> 768px) {%- endcomment -%}
+        {%- assign desktop_widths = '720, 900, 1080, 1296, 1512, 1728, 1944, 2048' -%}
+        {%- assign desktop_sizes = '100vw' -%}
+        {%- assign desktop_alt = desktop_image.alt | escape -%}
+        {%- assign img_class = 'footer-bg-image' -%}
+  
+        {{ desktop_image | image_url: width: desktop_image.width | image_tag:
+            widths: desktop_widths,
+            sizes: desktop_sizes,
+            alt: desktop_alt,
+            class: img_class,
+            loading: 'lazy',
+            fetchpriority: 'low',
+            decoding: 'async'
+        }}
+      </picture>
+    </div>
+  {% endif %}
 
   <div class="page-width">
     {%- if linklists[section.settings.menu].links.size > 0 -%}
@@ -61,9 +107,9 @@
     <div class="footer-block footer-image-block">
       {%- if section.settings.logo != blank -%}
         {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-        <img class="icon__image lazyload"
+        <img class="icon__image"
             src="{{ section.settings.logo | img_url: '210x' }}"
-            alt="{{ section.settings.logo.alt }}">
+            alt="{{ section.settings.logo.alt }}" decoding="async" loading="lazy" fetchpriority="low" width="210px" height="210px">
       {%- endif -%}
       <ul class="no-bullets footer__social">
         {%- if settings.social_instagram_link != blank -%}

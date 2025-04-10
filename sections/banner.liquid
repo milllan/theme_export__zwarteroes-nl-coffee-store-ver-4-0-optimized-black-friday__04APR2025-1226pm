@@ -5,18 +5,35 @@
                 <div class="slider-item slider-layout" style="--background:#f0f0f0">
                     <div class="image-block">
                         {%- if section.settings.image != blank -%}
+                            {%- comment -%}
                             {%- assign img_url = section.settings.mob_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
                             <img src="{{ section.settings.mob_image | img_url: '300x' }}"
-                                 data-src="{{ img_url }}"
+                                 decoding="async" loading="eager" width="276px" height="50px"
                                  data-aspectratio="{{ section.settings.mob_image.aspect_ratio }}"
                                  data-sizes="auto"
                                  alt="{{ section.settings.mob_image.alt | escape }}"
-                                 class="lazyload ls-is-cached">
+                                 class="ls-is-cached">
+                            {%- endcomment -%}
+                            {%- comment -%}
+                              Replaced lazysizes-based image with native Shopify image_tag
+                              for improved performance, preloading, and native responsiveness. Preload homepage banner for small screen sizes
+                            {%- endcomment -%}
+                            {%- assign mob_alt = section.settings.mob_image.alt | escape -%}
+                            {{ section.settings.mob_image | image_url: width: section.settings.mob_image.width | image_tag:
+                                widths: '1, 10, 360, 480, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, 2160',
+                                loading: 'eager',
+                                fetchpriority: 'high',
+                                decoding: 'async',
+                                preload: true,
+                                alt: mob_alt,
+                                class: 'preloaded-responsive-image',
+                                sizes: '(max-width:768px) 100vw, 1px'
+                            }}
                         {%- else -%}
                             {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
                         {%- endif -%}
                     </div>
-                    <div class="feature-row__item feature-row__text feature-row__text--left" data-aos>
+                    <div class="feature-row__item b1 feature-row__text feature-row__text--left" data-aos>
         {%- if section.settings.title != blank -%}
           <h2 class="h2 appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h2>
         {%- endif -%}
@@ -28,7 +45,7 @@
         {%- endif -%}
         {%- if section.settings.button_label != blank -%}
           <div style="width:100%;" class="btn-wrapper appear-delay{% cycle '','-1','-2','-3','-4' %}">
-          <img class="lazyload small--hide" src="{{ 'arrow-vector.png' | asset_url }}">
+          <img class="small--hide" width="60" height="70" src="{{ 'arrow-vector.png' | asset_url }}">
             <a href="{{ section.settings.button_link }}" class="btn btn2 btn-yellow">
               {{ section.settings.button_label }}
             </a>
@@ -87,7 +104,7 @@
   <div class="page-width banner__text-wrapper">
     <div class="feature-row">
       
-      <div class="feature-row__item feature-row__text feature-row__text--left" data-aos>
+      <div class="feature-row__item b2 feature-row__text feature-row__text--left" data-aos>
         {%- if section.settings.title != blank -%}
           <h1 class="h1 appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h1>
         {%- endif -%}
@@ -96,7 +113,7 @@
         {%- endif -%}
         {%- if section.settings.button_label != blank -%}
           <div class="btn-wrapper appear-delay{% cycle '','-1','-2','-3','-4' %}">
-          <img class="lazyload small--hide" src="{{ 'arrow-vector.png' | asset_url }}">
+          <img class="small--hide" width="60" height="70" src="{{ 'arrow-vector.png' | asset_url }}">
             <a href="{{ section.settings.button_link }}" class="btn btn-yellow">
               {{ section.settings.button_label }}
             </a>
@@ -106,17 +123,39 @@
           <div class="rte medium-up--hide appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.text }}</div>
         {%- endif -%}
       </div>
-      <div class="feature-row__item feature-row__images" data-aos>
+      <div class="feature-row__item b3 feature-row__images" data-aos>
         {%- if section.settings.image != blank -%}
           <div>
             <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
+{% comment -%}
               {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-              <img class="feature-row__image lazyload"
+              <img class="feature-row__image b lazyload"
                 data-src="{{ img_url }}"
                 data-widths="[180, 360, 540, 750, 900, 1080]"
                 data-aspectratio="{{ section.settings.image.aspect_ratio }}"
                 data-sizes="auto"
                 alt="{{ section.settings.image.alt }}">
+{% endcomment -%}
+              {%- comment -%} Get the image object {% endcomment -%}
+              {%- assign image = section.settings.image -%}
+              {%- assign image_alt = image.alt | default: section.settings.image.alt | escape -%}
+              
+              {% comment %} Define widths for srcset generation {% endcomment %}
+              {%- assign image_widths = '1, 10, 180, 360, 450, 540, 640, 750, 900, 1080' -%} {% comment %} Adjusted widths, no need for tiny/huge ones if lazy/capped {% endcomment %}
+              
+              {% comment %} Define sizes attribute correctly {% endcomment %}
+              {%- assign image_sizes = '(max-width: 767px) 1px, 450px' -%}
+              
+              {% if image != blank %}
+                {{ image | image_url: width: image.width | image_tag:
+                    widths: image_widths,
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: image_alt,
+                    class: 'feature-row__image feature-row__image--native-tag',
+                    sizes: image_sizes
+                }}
+              {% endif %}
             </div>
           </div>
         {%- endif -%}
@@ -134,11 +173,12 @@
 <style>
   .desktop-banner{
     display:block;
+      content-visibility:visible;
   }
   .mobile-banner{
     display:none;
+      content-visibility:hidden;
   }
- 
 </style>
 {% schema %}
   {

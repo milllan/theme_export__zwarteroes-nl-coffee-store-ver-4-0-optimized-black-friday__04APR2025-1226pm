@@ -20,6 +20,7 @@
             <div class="wrapper">
               {%- if block.settings.enable_image -%}
                 <div style="{% if section.settings.align_text == 'center' %}margin: 0 auto;{% endif %} width: 100%;">
+{% comment -%}
                   {%- if block.settings.image != blank -%}
                     <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: block.settings.image.aspect_ratio }}%;">
                       {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -29,6 +30,39 @@
                           data-aspectratio="{{ block.settings.image.aspect_ratio }}"
                           data-sizes="auto"
                           alt="{{ block.settings.image.alt }}">
+                    </div>
+                  {%- endif -%}
+{% endcomment -%}
+                  {%- comment -%} Get image object and related data {% endcomment -%}
+                  {%- assign image = block.settings.image -%}
+                  {%- assign aspect_ratio = image.aspect_ratio | default: 1.0 -%}
+                  {%- assign image_alt = image.alt | escape -%}
+                  
+                  {% comment %} Define widths for srcset generation (reusing from original data-widths) {% endcomment %}
+                  {%- assign image_widths = '180, 360, 540, 720, 900, 1080' -%}
+                  
+                  {% comment %} Define sizes - assuming image fills container width.
+                      '100vw' is a common default, telling the browser the image *could* be
+                      up to the full viewport width, allowing it to choose a suitable resolution.
+                      Refine if the container has a known max-width (e.g., sizes="(max-width: 1200px) 100vw, 1200px").
+                  {% endcomment %}
+                  {%- assign image_sizes = '100vw' -%}
+                  
+                  {%- if block.settings.enable_image -%}
+                    {% comment %} Keep the outer div for layout/centering {% endcomment %}
+                    <div style="{% if section.settings.align_text == 'center' %}margin: 0 auto;{% endif %} width: 100%;">
+                      {%- if image != blank -%}
+                        <div class="image-wrap block__image-wrap--native-tag" style="--aspect-ratio: {{ aspect_ratio }};">
+                          {{ image | image_url: width: image.width | image_tag:
+                              widths: image_widths,
+                              loading: 'lazy',
+                              decoding: 'async',
+                              alt: image_alt,
+                              class: 'block__image--native-tag',
+                              sizes: image_sizes
+                          }}
+                        </div>
+                      {%- endif -%}
                     </div>
                   {%- endif -%}
                 </div>
@@ -51,7 +85,7 @@
           <div class="icon-bar-item">
             {%- if block.settings.icon != blank -%}
             <div class="icon-wrap">
-              <img class="lazyload" src="{{ block.settings.icon | img_url: '175x' }}" alt="{{ block.settings.icon.alt }}">
+              <img class="" width="168" height="167" src="{{ block.settings.icon | img_url: '175x' }}" alt="{{ block.settings.icon.alt }}">
             </div>
             {%- endif -%}
             {%- if block.settings.caption != blank -%}

@@ -2,7 +2,7 @@
   <div class="page-width">
      <div class="cart-section">
        {% if section.settings.dots_show %}
-        <img src="{{ "header-dot-top.png" | asset_url }}" class="header-dot-top">
+        <img src="{{ "header-dot-top.png" | asset_url }}" class="header-dot-top" decoding="async" loading="lazy" fetchpriority="low">
        {% endif %}
         {% if product.metafields.custom.story_images != blank %}
         <div class="cart-center-images">          
@@ -32,7 +32,7 @@
         <div class="cart-link"><a href="{{ product.metafields.custom.read_full_story }}">{{ section.settings.link_text }}</a></div>
         {% endif %}
        {% if section.settings.dots_show %}
-        <img src="{{ "header-dot.png" | asset_url }}" class="header-dot-bottom">
+        <img src="{{ "header-dot.png" | asset_url }}" class="header-dot-bottom" decoding="async" loading="lazy" fetchpriority="low">
        {% endif %}
      </div>
   </div>

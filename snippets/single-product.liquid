@@ -139,6 +139,7 @@
   </div>
 </div>
 <script>
+{% comment %}
    var galleryTop = new Swiper('.js--product-slider', {
     spaceBetween: 0,
      slidesPerView: 'auto',
@@ -158,4 +159,31 @@
   });
   galleryTop.controller.control = galleryThumbs;
   galleryThumbs.controller.control = galleryTop;
+{% endcomment %}
+(function initSwiperSingleProduct() {
+  // Check if Swiper is available
+  if (typeof Swiper !== 'function') {
+    setTimeout(initSwiperSingleProduct, 50);return;
+  }
+  // Initialize Swiper when available
+  var galleryTop = new Swiper('.js--product-slider', {
+    spaceBetween: 0,
+     slidesPerView: 'auto',
+    loop: true
+  });
+  var galleryThumbs = new Swiper('.js--thumbs-sldier', {
+    spaceBetween: 0,
+    slidesPerView: 'auto',
+    touchRatio: 0.2,
+    slideToClickedSlide: true,
+    loop: true,
+    centeredSlides: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  galleryTop.controller.control = galleryThumbs;
+  galleryThumbs.controller.control = galleryTop;
+})();
 </script>

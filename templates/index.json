@@ -1,1 +1,655 @@
-{"sections":{"f0ff3116-503b-47e5-b797-346acb5f38c0":{"type":"slideshow","blocks":{"template--16430931706110__f0ff3116-503b-47e5-b797-346acb5f38c0-16832205483485854a-0":{"type":"image","settings":{"top_subheading":"","title":"\"Ik wou dat ik dit eerder wist\"","title_size":80,"subheading":"Upgrade je koffie-game met ethisch verantwoorde specialty coffee van Zwarte Roes","link":"shopify:\/\/collections\/koffiebonen","link_text":"Probeer nu","link_2":"","link_text_2":"","color_accent":"#f0bc1b","text_align":"vertical-center horizontal-left","image":"shopify:\/\/shop_images\/koffiebonenmalen.jpg","image_mobile":"shopify:\/\/shop_images\/Ontwerp_zonder_titel_35fedaa5-ac40-4b8b-a9d1-b7c6783cdf8e.jpg","overlay_opacity":0,"focal_point":"center center"}}},"block_order":["template--16430931706110__f0ff3116-503b-47e5-b797-346acb5f38c0-16832205483485854a-0"],"disabled":true,"custom_css":["h1 {font-size: 30px;}","button {color: white;}"],"settings":{"section_height":"650px","mobile_height":"auto","parallax":false,"style":"bars","autoplay":false,"autoplay_speed":5}},"336c8a37-11df-4dab-9a7c-791d35034e0d":{"type":"rich-text","blocks":{"template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-0":{"type":"heading","settings":{"title":"Opzoek naar jouw perfecte kick-start?"}},"template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-1":{"type":"text","settings":{"enlarge_text":true,"text":"<p>Begin meteen met één van onze best sellers, inclusief alles wat je nodig hebt voor de perfecte koffie.<\/p>"}}},"block_order":["template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-0","template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-1"],"disabled":true,"settings":{"align_text":"center","narrow_column":true,"divider":false}},"hero_black_friday_DpA7gK":{"type":"hero-black-friday","disabled":true,"settings":{"section_color":"#000000","section_btn_url":"https:\/\/zwarteroes.nl\/collections\/koffiebonen","section_btn_text":"Bekijk de deals","section_img":"shopify:\/\/shop_images\/Titel_2.jpg","section_img_mob":"shopify:\/\/shop_images\/Geef_het_cadeau_van_uitzonderlijke_koffie_Bestel_voor_13_december_voor_bezorging_tijdens_de_feestdagen_1.jpg"}},"1659240890019834f6":{"type":"banner","custom_css":["@media (max-width: 768px) {.desktop-banner {display: none; } .mobile-banner {display: block; } .image-block img {display: block; width: 100%; min-height: 40vh; max-height: 60vh; object-fit: cover; object-position: top; } .feature-row__item {display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 4vw 40px; } .btn2 {font-size: 18px; line-height: 14px; width: 70%; }}"],"settings":{"bg_image":"shopify:\/\/shop_images\/dfdsf.jpg","mob_img":"shopify:\/\/shop_images\/854697.jpg","title":"Specialty Coffee.","text":"Proef het avontuur: Single-Origin coffee voor de Wanderlust Soul","button_link":"shopify:\/\/collections\/koffiebonen","button_label":"Start hier","image":"shopify:\/\/shop_images\/banner_product_1.png","mob_image":"shopify:\/\/shop_images\/Ontwerp_zonder_titel_7_-min.jpg","overlay_opacity":0,"focal_point":"bottom center"}},"16622870912675a55a":{"type":"featured-collection","disabled":true,"settings":{"title":"","home_featured_products":"best-sellers-1","per_row":3,"rows":1,"mobile_scrollable":true,"view_all":true,"divider":false}},"c189aa53-ba5d-4103-9ac6-4a38627eb87f":{"type":"story","settings":{"image":"shopify:\/\/shop_images\/Blend_No1_Starterpack.jpg","image_size":"medium","bg_color":"#ffffff","text_color":"#000000","subtitle":"","title":"BLEND N°1 Starter pack","text":"<p>Koffie kán namelijk zoveel lekkerder zijn... Ontdek de koffie die echte koffiekenners drinken.<\/p>","button_label":"Yes, die wil ik","button_link":"https:\/\/zwarteroes.nl\/products\/blend-no1-starter-pack","button_style":"custom","button_color":"#da642a","align_text":"left","layout":"right","show-icons":false,"show-yellow-line":false,"divider":false}},"165951496945302c79":{"type":"story","disabled":true,"custom_css":[],"settings":{"image":"shopify:\/\/shop_images\/coffee_farmer-min_1.jpg","image_size":"medium","bg_color":"#ffffff","text_color":"#000000","subtitle":"","title":"START GIVING A SH*T AND DRINK GOOD COFFEE","text":"<p>Proef de passie van Zwarte Roes: van persoonlijk geselecteerde single origin koffies tot een wilde rit van aroma's, waar elke slok bijdraagt aan een betere wereld.<\/p><p><\/p><p><em><strong>#thisishowweroast<\/strong><\/em><\/p>","button_label":"Lees meer","button_link":"shopify:\/\/pages\/ons-verhaal","button_style":"custom","button_color":"#afd5df","align_text":"left","layout":"right","show-icons":false,"show-yellow-line":false,"divider":true}},"16590666236909917f":{"type":"text-with-image","settings":{"image":"shopify:\/\/shop_images\/singleorigin.webp","image_size":"medium","fullwidth":false,"bg_color":"#da642a","text_color":"#ffffff","subtitle":"","title":"SINGLE ORIGIN","text":"<p>Proef jij graag de <em><strong>origin<\/strong><\/em> van de koffie terug in je espresso of cappuccino en ben je op zoek naar unieke smaakprofielen? Start dan jouw koffieavontuur met onze Single Origin Collectie.<\/p>","button_label":"Start hier","button_link":"shopify:\/\/collections\/single-origins","button_style":"transparent","align_text":"left","layout":"left","divider":false}},"165906641358dc7d47":{"type":"text-with-image","settings":{"image":"shopify:\/\/shop_images\/filterspecial.webp","image_size":"medium","fullwidth":false,"bg_color":"#f0bc1b","text_color":"#ffffff","subtitle":"","title":"Filter Specials","text":"<p>Waar de subtiel fruitige en soms funky smaken samenkomen. <em><strong>Lichter gebrand <\/strong><\/em>voor een ultieme smaakbeleving.<\/p>","button_label":"shop filter","button_link":"shopify:\/\/collections\/filter-specials","button_style":"transparent","align_text":"left","layout":"right","divider":false}},"1659065775e07b611e":{"type":"text-with-image","settings":{"image":"shopify:\/\/shop_images\/blends.webp","image_size":"medium","fullwidth":false,"bg_color":"#afd5df","text_color":"#ffffff","subtitle":"","title":"BLENDS","text":"<p>Waar het beste van twee werelden samenkomt. Gecombineerd in <em><strong>zorgvuldig samengestelde<\/strong><\/em> blends. Ontdek deze toegankelijke allrounders, hoe je je koffie ook drinkt.<\/p>","button_label":"Blend in","button_link":"shopify:\/\/collections\/blends","button_style":"transparent","align_text":"left","layout":"left","divider":false}},"16591892554087e25c":{"type":"text-and-image","settings":{"image":"shopify:\/\/shop_images\/Decaf_new_small_1.png","image_width":700,"bg_color":"#ffffff","text_color":"#000000","subtitle":"","title":"COFFEE KEEPS YOU UP?  WE GOT YOU COVERED!","text":"<p>Wil je genieten van alle spannende smaken van specialty coffee, maar is slaap je ook veel waard? We got you! Bekijk onze spannende Decafs hier. Great taste. No buzz. <\/p>","button_label":"shop decaf","button_link":"shopify:\/\/collections\/decaf","button_style":"custom","button_color":"#da642a","button_label_color":"#ffffff","align_text":"left","layout":"right","show_footer":false,"divider":false}},"1659791921461d8dbb":{"type":"text-and-image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/ZR_GIF_1.jpg","image_width":480,"bg_color":"#ffffff","text_color":"#000000","subtitle":"","title":"START GIVING A SH*T AND DRINK GOOD COFFEE","text":"<p>Hoe beter de werkomstandigheden, hoe gelukkiger onze partners zijn. Gelukkige partners zorgen voor een radicaal beter eindproduct waar liefde en passie in zit. En dat proef je. Vertrouwen in de toekomst. Stay mindful and be the part of the change for the better.<\/p>","button_label":"Tell me more","button_link":"","button_style":"custom","button_color":"#afd5df","button_label_color":"#ffffff","align_text":"left","layout":"left","show_footer":false,"divider":false}},"16597555255be81209":{"type":"review","blocks":{"165975552584434204-0":{"type":"review","settings":{"icon":"5-stars","title":"Heerlijke koffie","review":"<p>Goeie snelle levering met leuk persoonlijk kaartje. Kan ik waarderen. Nog lekker ook, ben er nog niet uit wat de favo is ;)<\/p>","author":"Jeroen Overwater","author_info":"","date":"5\/2\/2022"}},"165975552584434204-1":{"type":"review","settings":{"icon":"5-stars","title":"Engeltje op je tong","review":"<p>Wat is dat toch weer iedere keer genieten, het drinken van jullie koffie! Als ik de zak openmaak, word ik al helemaal blij!<\/p>","author":"Esther Rooker","author_info":"","date":"1\/3\/2022"}},"165975552584434204-2":{"type":"review","settings":{"icon":"5-stars","title":"Heerlijk en echt smooth","review":"<p>Echt heerlijk en super smooth te drinken - maple, orange en brown sugar is echt een combo naar mijn hart. Super blij met een abonnement. Ik zit het nu te drinken toevallig - lekker van een French Press.<\/p>","author":"Gary Wilton","author_info":"","date":"19\/2\/2022"}}},"block_order":["165975552584434204-0","165975552584434204-1","165975552584434204-2"],"settings":{"title":"Wat onze klanten zeggen.","color_title":"#ffffff","align_text":"center","round_images":true,"color_background":"#f0bc1b","color_text":"#29201d"}},"16590615531ba67207":{"type":"text-and-image-fullwidth","settings":{"image":"shopify:\/\/shop_images\/ZR_beans_1.png","image_size":"large","fullwidth":true,"bg_color":"#29201d","text_color":"#ffffff","subtitle":"","title":"Upgrade je koffie-game","text":"<p>Iedere koffieboon wordt dagelijks gebrand  in onze micro-branderij in Hoorn, en wordt met zorg verpakt in<em><strong> eco-friendly <\/strong><\/em>materialen. Ervaar een koffie-avontuur die jouw smaakpapillen verwent en de wereld liefdevol omarmt, rechtstreeks bezorgd tot <em><strong>op jouw deurmat.<\/strong><\/em><\/p>","button_label":"","button_link":"","button_style":"primary","button_color":"#f0bc1b","button_label_color":"#ffffff","btn-arrow":false,"top-image":false,"align_text":"left","layout":"left","divider":false}},"1659181308953b4531":{"type":"logo-list","blocks":{"165918130858ed1ba3-0":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/delicious_logo_PNG_250x44_2_609f9deb-ccdd-4ea5-bba6-ce2765ce2dcd.png","link":""}},"165918130858ed1ba3-1":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/KoffietCacao_logo_06824d8b-8c3e-4368-8f76-eae6e801acac.png","link":""}},"165918130858ed1ba3-2":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/nhd_logo.png","link":""}},"c276856c-ec51-4aa3-ab5e-bf4a96cc7ffb":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/Miljuschka.png","link":""}}},"block_order":["165918130858ed1ba3-0","165918130858ed1ba3-1","165918130858ed1ba3-2","c276856c-ec51-4aa3-ab5e-bf4a96cc7ffb"],"disabled":true,"settings":{"title":"","logo_opacity":100,"divider":false,"graphic_img":"shopify:\/\/shop_images\/header-dot.png"}},"165908222986f69867":{"type":"icon-with-text","blocks":{"16590822295c2cf84f-0":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/happy.webp","text":"<p>Gratis verzending vanaf € 50<\/p>"}},"16590822295c2cf84f-1":{"type":"logo_image","settings":{"image":"shopify:\/\/shop_images\/delivery-truck.webp","text":"<p>Voor 15.00 uur besteld - zelfde werkdag verstuurd!<\/p>"}}},"block_order":["16590822295c2cf84f-0","16590822295c2cf84f-1"],"settings":{"title":"","text":"","align_text":"center","divider":false,"bg_color":"rgba(0,0,0,0)","text_color":"#000000","border_color":"#000000","desk_padding":"70px 0","mob_padding":"80px 0","show_image":true}},"16591888464374412f":{"type":"feature-columns","blocks":{"1659188846f9204d53-0":{"type":"text_block","settings":{"enable_image":true,"image":"shopify:\/\/shop_images\/coffee.gif","title":"","text":""}},"1659188846f9204d53-1":{"type":"text_block","settings":{"enable_image":true,"title":"BETTER GEAR <br> = <br> BETTER COFFEE","text":""}},"a2af21b5-1de6-4b1b-896f-b73f468a94a2":{"type":"icon_block","settings":{"icon":"shopify:\/\/shop_images\/web_1.png","caption":""}},"324e0a26-d9ba-44b3-aa7d-248a93550292":{"type":"icon_block","settings":{"icon":"shopify:\/\/shop_images\/web_2.png","caption":""}},"b2d8c2ad-b989-449d-ab07-d76b4018f401":{"type":"icon_block","settings":{"icon":"shopify:\/\/shop_images\/web_3.png","caption":""}},"584c2891-9aa4-4f5b-a6ba-4f77213f4aa6":{"type":"icon_block","settings":{"icon":"shopify:\/\/shop_images\/web_4.png","caption":""}},"7678f2cb-f070-4948-89e8-b9ddd3b71497":{"type":"icon_block","settings":{"icon":"shopify:\/\/shop_images\/web_5.png","caption":""}}},"block_order":["1659188846f9204d53-0","1659188846f9204d53-1","a2af21b5-1de6-4b1b-896f-b73f468a94a2","324e0a26-d9ba-44b3-aa7d-248a93550292","b2d8c2ad-b989-449d-ab07-d76b4018f401","584c2891-9aa4-4f5b-a6ba-4f77213f4aa6","7678f2cb-f070-4948-89e8-b9ddd3b71497"],"settings":{"title":"","align_text":"center","button_label":"SHOP COFFEE GEAR","button_link":"shopify:\/\/collections\/accessoires","divider":false,"show_image":true}},"4425fbf4-25dd-4831-bdd1-457351163f3e":{"type":"landing-text-icon","blocks":{"7cd4c451-09f4-46ee-b306-20a7b64c6311":{"type":"text","settings":{"text":"<p> <\/p>","icon":"shopify:\/\/shop_images\/Miljuschka.png"}},"38aa7a62-2f8c-487a-b934-c98b36abd10a":{"type":"text","settings":{"text":"<p> <\/p>","icon":"shopify:\/\/shop_images\/nhd_logo.png"}},"162e05c9-f05b-4a1f-b336-61c47179981f":{"type":"text","settings":{"text":"<p> <\/p>","icon":"shopify:\/\/shop_images\/delicious-logo.webp"}}},"block_order":["7cd4c451-09f4-46ee-b306-20a7b64c6311","38aa7a62-2f8c-487a-b934-c98b36abd10a","162e05c9-f05b-4a1f-b336-61c47179981f"],"settings":{"bg_color":"#f0bc1b","text_color":"#29201d","title":"bekend van"}},"165944151921360295":{"type":"story","settings":{"image":"shopify:\/\/shop_images\/Marvin_and_Eline_01_1.png","image_size":"medium","bg_color":"#ffffff","text_color":"#000000","subtitle":"WIST JE...","title":"...DAT ZWARTE ROES EEN FAMILIE BEDRIJF IS","text":"<p>Wij zijn Marvin & Eline, founders van Zwarte Roes,<em><strong> reisjunkies, <\/strong><\/em>wereldverbeteraars en gepassioneerd over<em><strong> smaak!<\/strong><\/em> Wij runnen onze eigen koffiebranderij in Hoorn waar wij bakkenvol <em><strong>liefde<\/strong><\/em> in elke koffieboon stoppen die wij verzenden. Lees ons hele verhaal hier!<\/p>","button_label":"Ons verhaal","button_link":"shopify:\/\/pages\/ons-verhaal","button_style":"custom","button_color":"#f0bc1b","align_text":"left","layout":"left","show-icons":true,"show-yellow-line":true,"divider":false}},"1659610557d7cbb36f":{"type":"text-and-image-fullwidth","settings":{"image":"shopify:\/\/shop_images\/pexels-cottonbro-4046148_1.png","image_size":"small","fullwidth":false,"bg_color":"#afd5df","text_color":"#000000","subtitle":"","title":"STEL JE VOOR, NOOIT MEER ZONDER JE FAVORIETE KOFFIE?!","text":"<p>Vind jij het ook zo vreselijk om zonder lekkere koffie te zitten, en wil je nooit meer hoeven omkijken naar de voorraad? Kies dan een abonnement (op maat) en maak je leven een stukje makkelijker. Je kan altijd pauzeren, down- of upgraden of switchen van smaak. We’re easy!<\/p>","button_label":"ABONNEMENT","button_link":"shopify:\/\/pages\/abonnement","button_style":"custom","button_color":"#ffffff","button_label_color":"#29201d","btn-arrow":true,"top-image":true,"align_text":"left","layout":"right","divider":false}},"1659535565cb172661":{"type":"text-and-image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/proefpakket_efacfb5d-43ac-433f-a4e5-05b3e507081b.webp","image_width":700,"bg_color":"#c2dde3","text_color":"#000000","subtitle":"","title":"keuzestress?","text":"<p>Geen paniek! Hier hebben wij hele handige proefpakketten voor. Klik op de link hieronder om de verschillende proefpakketten te zien die passen bij jouw koffiemomentjes. <\/p>","button_label":"bekijk pakketten","button_link":"shopify:\/\/collections\/proefpakketten-koffiebonen","button_style":"custom","button_color":"#c2dde3","button_label_color":"#ffffff","align_text":"left","layout":"right","show_footer":true,"divider":false}},"16590802316c5fed1c":{"type":"newsletter","blocks":{"1659080231fd026ae5-0":{"type":"title","settings":{"title":"KORTING ALARM!!"}},"1659080231fd026ae5-1":{"type":"text","settings":{"text":"<p>wanna know when your favourite coffee goes on sale? Subscribe today and receive all of our discount codes, speical offers and exciting news directly to your inbox!<\/p>"}},"1659080231fd026ae5-2":{"type":"form","settings":{}}},"block_order":["1659080231fd026ae5-0","1659080231fd026ae5-1","1659080231fd026ae5-2"],"disabled":true,"settings":{"color_background":"#ffffff","color_text":"#da642a","button_color":"#da642a","button_label_color":"#ffffff"}}},"order":["f0ff3116-503b-47e5-b797-346acb5f38c0","336c8a37-11df-4dab-9a7c-791d35034e0d","hero_black_friday_DpA7gK","1659240890019834f6","16622870912675a55a","c189aa53-ba5d-4103-9ac6-4a38627eb87f","165951496945302c79","16590666236909917f","165906641358dc7d47","1659065775e07b611e","16591892554087e25c","1659791921461d8dbb","16597555255be81209","16590615531ba67207","1659181308953b4531","165908222986f69867","16591888464374412f","4425fbf4-25dd-4831-bdd1-457351163f3e","165944151921360295","1659610557d7cbb36f","1659535565cb172661","16590802316c5fed1c"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "f0ff3116-503b-47e5-b797-346acb5f38c0": {
+      "type": "slideshow",
+      "blocks": {
+        "template--16430931706110__f0ff3116-503b-47e5-b797-346acb5f38c0-16832205483485854a-0": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "\"Ik wou dat ik dit eerder wist\"",
+            "title_size": 80,
+            "subheading": "Upgrade je koffie-game met ethisch verantwoorde specialty coffee van Zwarte Roes",
+            "link": "shopify://collections/koffiebonen",
+            "link_text": "Probeer nu",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#f0bc1b",
+            "text_align": "vertical-center horizontal-left",
+            "image": "shopify://shop_images/koffiebonenmalen.jpg",
+            "image_mobile": "shopify://shop_images/Ontwerp_zonder_titel_35fedaa5-ac40-4b8b-a9d1-b7c6783cdf8e.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "template--16430931706110__f0ff3116-503b-47e5-b797-346acb5f38c0-16832205483485854a-0"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 30px;}",
+        "button {color: white;}"
+      ],
+      "settings": {
+        "section_height": "650px",
+        "mobile_height": "auto",
+        "parallax": false,
+        "style": "bars",
+        "autoplay": false,
+        "autoplay_speed": 5
+      }
+    },
+    "336c8a37-11df-4dab-9a7c-791d35034e0d": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Opzoek naar jouw perfecte kick-start?"
+          }
+        },
+        "template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Begin meteen met één van onze best sellers, inclusief alles wat je nodig hebt voor de perfecte koffie.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-0",
+        "template--16430931706110__336c8a37-11df-4dab-9a7c-791d35034e0d-1683225268f9a0f7db-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "hero_black_friday_DpA7gK": {
+      "type": "hero-black-friday",
+      "disabled": true,
+      "settings": {
+        "section_color": "#000000",
+        "section_btn_url": "https://zwarteroes.nl/collections/koffiebonen",
+        "section_btn_text": "Bekijk de deals",
+        "section_img": "shopify://shop_images/Titel_2.jpg",
+        "section_img_mob": "shopify://shop_images/Geef_het_cadeau_van_uitzonderlijke_koffie_Bestel_voor_13_december_voor_bezorging_tijdens_de_feestdagen_1.jpg"
+      }
+    },
+    "1659240890019834f6": {
+      "type": "banner",
+      "custom_css": [
+        "@media (max-width: 768px) {.desktop-banner {display: none;content-visibility:hidden; } .mobile-banner {display:block;content-visibility:visible; } .image-block img {display: block; width: 100%; min-height: 40vh; max-height: 60vh; object-fit: cover; object-position: top; } .feature-row__item {display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 4vw 40px; } .btn2 {font-size: 18px; line-height: 14px; width: 70%; }}"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/dfdsf.jpg",
+        "mob_img": "shopify://shop_images/854697.jpg",
+        "title": "Specialty Coffee.",
+        "text": "Proef het avontuur: Single-Origin coffee voor de Wanderlust Soul",
+        "button_link": "shopify://collections/koffiebonen",
+        "button_label": "Start hier",
+        "image": "shopify://shop_images/banner_product_1.png",
+        "mob_image": "shopify://shop_images/Ontwerp_zonder_titel_7_-min.jpg",
+        "overlay_opacity": 0,
+        "focal_point": "bottom center"
+      }
+    },
+    "16622870912675a55a": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "home_featured_products": "best-sellers-1",
+        "per_row": 3,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "c189aa53-ba5d-4103-9ac6-4a38627eb87f": {
+      "type": "story",
+      "settings": {
+        "image": "shopify://shop_images/Blend_No1_Starterpack.jpg",
+        "image_size": "medium",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "BLEND N°1 Starter pack",
+        "text": "<p>Koffie kán namelijk zoveel lekkerder zijn... Ontdek de koffie die echte koffiekenners drinken.</p>",
+        "button_label": "Yes, die wil ik",
+        "button_link": "https://zwarteroes.nl/products/blend-no1-starter-pack",
+        "button_style": "custom",
+        "button_color": "#da642a",
+        "align_text": "left",
+        "layout": "right",
+        "show-icons": false,
+        "show-yellow-line": false,
+        "divider": false
+      }
+    },
+    "165951496945302c79": {
+      "type": "story",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/coffee_farmer-min_1.jpg",
+        "image_size": "medium",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "START GIVING A SH*T AND DRINK GOOD COFFEE",
+        "text": "<p>Proef de passie van Zwarte Roes: van persoonlijk geselecteerde single origin koffies tot een wilde rit van aroma's, waar elke slok bijdraagt aan een betere wereld.</p><p></p><p><em><strong>#thisishowweroast</strong></em></p>",
+        "button_label": "Lees meer",
+        "button_link": "shopify://pages/ons-verhaal",
+        "button_style": "custom",
+        "button_color": "#afd5df",
+        "align_text": "left",
+        "layout": "right",
+        "show-icons": false,
+        "show-yellow-line": false,
+        "divider": true
+      }
+    },
+    "16590666236909917f": {
+      "type": "text-with-image",
+      "settings": {
+        "image": "shopify://shop_images/singleorigin.webp",
+        "image_size": "medium",
+        "fullwidth": false,
+        "bg_color": "#da642a",
+        "text_color": "#ffffff",
+        "subtitle": "",
+        "title": "SINGLE ORIGIN",
+        "text": "<p>Proef jij graag de <em><strong>origin</strong></em> van de koffie terug in je espresso of cappuccino en ben je op zoek naar unieke smaakprofielen? Start dan jouw koffieavontuur met onze Single Origin Collectie.</p>",
+        "button_label": "Start hier",
+        "button_link": "shopify://collections/single-origins",
+        "button_style": "transparent",
+        "align_text": "left",
+        "layout": "left",
+        "divider": false
+      }
+    },
+    "165906641358dc7d47": {
+      "type": "text-with-image",
+      "settings": {
+        "image": "shopify://shop_images/filterspecial.webp",
+        "image_size": "medium",
+        "fullwidth": false,
+        "bg_color": "#f0bc1b",
+        "text_color": "#ffffff",
+        "subtitle": "",
+        "title": "Filter Specials",
+        "text": "<p>Waar de subtiel fruitige en soms funky smaken samenkomen. <em><strong>Lichter gebrand </strong></em>voor een ultieme smaakbeleving.</p>",
+        "button_label": "shop filter",
+        "button_link": "shopify://collections/filter-specials",
+        "button_style": "transparent",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "1659065775e07b611e": {
+      "type": "text-with-image",
+      "settings": {
+        "image": "shopify://shop_images/blends.webp",
+        "image_size": "medium",
+        "fullwidth": false,
+        "bg_color": "#afd5df",
+        "text_color": "#ffffff",
+        "subtitle": "",
+        "title": "BLENDS",
+        "text": "<p>Waar het beste van twee werelden samenkomt. Gecombineerd in <em><strong>zorgvuldig samengestelde</strong></em> blends. Ontdek deze toegankelijke allrounders, hoe je je koffie ook drinkt.</p>",
+        "button_label": "Blend in",
+        "button_link": "shopify://collections/blends",
+        "button_style": "transparent",
+        "align_text": "left",
+        "layout": "left",
+        "divider": false
+      }
+    },
+    "16591892554087e25c": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify://shop_images/Decaf_new_small_1.png",
+        "image_width": 700,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "COFFEE KEEPS YOU UP?  WE GOT YOU COVERED!",
+        "text": "<p>Wil je genieten van alle spannende smaken van specialty coffee, maar is slaap je ook veel waard? We got you! Bekijk onze spannende Decafs hier. Great taste. No buzz. </p>",
+        "button_label": "shop decaf",
+        "button_link": "shopify://collections/decaf",
+        "button_style": "custom",
+        "button_color": "#da642a",
+        "button_label_color": "#ffffff",
+        "align_text": "left",
+        "layout": "right",
+        "show_footer": false,
+        "divider": false
+      }
+    },
+    "1659791921461d8dbb": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/ZR_GIF_1.jpg",
+        "image_width": 480,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "START GIVING A SH*T AND DRINK GOOD COFFEE",
+        "text": "<p>Hoe beter de werkomstandigheden, hoe gelukkiger onze partners zijn. Gelukkige partners zorgen voor een radicaal beter eindproduct waar liefde en passie in zit. En dat proef je. Vertrouwen in de toekomst. Stay mindful and be the part of the change for the better.</p>",
+        "button_label": "Tell me more",
+        "button_link": "",
+        "button_style": "custom",
+        "button_color": "#afd5df",
+        "button_label_color": "#ffffff",
+        "align_text": "left",
+        "layout": "left",
+        "show_footer": false,
+        "divider": false
+      }
+    },
+    "16597555255be81209": {
+      "type": "review",
+      "blocks": {
+        "165975552584434204-0": {
+          "type": "review",
+          "settings": {
+            "icon": "5-stars",
+            "title": "Heerlijke koffie",
+            "review": "<p>Goeie snelle levering met leuk persoonlijk kaartje. Kan ik waarderen. Nog lekker ook, ben er nog niet uit wat de favo is ;)</p>",
+            "author": "Jeroen Overwater",
+            "author_info": "",
+            "date": "5/2/2022"
+          }
+        },
+        "165975552584434204-1": {
+          "type": "review",
+          "settings": {
+            "icon": "5-stars",
+            "title": "Engeltje op je tong",
+            "review": "<p>Wat is dat toch weer iedere keer genieten, het drinken van jullie koffie! Als ik de zak openmaak, word ik al helemaal blij!</p>",
+            "author": "Esther Rooker",
+            "author_info": "",
+            "date": "1/3/2022"
+          }
+        },
+        "165975552584434204-2": {
+          "type": "review",
+          "settings": {
+            "icon": "5-stars",
+            "title": "Heerlijk en echt smooth",
+            "review": "<p>Echt heerlijk en super smooth te drinken - maple, orange en brown sugar is echt een combo naar mijn hart. Super blij met een abonnement. Ik zit het nu te drinken toevallig - lekker van een French Press.</p>",
+            "author": "Gary Wilton",
+            "author_info": "",
+            "date": "19/2/2022"
+          }
+        }
+      },
+      "block_order": [
+        "165975552584434204-0",
+        "165975552584434204-1",
+        "165975552584434204-2"
+      ],
+      "settings": {
+        "title": "Wat onze klanten zeggen.",
+        "color_title": "#ffffff",
+        "align_text": "center",
+        "round_images": true,
+        "color_background": "#f0bc1b",
+        "color_text": "#29201d"
+      }
+    },
+    "16590615531ba67207": {
+      "type": "text-and-image-fullwidth",
+      "settings": {
+        "image": "shopify://shop_images/ZR_beans_1.png",
+        "image_size": "large",
+        "fullwidth": true,
+        "bg_color": "#29201d",
+        "text_color": "#ffffff",
+        "subtitle": "",
+        "title": "Upgrade je koffie-game",
+        "text": "<p>Iedere koffieboon wordt dagelijks gebrand  in onze micro-branderij in Hoorn, en wordt met zorg verpakt in<em><strong> eco-friendly </strong></em>materialen. Ervaar een koffie-avontuur die jouw smaakpapillen verwent en de wereld liefdevol omarmt, rechtstreeks bezorgd tot <em><strong>op jouw deurmat.</strong></em></p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "button_color": "#f0bc1b",
+        "button_label_color": "#ffffff",
+        "btn-arrow": false,
+        "top-image": false,
+        "align_text": "left",
+        "layout": "left",
+        "divider": false
+      }
+    },
+    "1659181308953b4531": {
+      "type": "logo-list",
+      "blocks": {
+        "165918130858ed1ba3-0": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/delicious_logo_PNG_250x44_2_609f9deb-ccdd-4ea5-bba6-ce2765ce2dcd.png",
+            "link": ""
+          }
+        },
+        "165918130858ed1ba3-1": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/KoffietCacao_logo_06824d8b-8c3e-4368-8f76-eae6e801acac.png",
+            "link": ""
+          }
+        },
+        "165918130858ed1ba3-2": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/nhd_logo.png",
+            "link": ""
+          }
+        },
+        "c276856c-ec51-4aa3-ab5e-bf4a96cc7ffb": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Miljuschka.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "165918130858ed1ba3-0",
+        "165918130858ed1ba3-1",
+        "165918130858ed1ba3-2",
+        "c276856c-ec51-4aa3-ab5e-bf4a96cc7ffb"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "logo_opacity": 100,
+        "divider": false,
+        "graphic_img": "shopify://shop_images/header-dot.png"
+      }
+    },
+    "165908222986f69867": {
+      "type": "icon-with-text",
+      "blocks": {
+        "16590822295c2cf84f-0": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/happy.webp",
+            "text": "<p>Gratis verzending vanaf € 50</p>"
+          }
+        },
+        "16590822295c2cf84f-1": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/delivery-truck.webp",
+            "text": "<p>Voor 15.00 uur besteld - zelfde werkdag verstuurd!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "16590822295c2cf84f-0",
+        "16590822295c2cf84f-1"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "align_text": "center",
+        "divider": false,
+        "bg_color": "rgba(0,0,0,0)",
+        "text_color": "#000000",
+        "border_color": "#000000",
+        "desk_padding": "70px 0",
+        "mob_padding": "80px 0",
+        "show_image": true
+      }
+    },
+    "16591888464374412f": {
+      "type": "feature-columns",
+      "blocks": {
+        "1659188846f9204d53-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/coffee.gif",
+            "title": "",
+            "text": ""
+          }
+        },
+        "1659188846f9204d53-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "title": "BETTER GEAR <br> = <br> BETTER COFFEE",
+            "text": ""
+          }
+        },
+        "a2af21b5-1de6-4b1b-896f-b73f468a94a2": {
+          "type": "icon_block",
+          "settings": {
+            "icon": "shopify://shop_images/web_1.png",
+            "caption": ""
+          }
+        },
+        "324e0a26-d9ba-44b3-aa7d-248a93550292": {
+          "type": "icon_block",
+          "settings": {
+            "icon": "shopify://shop_images/web_2.png",
+            "caption": ""
+          }
+        },
+        "b2d8c2ad-b989-449d-ab07-d76b4018f401": {
+          "type": "icon_block",
+          "settings": {
+            "icon": "shopify://shop_images/web_3.png",
+            "caption": ""
+          }
+        },
+        "584c2891-9aa4-4f5b-a6ba-4f77213f4aa6": {
+          "type": "icon_block",
+          "settings": {
+            "icon": "shopify://shop_images/web_4.png",
+            "caption": ""
+          }
+        },
+        "7678f2cb-f070-4948-89e8-b9ddd3b71497": {
+          "type": "icon_block",
+          "settings": {
+            "icon": "shopify://shop_images/web_5.png",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "1659188846f9204d53-0",
+        "1659188846f9204d53-1",
+        "a2af21b5-1de6-4b1b-896f-b73f468a94a2",
+        "324e0a26-d9ba-44b3-aa7d-248a93550292",
+        "b2d8c2ad-b989-449d-ab07-d76b4018f401",
+        "584c2891-9aa4-4f5b-a6ba-4f77213f4aa6",
+        "7678f2cb-f070-4948-89e8-b9ddd3b71497"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "button_label": "SHOP COFFEE GEAR",
+        "button_link": "shopify://collections/accessoires",
+        "divider": false,
+        "show_image": true
+      }
+    },
+    "4425fbf4-25dd-4831-bdd1-457351163f3e": {
+      "type": "landing-text-icon",
+      "blocks": {
+        "7cd4c451-09f4-46ee-b306-20a7b64c6311": {
+          "type": "text",
+          "settings": {
+            "text": "<p> </p>",
+            "icon": "shopify://shop_images/Miljuschka.png"
+          }
+        },
+        "38aa7a62-2f8c-487a-b934-c98b36abd10a": {
+          "type": "text",
+          "settings": {
+            "text": "<p> </p>",
+            "icon": "shopify://shop_images/nhd_logo.png"
+          }
+        },
+        "162e05c9-f05b-4a1f-b336-61c47179981f": {
+          "type": "text",
+          "settings": {
+            "text": "<p> </p>",
+            "icon": "shopify://shop_images/delicious-logo.webp"
+          }
+        }
+      },
+      "block_order": [
+        "7cd4c451-09f4-46ee-b306-20a7b64c6311",
+        "38aa7a62-2f8c-487a-b934-c98b36abd10a",
+        "162e05c9-f05b-4a1f-b336-61c47179981f"
+      ],
+      "settings": {
+        "bg_color": "#f0bc1b",
+        "text_color": "#29201d",
+        "title": "bekend van"
+      }
+    },
+    "165944151921360295": {
+      "type": "story",
+      "settings": {
+        "image": "shopify://shop_images/Marvin_and_Eline_01_1.png",
+        "image_size": "medium",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "subtitle": "WIST JE...",
+        "title": "...DAT ZWARTE ROES EEN FAMILIE BEDRIJF IS",
+        "text": "<p>Wij zijn Marvin & Eline, founders van Zwarte Roes,<em><strong> reisjunkies, </strong></em>wereldverbeteraars en gepassioneerd over<em><strong> smaak!</strong></em> Wij runnen onze eigen koffiebranderij in Hoorn waar wij bakkenvol <em><strong>liefde</strong></em> in elke koffieboon stoppen die wij verzenden. Lees ons hele verhaal hier!</p>",
+        "button_label": "Ons verhaal",
+        "button_link": "shopify://pages/ons-verhaal",
+        "button_style": "custom",
+        "button_color": "#f0bc1b",
+        "align_text": "left",
+        "layout": "left",
+        "show-icons": true,
+        "show-yellow-line": true,
+        "divider": false
+      }
+    },
+    "1659610557d7cbb36f": {
+      "type": "text-and-image-fullwidth",
+      "settings": {
+        "image": "shopify://shop_images/pexels-cottonbro-4046148_1.png",
+        "image_size": "small",
+        "fullwidth": false,
+        "bg_color": "#afd5df",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "STEL JE VOOR, NOOIT MEER ZONDER JE FAVORIETE KOFFIE?!",
+        "text": "<p>Vind jij het ook zo vreselijk om zonder lekkere koffie te zitten, en wil je nooit meer hoeven omkijken naar de voorraad? Kies dan een abonnement (op maat) en maak je leven een stukje makkelijker. Je kan altijd pauzeren, down- of upgraden of switchen van smaak. We’re easy!</p>",
+        "button_label": "ABONNEMENT",
+        "button_link": "shopify://pages/abonnement",
+        "button_style": "custom",
+        "button_color": "#ffffff",
+        "button_label_color": "#29201d",
+        "btn-arrow": true,
+        "top-image": true,
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "1659535565cb172661": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/proefpakket_efacfb5d-43ac-433f-a4e5-05b3e507081b.webp",
+        "image_width": 700,
+        "bg_color": "#c2dde3",
+        "text_color": "#000000",
+        "subtitle": "",
+        "title": "keuzestress?",
+        "text": "<p>Geen paniek! Hier hebben wij hele handige proefpakketten voor. Klik op de link hieronder om de verschillende proefpakketten te zien die passen bij jouw koffiemomentjes. </p>",
+        "button_label": "bekijk pakketten",
+        "button_link": "shopify://collections/proefpakketten-koffiebonen",
+        "button_style": "custom",
+        "button_color": "#c2dde3",
+        "button_label_color": "#ffffff",
+        "align_text": "left",
+        "layout": "right",
+        "show_footer": true,
+        "divider": false
+      }
+    },
+    "16590802316c5fed1c": {
+      "type": "newsletter",
+      "blocks": {
+        "1659080231fd026ae5-0": {
+          "type": "title",
+          "settings": {
+            "title": "KORTING ALARM!!"
+          }
+        },
+        "1659080231fd026ae5-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>wanna know when your favourite coffee goes on sale? Subscribe today and receive all of our discount codes, speical offers and exciting news directly to your inbox!</p>"
+          }
+        },
+        "1659080231fd026ae5-2": {
+          "type": "form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "1659080231fd026ae5-0",
+        "1659080231fd026ae5-1",
+        "1659080231fd026ae5-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_background": "#ffffff",
+        "color_text": "#da642a",
+        "button_color": "#da642a",
+        "button_label_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "f0ff3116-503b-47e5-b797-346acb5f38c0",
+    "336c8a37-11df-4dab-9a7c-791d35034e0d",
+    "hero_black_friday_DpA7gK",
+    "1659240890019834f6",
+    "16622870912675a55a",
+    "c189aa53-ba5d-4103-9ac6-4a38627eb87f",
+    "165951496945302c79",
+    "16590666236909917f",
+    "165906641358dc7d47",
+    "1659065775e07b611e",
+    "16591892554087e25c",
+    "1659791921461d8dbb",
+    "16597555255be81209",
+    "16590615531ba67207",
+    "1659181308953b4531",
+    "165908222986f69867",
+    "16591888464374412f",
+    "4425fbf4-25dd-4831-bdd1-457351163f3e",
+    "165944151921360295",
+    "1659610557d7cbb36f",
+    "1659535565cb172661",
+    "16590802316c5fed1c"
+  ]
+}

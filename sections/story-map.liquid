@@ -2,16 +2,42 @@
   <div class="page-width">
      <div class="cart-section">
        {% if section.settings.dots_show %}
-        <img src="{{ "header-dot-top.png" | asset_url }}" class="header-dot-top">
+        <img src="{{ "header-dot-top.png" | asset_url }}" class="header-dot-top" decoding="async" loading="lazy" fetchpriority="low">
        {% endif %}
         {% if product.metafields.custom.story_images != blank %}
         <div class="cart-center-images">          
           {% for storyImage in product.metafields.custom.story_images.value %}
-           <div class="cart-center-image">
+           {%- comment -%}<div class="cart-center-image">
              {{ storyImage | image_url: width: 500 | image_tag  }}
-           </div>
+           </div>{%- endcomment -%}
+            {%- comment -%} Assign image object for clarity and checking {%- endcomment -%}
+            {%- assign img_object = storyImage -%}
+            
+            {% if img_object != blank %}
+              {%- comment -%} Widths suitable for 75px to 170px display, including 2x density {%- endcomment -%}
+              {%- assign img_widths = '75, 150, 170, 225, 250, 340, 352, 510' -%}
+              {%- comment -%} Sizes attribute reflects the maximum possible display width {%- endcomment -%}
+              {%- assign img_sizes = '(max-width: 600px) 75px, 170px' -%}
+              {%- assign img_alt = img_object.alt | escape -%}
+              {%- assign img_class = 'cart-story-image' -%} {%- comment -%} Add specific class for the image if needed {%- endcomment -%}
+            
+              {%- comment -%} Keep the container div as it likely controls the sizing {%- endcomment -%}
+              <div class="cart-center-image">
+                {%- comment -%} Generate optimized image tag {%- endcomment -%}
+                {{ img_object | image_url: width: 510 | image_tag:
+                    widths: img_widths,
+                    sizes: img_sizes,
+                    alt: img_alt,
+                    class: img_class,
+                    loading: 'lazy',
+                    fetchpriority: 'low',
+                    decoding: 'async'
+                }}
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
+
         {% endif %}
         <div class="cart-content">
           {% if section.settings.title != blank %}
@@ -32,7 +58,7 @@
         <div class="cart-link"><a href="{{ product.metafields.custom.read_full_story }}">{{ section.settings.link_text }}</a></div>
         {% endif %}
        {% if section.settings.dots_show %}
-        <img src="{{ "header-dot.png" | asset_url }}" class="header-dot-bottom">
+        <img src="{{ "header-dot.png" | asset_url }}" class="header-dot-bottom" decoding="async" loading="lazy" fetchpriority="low">
        {% endif %}
      </div>
   </div>

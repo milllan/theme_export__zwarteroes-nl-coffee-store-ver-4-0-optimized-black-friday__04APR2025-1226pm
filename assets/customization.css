@@ -329,6 +329,8 @@
   -webkit-overflow-scrolling: touch;
   outline: 0;
   opacity: 0;
+  contain: content;
+  content-visibility: hidden;
   -webkit-transition: opacity 0.15s linear, z-index 0.15;
   -o-transition: opacity 0.15s linear, z-index 0.15;
   transition: opacity 0.15s linear, z-index 0.15;
@@ -340,6 +342,7 @@
 .meta-open {
   z-index: 99999;
   opacity: 1;
+  content-visibility: auto;
   overflow: hidden;
 }
 .meta-model-inner {
